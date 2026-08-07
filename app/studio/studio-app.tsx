@@ -203,7 +203,7 @@ export default function StudioApp() {
             <section className={styles.artistSection} aria-labelledby="daily-artist-title">
               <header className={styles.artistSectionHeader}>
                 <div><span>01 / DAILY ARTIST SIGNAL</span><h2 id="daily-artist-title">每日优秀概念设计师</h2><p>直接看作品，也看它为什么成立：风格、世界观和可带走的学习重点都已整理在卡片中。</p></div>
-                <div className={styles.scanStatus}><i /> 3 PICKS · 作品每日轮换</div>
+                <div className={styles.scanStatus}><i /> 3 PICKS · 今日人工精选</div>
               </header>
               <div className={styles.artistGrid}>
                 {artistRecommendations.map((item) => <ArtistCard key={item.id} item={item} />)}
