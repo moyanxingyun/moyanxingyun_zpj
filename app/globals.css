@@ -27,4 +27,28 @@
 .apply-link{margin-left:auto;padding:6px 10px;border:1px solid #779783;border-radius:6px;color:var(--green);background:#fff;text-decoration:none;font-weight:800;font-size:10px;white-space:nowrap;transition:.16s ease}
 .apply-link:hover{background:var(--green);color:#fff;transform:translateY(-1px)}
 @media(max-width:760px){.apply-link{margin-left:0}.job-list .job-title-row .company-name{font-size:14px}.job-list .job-title-row h3{font-size:17px}}
+
+/* Global readability pass */
+.brand small{font-size:9px}.sidebar nav>p{font-size:11px}.sidebar nav span{font-size:15px}.sidebar nav em{font-size:11px}
+.profile-card b{font-size:13px}.profile-card small{font-size:10px}.profile-card>span{font-size:11px}
+.global-search input{font-size:14px}.global-search kbd{font-size:10px}.demo-pill{font-size:10px}.add-button,.analyze-button,.pipeline-heading>button{font-size:13px}
+.notice-popover b{font-size:14px}.notice-popover p{font-size:12px}
+.welcome p,.page-heading p,.panel header p,.insight-title p,.analysis-result header p{font-size:10px}
+.welcome>div>span,.page-heading>div>span{font-size:14px;line-height:1.65}.welcome>button{font-size:13px}
+.metric-grid p{font-size:12px}.metric-grid small{font-size:10px}.metric-grid article>.donut b{font-size:11px}.metric-grid article>.donut small{font-size:8px}
+.panel h2{font-size:20px}.panel header button{font-size:11px}
+.job-meta{flex-wrap:wrap;align-items:center;font-size:11px;line-height:1.5}.tag-row span{font-size:10px}.match-cell>span{font-size:9px}.donut small{font-size:9px}
+.campaign-badge{font-size:10px!important}.opportunity-label{font-size:10px}.apply-link{font-size:11px}
+.week-ring>div span{font-size:10px}.action-panel li b{font-size:12px}.action-panel li span{font-size:10px}.action-panel li>i{font-size:10px}.plain-button{font-size:11px}
+.insight-title h2{font-size:16px}.insight-strip>p{font-size:12px}.insight-strip>button{font-size:11px}
+.app-footer{font-size:10px}.heading-stat span{font-size:11px}
+.source-legend{font-size:10px;line-height:1.5}
+.filter-row input{font-size:12px}.filter-row select,.filter-row>button,.resume-editor>select{font-size:12px}.result-bar{font-size:11px}.result-bar button{font-size:10px}
+.step-label b{font-size:10px}.step-label span{font-size:12px}.step-label small{font-size:10px}.selected-role b{font-size:12px}.selected-role span{font-size:10px}
+.resume-editor textarea{font-size:12px}.privacy-note{font-size:10px}.analysis-empty p{font-size:12px}.score-breakdown b{font-size:10px}
+.rewrite-card>span{font-size:10px}.rewrite-card p{font-size:11px}.suggestion-columns h3{font-size:11px}.suggestion-columns p{font-size:10px}.export-button{font-size:11px}
+.pipeline-column>header span{font-size:11px}.pipeline-column>header b{font-size:10px}.pipeline-card small{font-size:10px}.pipeline-card h3{font-size:12px}.pipeline-card>p,.pipeline-date>span,.pipeline-date select{font-size:10px}.column-add{font-size:10px}
+.drawer-hero>p{font-size:12px}.drawer-score b{font-size:13px}.drawer-score span{font-size:11px}.job-drawer section h3{font-size:14px}.job-drawer dl div{font-size:12px}.job-drawer li{font-size:12px}.fit-note p{font-size:11px}.drawer-actions button,.drawer-actions>a{font-size:11px}
+@media(max-width:760px){.sidebar nav button span{font-size:10px}.job-list .job-title-row .company-name{font-size:15px}.job-list .job-title-row h3{font-size:18px}.filter-row select,.filter-row>button{min-height:42px}.result-bar{gap:12px;line-height:1.5}}
+@media(max-width:480px){.job-list .job-title-row h3{font-size:17px}.job-meta{font-size:10px}.tag-row span{font-size:9px}}
 @media(max-width:480px){.drawer-actions.expanded{grid-template-columns:1fr}}
