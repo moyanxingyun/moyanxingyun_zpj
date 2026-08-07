@@ -51,4 +51,10 @@
 .drawer-hero>p{font-size:12px}.drawer-score b{font-size:13px}.drawer-score span{font-size:11px}.job-drawer section h3{font-size:14px}.job-drawer dl div{font-size:12px}.job-drawer li{font-size:12px}.fit-note p{font-size:11px}.drawer-actions button,.drawer-actions>a{font-size:11px}
 @media(max-width:760px){.sidebar nav button span{font-size:10px}.job-list .job-title-row .company-name{font-size:15px}.job-list .job-title-row h3{font-size:18px}.filter-row select,.filter-row>button{min-height:42px}.result-bar{gap:12px;line-height:1.5}}
 @media(max-width:480px){.job-list .job-title-row h3{font-size:17px}.job-meta{font-size:10px}.tag-row span{font-size:9px}}
+
+/* Company scale visibility */
+.filter-row{flex-wrap:wrap}.filter-row label{flex:2 1 300px}.filter-row select{flex:1 0 auto}
+.scale-label{display:inline-flex;align-items:center;max-width:100%;padding:3px 8px;border:1px solid #d5ded7;border-radius:12px;background:#eef3ef;color:#425e4b;font-weight:800;line-height:1.4}
+.compact-jobs .scale-label{max-width:230px;white-space:normal}
+@media(max-width:760px){.filter-row select{flex:1 1 135px}.scale-label{white-space:normal}}
 @media(max-width:480px){.drawer-actions.expanded{grid-template-columns:1fr}}
