@@ -1,8 +1,8 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
-import { intelItems, starterActions } from "./_data/mock-data";
-import type { ActionItem, ArtStyle, IntelItem, StudioTab, WorkDirection } from "./_types";
+import { artistRecommendations, intelItems, starterActions } from "./_data/mock-data";
+import type { ArtStyle, ArtistRecommendation, IntelItem, StudioTab, WorkDirection } from "./_types";
 import styles from "./studio.module.css";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -55,6 +55,32 @@ function IntelCard({
             变成练习 <span aria-hidden="true">＋</span>
           </button>
         </div>
+      </div>
+    </article>
+  );
+}
+
+function ArtistCard({ item }: { item: ArtistRecommendation }) {
+  return (
+    <article className={`${styles.artistCard} ${item.featured ? styles.artistFeatured : ""}`}>
+      <a className={styles.artistVisual} href={item.sourceUrl} target="_blank" rel="noreferrer">
+        <img src={item.imageUrl} alt={`${item.artist} 的概念设计作品 ${item.workTitle}`} loading={item.featured ? "eager" : "lazy"} />
+        <span className={styles.imageCredit}>作品：{item.artist} · 来源：{item.sourceLabel}</span>
+        <i aria-hidden="true">VIEW SOURCE ↗</i>
+      </a>
+      <div className={styles.artistBody}>
+        <div className={styles.artistMeta}>
+          <span>DAILY PICK</span>
+          <Mark>{item.style}</Mark>
+        </div>
+        <p className={styles.artistName}>{item.artist}</p>
+        <h3>{item.workTitle}</h3>
+        <dl className={styles.artistDetails}>
+          <div><dt>风格方向</dt><dd>{item.artDirection}</dd></div>
+          <div><dt>世界观</dt><dd>{item.worldView}</dd></div>
+          <div><dt>学习重点</dt><dd>{item.studyFocus}</dd></div>
+        </dl>
+        <a className={styles.sourceLink} href={item.sourceUrl} target="_blank" rel="noreferrer">阅读作者访谈与作品说明 <span>↗</span></a>
       </div>
     </article>
   );
@@ -174,8 +200,18 @@ export default function StudioApp() {
       <section className={styles.workspace}>
         {activeTab === "radar" && (
           <>
+            <section className={styles.artistSection} aria-labelledby="daily-artist-title">
+              <header className={styles.artistSectionHeader}>
+                <div><span>01 / DAILY ARTIST SIGNAL</span><h2 id="daily-artist-title">每日优秀概念设计师</h2><p>直接看作品，也看它为什么成立：风格、世界观和可带走的学习重点都已整理在卡片中。</p></div>
+                <div className={styles.scanStatus}><i /> 3 PICKS · 作品每日轮换</div>
+              </header>
+              <div className={styles.artistGrid}>
+                {artistRecommendations.map((item) => <ArtistCard key={item.id} item={item} />)}
+              </div>
+            </section>
+
             <header className={styles.sectionHeader}>
-              <div><span>01 / DAILY RADAR</span><h2>今日前沿</h2><p>已按你的目标方向过滤噪音，只保留能转化成方法或作品证据的内容。</p></div>
+              <div><span>02 / DAILY RADAR</span><h2>今日前沿</h2><p>已按你的目标方向过滤噪音，只保留能转化成方法或作品证据的内容。</p></div>
               <label className={styles.searchBox} htmlFor="radar-search"><span>⌕</span><input id="radar-search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索工具、案例或制作环节" /></label>
             </header>
 

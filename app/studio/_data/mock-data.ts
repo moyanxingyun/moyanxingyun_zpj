@@ -1,4 +1,44 @@
-import type { ActionItem, IntelItem } from "../_types";
+import type { ActionItem, ArtistRecommendation, IntelItem } from "../_types";
+
+export const artistRecommendations: ArtistRecommendation[] = [
+  {
+    id: "felix-riano-the-chase",
+    artist: "Felix Riaño",
+    workTitle: "The Chase · 历史与未来的碰撞",
+    imageUrl: "https://cdn.mos.cms.futurecdn.net/5DTFkHkJUwSsabYs6hHcES.jpg",
+    sourceUrl: "https://www.creativebloq.com/3d/3d-art/this-game-concept-artist-explores-fantastical-ideas-in-historical-settings",
+    sourceLabel: "CREATIVE BLOQ · ARTIST FEATURE",
+    style: "半写实",
+    worldView: "荒野西部仍保留马匹、尘土与拓荒者秩序，但巨型飞船已经成为可被追逐与劫掠的日常科技。历史语境与未来设备的冲突，让世界观在一张图里成立。",
+    artDirection: "硬表面科幻 × 历史荒野",
+    studyFocus: "学习如何用一个高反差的时代错位，快速建立叙事钩子与尺度感。",
+    featured: true,
+  },
+  {
+    id: "tarmo-juhola-brutalist-fantasy",
+    artist: "Tarmo Juhola",
+    workTitle: "Brutalist Fantasy · 悬崖般的建筑",
+    imageUrl: "https://cdn.mos.cms.futurecdn.net/zibyA3pak49AjsPWUCDbkZ.jpg",
+    sourceUrl: "https://www.creativebloq.com/3d/3d-art/turning-architecture-skills-into-epic-brutalist-fantasy-art",
+    sourceLabel: "CREATIVE BLOQ · ARTIST FEATURE",
+    style: "写实",
+    worldView: "巨构建筑不再只是背景，而是像山体一样压迫角色的文明遗迹。粗野主义轮廓与奇幻尺度结合，暗示一个崇拜力量、秩序和永恒材料的古老社会。",
+    artDirection: "粗野主义 × 史诗奇幻",
+    studyFocus: "观察大轮廓、重复模块和人物尺度如何共同制造庄严感。",
+  },
+  {
+    id: "choomcherd-virapat-phaya-akat",
+    artist: "Choomcherd Virapat",
+    workTitle: "Phaya Akat · 天空战士",
+    imageUrl: "https://cdn.mos.cms.futurecdn.net/tciejDt5qNcEuMyr3FrtmB.jpg",
+    sourceUrl: "https://www.creativebloq.com/art/digital-art/this-artists-created-a-fantasy-world-inspired-by-traditional-thai-culture",
+    sourceLabel: "CREATIVE BLOQ · IMAGINEFX",
+    style: "风格化",
+    worldView: "以泰国文化与建筑为根基的中世纪幻想世界。温泉村落、地下宫殿与飞行战船共享同一套文化母题，让生活空间、仪式和战争机器彼此关联。",
+    artDirection: "泰式文化母题 × 中世纪幻想",
+    studyFocus: "学习从真实地域文化提炼形制，而不是只在表面堆叠装饰符号。",
+  },
+];
 
 export const intelItems: IntelItem[] = [
   {
@@ -108,4 +148,3 @@ export const starterActions: ActionItem[] = [
     done: true,
   },
 ];
-

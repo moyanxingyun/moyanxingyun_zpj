@@ -30,3 +30,16 @@ export interface ActionItem {
   done: boolean;
 }
 
+export interface ArtistRecommendation {
+  id: string;
+  artist: string;
+  workTitle: string;
+  imageUrl: string;
+  sourceUrl: string;
+  sourceLabel: string;
+  style: ArtStyle;
+  worldView: string;
+  artDirection: string;
+  studyFocus: string;
+  featured?: boolean;
+}
