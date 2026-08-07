@@ -371,6 +371,125 @@ const getScaleTier = (job: Job): ScaleTier => job.scaleTier ?? (
   job.scale.includes("小型") || job.scale.includes("独立") ? "小型/独立团队" : job.scale.includes("中型") ? "中型企业" : "大型企业"
 );
 
+type ResumeAdvice = {
+  title: string;
+  detail: string;
+  action: string;
+};
+
+type ResumeReport = {
+  overall: number;
+  skillScore: number;
+  projectScore: number;
+  expressionScore: number;
+  hitKeywords: string[];
+  missingKeywords: string[];
+  strengths: string[];
+  gaps: string[];
+  advice: ResumeAdvice[];
+  rewrittenProject: string;
+};
+
+const clampScore = (value: number) => Math.max(45, Math.min(96, Math.round(value)));
+
+function analyzeResume(job: Job, text: string): ResumeReport {
+  const normalized = text.toLowerCase();
+  const skillTerms = ["maya", "zbrush", "substance", "ue5", "unreal", "pbr", "建模", "材质", "灯光", "地编", "场景", "uv", "模块化", "优化", "shader", "蓝图"];
+  const projectTerms = ["独立", "负责", "完成", "项目", "场景", "资产", "搭建", "制作", "协作", "落地"];
+  const hitKeywords = job.tags.filter((tag) => normalized.includes(tag.toLowerCase()));
+  const missingKeywords = job.tags.filter((tag) => !normalized.includes(tag.toLowerCase())).slice(0, 5);
+  const skillHits = skillTerms.filter((term) => normalized.includes(term)).length;
+  const projectHits = projectTerms.filter((term) => normalized.includes(term)).length;
+  const hasNumber = /\d/.test(text);
+  const hasResult = /(提升|降低|优化|控制|完成|实现|减少|复用|帧率|面数|贴图)/.test(text);
+  const hasStructure = /[：:；;。\n]/.test(text);
+  const skillScore = clampScore(54 + skillHits * 4 + hitKeywords.length * 3);
+  const projectScore = clampScore(56 + projectHits * 4 + (normalized.includes("ue5") ? 4 : 0) + (normalized.includes("场景") ? 4 : 0));
+  const expressionScore = clampScore(52 + Math.min(text.length / 9, 14) + (hasNumber ? 10 : 0) + (hasResult ? 10 : 0) + (hasStructure ? 5 : 0));
+  const overall = clampScore((skillScore + projectScore + expressionScore) / 3);
+  const keywordText = missingKeywords.length ? missingKeywords.join("、") : "岗位标签已基本覆盖";
+  const requirementText = job.requirements.slice(0, 2).join("；");
+
+  return {
+    overall,
+    skillScore,
+    projectScore,
+    expressionScore,
+    hitKeywords,
+    missingKeywords,
+    strengths: [
+      skillHits >= 4 ? `已识别 ${skillHits} 项场景美术相关技能，基础工具链较完整。` : "已识别到场景制作基础，但核心工具链还需要写得更完整。",
+      projectHits >= 4 ? "文本包含职责和制作过程，具备项目经历的基本骨架。" : "已有项目方向，但个人职责和制作过程还不够明确。",
+    ],
+    gaps: [
+      hasNumber ? "已有数字信息，建议继续补充性能或资产规格。" : "缺少资产数量、面数、贴图规格、帧率等可核验数字。",
+      hasResult ? job.missing[0] : "缺少项目结果与优化成效，无法判断作品是否真正落地。",
+    ],
+    advice: [
+      {
+        title: "把求职定位写进简历首屏",
+        detail: `${job.company} 的目标岗位是“${job.role}”，你的简历开头应直接出现场景美术、3D场景或地编定位。`,
+        action: `建议标题：2027届数字媒体艺术｜游戏场景美术 / 地编｜目标：${job.company}`,
+      },
+      {
+        title: "补齐岗位关键词",
+        detail: `当前尚未在简历中识别到：${keywordText}。关键词必须来自你的真实经历，不能为了匹配而硬写。`,
+        action: `对照岗位要求核实后补充：${requirementText}`,
+      },
+      {
+        title: "按“动作—方法—结果”重写项目",
+        detail: "目前的描述偏技能罗列，招聘方还看不到你解决了什么问题，以及资产最终如何进入引擎。",
+        action: "每个项目至少写清个人职责、制作流程、引擎落地和一个真实结果；暂时没有数据的位置保留占位符。",
+      },
+      {
+        title: "针对项目风格调整作品集顺序",
+        detail: `${job.project} 更关注与岗位直接相关的视觉风格和生产流程。`,
+        action: `将最符合“${job.tags.slice(0, 3).join(" / ")}”的完整场景放在第一位，并附线框、材质拆解、引擎截图和个人职责。`,
+      },
+    ],
+    rewrittenProject: `独立完成［项目名称］的场景资产制作与引擎搭建，负责［你的真实职责］，使用［真实使用的软件与流程］完成模型、UV、材质和灯光；通过［真实优化方法］将［面数 / 贴图 / 帧率等真实数据］优化至［结果］，最终用于［课程 / 比赛 / 团队项目 / 个人作品］。`,
+  };
+}
+
+function buildResumeDraft(job: Job, text: string, report: ResumeReport) {
+  const skills = Array.from(new Set(["Maya", "ZBrush", "Substance Painter", "UE5", "PBR", ...report.hitKeywords])).join(" / ");
+  const missing = report.missingKeywords.length ? report.missingKeywords.join("、") : "暂无明显缺口";
+
+  return `【目标岗位】
+${job.company}｜${job.role}｜${job.city}
+
+【求职定位｜请按真实情况修改】
+2027届数字媒体艺术专业学生，求职方向为游戏场景美术 / 3D场景 / 地编。具备场景资产制作与引擎落地经验，希望参与${job.project}。
+
+【核心技能｜删除未真实掌握的内容】
+${skills}
+
+【项目经历改写模板】
+项目名称：［填写真实项目名］
+项目类型：［个人 / 课程 / 比赛 / 团队项目］
+个人职责：［明确你独立负责的模块］
+
+• ${report.rewrittenProject}
+• 资产制作：完成［资产数量］个模型，单体面数约［真实数值］，贴图规格为［真实规格］。
+• 引擎落地：在 UE5 中完成［地编 / 灯光 / 植被 / 材质实例 / 蓝图］，并说明你真实使用的功能。
+• 优化结果：通过［LOD / 合批 / 纹理压缩 / 遮挡剔除等真实方法］，将［真实指标］从［优化前］改善至［优化后］。
+
+【针对 ${job.company} 的作品集调整】
+1. 第一页放置最符合“${job.tags.slice(0, 3).join(" / ")}”的完整场景。
+2. 每个项目补充参考图、灰盒、线框、材质拆解、引擎最终效果与个人职责。
+3. 重点回应：${job.requirements.slice(0, 2).join("；")}。
+4. 当前待核实关键词：${missing}。
+
+【原始简历内容｜保留用于核对】
+${text.trim() || "［尚未填写］"}
+
+【投递前核对】
+□ 所有软件、职责和数据均可由作品或过程文件证明
+□ 删除不适用于本岗位的泛化描述
+□ 作品集链接可访问，并明确标注个人贡献
+□ 投递前再次核对官网岗位状态与作品集要求`;
+}
+
 function JobCard({ job, onOpen, saved, onSave }: { job: Job; onOpen: () => void; saved: boolean; onSave: () => void }) {
   return (
     <article className="job-card" onClick={onOpen} tabIndex={0} onKeyDown={(e) => e.key === "Enter" && onOpen()}>
@@ -398,6 +517,8 @@ export default function Home() {
   const [selectedResumeJob, setSelectedResumeJob] = useState(1);
   const [resumeText, setResumeText] = useState("熟悉 Maya、ZBrush、Substance Painter 与 UE5，独立完成过写实废墟和风格化森林场景。负责模型、UV、材质、灯光及最终画面呈现。熟悉模块化资产制作和基础 PBR 工作流。");
   const [analyzed, setAnalyzed] = useState(false);
+  const [draftOpen, setDraftOpen] = useState(false);
+  const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">("idle");
   const [noticeOpen, setNoticeOpen] = useState(false);
 
   useEffect(() => {
@@ -426,8 +547,32 @@ export default function Home() {
   }), [jobs, search, city, campaignFilter, typeFilter, scaleFilter]);
 
   const activeResumeJob = jobs.find((job) => job.id === selectedResumeJob) ?? jobs[0];
+  const resumeReport = useMemo(() => analyzeResume(activeResumeJob, resumeText), [activeResumeJob, resumeText]);
+  const resumeDraft = useMemo(() => buildResumeDraft(activeResumeJob, resumeText, resumeReport), [activeResumeJob, resumeText, resumeReport]);
   const changeStatus = (jobId: number, status: JobStatus) => setJobs((current) => current.map((job) => job.id === jobId ? { ...job, status } : job));
   const toggleSaved = (id: number) => setSavedIds((current) => current.includes(id) ? current.filter((item) => item !== id) : [...current, id]);
+  const resetResumeResult = () => {
+    setAnalyzed(false);
+    setDraftOpen(false);
+    setCopyState("idle");
+  };
+  const copyResumeDraft = async () => {
+    try {
+      await navigator.clipboard.writeText(resumeDraft);
+      setCopyState("copied");
+    } catch {
+      setCopyState("failed");
+    }
+  };
+  const downloadResumeDraft = () => {
+    const blob = new Blob([resumeDraft], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = `${activeResumeJob.company}-定制简历草稿.txt`;
+    anchor.click();
+    URL.revokeObjectURL(url);
+  };
 
   return (
     <main className="career-app">
@@ -478,10 +623,54 @@ export default function Home() {
         </section>}
 
         {view === "resume" && <section className="page resume-page">
-          <header className="page-heading"><div><p>AI RESUME STUDIO</p><h1>针对岗位，重写你的优势。</h1><span>选择目标职位，系统将对照岗位要求给出可执行建议；不会虚构你没有的经历。</span></div></header>
+          <header className="page-heading"><div><p>AI RESUME STUDIO</p><h1>针对岗位，重写你的优势。</h1><span>选择目标职位，系统会根据岗位要求和你粘贴的内容生成修改方案；所有待补数据都会明确标为占位符。</span></div></header>
           <div className="resume-layout">
-            <section className="resume-editor panel"><div className="step-label"><b>01</b><span>选择目标岗位</span></div><select value={selectedResumeJob} onChange={(e) => { setSelectedResumeJob(Number(e.target.value)); setAnalyzed(false); }}>{jobs.map((job) => <option value={job.id} key={job.id}>{job.company} · {job.role}</option>)}</select><div className="selected-role"><span className="company-mark" style={{ background: activeResumeJob.accent }}>{activeResumeJob.initials}</span><div><b>{activeResumeJob.role}</b><span>{activeResumeJob.company} · {activeResumeJob.city} · 匹配度 {activeResumeJob.match}%</span></div></div><div className="step-label"><b>02</b><span>粘贴简历内容</span><small>{resumeText.length} 字</small></div><textarea value={resumeText} onChange={(e) => { setResumeText(e.target.value); setAnalyzed(false); }} aria-label="简历内容" /><button className="analyze-button" onClick={() => setAnalyzed(true)}><span>✦</span>{analyzed ? "重新生成诊断" : "开始岗位匹配诊断"}</button><p className="privacy-note">⌾ 内容仅在当前设备中处理和展示</p></section>
-            <section className={analyzed ? "analysis-panel active" : "analysis-panel"}>{!analyzed ? <div className="analysis-empty"><span>✦</span><h2>让每一段经历，都回应岗位要求</h2><p>左侧选择岗位并粘贴简历后，开始生成匹配诊断。</p><div><i /><i /><i /></div></div> : <div className="analysis-result"><header><div><p>MATCH REPORT</p><h2>简历匹配报告</h2></div><Donut value={86} /></header><div className="score-breakdown"><span><b>技能匹配</b><i><em style={{ width: "92%" }} /></i><small>92</small></span><span><b>项目相关</b><i><em style={{ width: "86%" }} /></i><small>86</small></span><span><b>表达质量</b><i><em style={{ width: "72%" }} /></i><small>72</small></span></div><article className="rewrite-card"><span>优先修改 · 项目经历</span><p className="before">负责制作一个废墟场景，使用了 Maya 和 UE5。</p><p className="after">独立完成写实废墟场景的模块化资产制作与 UE5 场景搭建，负责模型、UV、PBR 材质、灯光及氛围调整，并建立统一的资产命名与贴图规格。</p></article><div className="suggestion-columns"><article><h3><i>✓</i> 已命中的优势</h3>{activeResumeJob.reasons.slice(0, 2).map((item) => <p key={item}>{item}</p>)}</article><article><h3><i>!</i> 建议补强</h3>{activeResumeJob.missing.map((item) => <p key={item}>{item}</p>)}</article></div><button className="export-button">生成定制简历草稿 →</button></div>}</section>
+            <section className="resume-editor panel">
+              <div className="step-label"><b>01</b><span>选择目标岗位</span></div>
+              <select value={selectedResumeJob} onChange={(e) => { setSelectedResumeJob(Number(e.target.value)); resetResumeResult(); }}>{jobs.map((job) => <option value={job.id} key={job.id}>{job.company} · {job.role}</option>)}</select>
+              <div className="selected-role"><span className="company-mark" style={{ background: activeResumeJob.accent }}>{activeResumeJob.initials}</span><div><b>{activeResumeJob.role}</b><span>{activeResumeJob.company} · {activeResumeJob.city} · 岗位基础匹配 {activeResumeJob.match}%</span></div></div>
+              <div className="step-label"><b>02</b><span>粘贴简历内容</span><small>{resumeText.length} 字</small></div>
+              <textarea value={resumeText} onChange={(e) => { setResumeText(e.target.value); resetResumeResult(); }} aria-label="简历内容" placeholder="粘贴个人简介、技能和项目经历，信息越完整，建议越准确。" />
+              <button className="analyze-button" disabled={!resumeText.trim()} onClick={() => { setAnalyzed(true); setDraftOpen(false); setCopyState("idle"); }}><span>✦</span>{analyzed ? "重新生成岗位诊断" : "开始岗位匹配诊断"}</button>
+              <p className="privacy-note">⌾ 内容仅在当前设备中处理和展示</p>
+            </section>
+
+            <section className={analyzed ? "analysis-panel active" : "analysis-panel"}>
+              {!analyzed ? <div className="analysis-empty"><span>✦</span><h2>让每一段经历，都回应岗位要求</h2><p>左侧选择岗位并粘贴简历后，开始生成匹配诊断。</p><div><i /><i /><i /></div></div> : <div className="analysis-result">
+                <header><div><p>MATCH REPORT · {activeResumeJob.company}</p><h2>针对“{activeResumeJob.role}”的修改报告</h2></div><Donut value={resumeReport.overall} /></header>
+                <div className="score-breakdown">
+                  <span><b>技能匹配</b><i><em style={{ width: `${resumeReport.skillScore}%` }} /></i><small>{resumeReport.skillScore}</small></span>
+                  <span><b>项目相关</b><i><em style={{ width: `${resumeReport.projectScore}%` }} /></i><small>{resumeReport.projectScore}</small></span>
+                  <span><b>表达质量</b><i><em style={{ width: `${resumeReport.expressionScore}%` }} /></i><small>{resumeReport.expressionScore}</small></span>
+                </div>
+
+                <div className="keyword-summary">
+                  <div className="keyword-group"><b>已命中关键词</b><div>{resumeReport.hitKeywords.length ? resumeReport.hitKeywords.map((item) => <span className="keyword-hit" key={item}>✓ {item}</span>) : <span className="keyword-empty">暂未命中岗位标签</span>}</div></div>
+                  <div className="keyword-group"><b>建议核实并补充</b><div>{resumeReport.missingKeywords.length ? resumeReport.missingKeywords.map((item) => <span className="keyword-gap" key={item}>＋ {item}</span>) : <span className="keyword-complete">岗位标签已基本覆盖</span>}</div></div>
+                </div>
+
+                <article className="rewrite-card">
+                  <span>优先修改 · 项目经历</span>
+                  <p className="before">原描述：{resumeText.split(/[。\n]/).find(Boolean)?.trim() || "尚未填写项目描述"}</p>
+                  <p className="after">建议模板：{resumeReport.rewrittenProject}</p>
+                </article>
+
+                <section className="resume-advice-section">
+                  <div className="section-heading"><div><p>JOB-SPECIFIC ACTIONS</p><h3>针对该岗位的修改建议</h3></div><span>{resumeReport.advice.length} 项可执行建议</span></div>
+                  <div className="resume-advice-list">{resumeReport.advice.map((item, index) => <article className="advice-item" key={item.title}><b>{String(index + 1).padStart(2, "0")}</b><div><h4>{item.title}</h4><p>{item.detail}</p><strong>怎么改：{item.action}</strong></div></article>)}</div>
+                </section>
+
+                <div className="suggestion-columns"><article><h3><i>✓</i> 已命中的优势</h3>{resumeReport.strengths.map((item) => <p key={item}>{item}</p>)}</article><article><h3><i>!</i> 建议补强</h3>{resumeReport.gaps.map((item) => <p key={item}>{item}</p>)}</article></div>
+
+                <button className="export-button" onClick={() => { setDraftOpen(true); setCopyState("idle"); }} aria-expanded={draftOpen}>{draftOpen ? "定制草稿已生成，见下方 ↓" : "生成定制简历草稿 →"}</button>
+                {draftOpen && <section className="draft-panel" aria-live="polite">
+                  <header><div><p>TAILORED RESUME DRAFT</p><h3>{activeResumeJob.company} · 定制简历草稿</h3></div><span>占位符需替换为真实信息</span></header>
+                  <textarea readOnly value={resumeDraft} aria-label="定制简历草稿" />
+                  <div className="draft-actions"><button onClick={copyResumeDraft}>{copyState === "copied" ? "✓ 已复制到剪贴板" : copyState === "failed" ? "复制失败，请手动选择" : "复制全部内容"}</button><button onClick={downloadResumeDraft}>下载 TXT 草稿</button></div>
+                  <p>提示：草稿只重组你已提供的内容；［方括号］中的内容必须按真实情况补全。</p>
+                </section>}
+              </div>}
+            </section>
           </div>
         </section>}
 
