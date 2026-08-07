@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:sites": "vite build",
     "build:pages": "next build",
     "start": "next start",
     "lint": "eslint . --ignore-pattern out --ignore-pattern .next"
