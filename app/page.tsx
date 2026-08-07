@@ -403,6 +403,13 @@ type StructuredJd = {
   note: string;
 };
 
+type CountdownInfo = {
+  label: string;
+  dateLabel: string;
+  tone: "active" | "soon" | "urgent" | "rolling" | "watch" | "closed";
+  days: number | null;
+};
+
 const deadlineOverrides: Record<number, Partial<DeadlineProfile>> = {
   1: { batch: "2027届秋季校园招聘", opened: "2026年7月已公开启动", closes: "官网未公布统一截止日", rule: "各工作室独立滚动筛选，岗位可能提前关闭；建议发现具体岗位后立即投递。", urgency: "rolling" },
   2: { batch: "2027届游戏美术实习招聘", opened: "2026年春季已启动", closes: "招满即止，无统一日期", rule: "面向毕业时间为2026年9月至2027年12月31日的学生；具体工作室岗位随招随关。", urgency: "rolling" },
@@ -433,6 +440,25 @@ function getDeadlineProfile(job: Job): DeadlineProfile {
     urgency: job.campaign === "已结束参考" ? "closed" : job.campaign === "入口关注" || job.campaign === "当前无美术岗" ? "watch" : job.deadline.includes("招满") || job.deadline.includes("滚动") ? "rolling" : "open",
   };
   return { ...base, ...deadlineOverrides[job.id] };
+}
+
+function getCountdownInfo(profile: DeadlineProfile, todayKey: string): CountdownInfo {
+  const dateMatch = profile.closes.match(/(20\d{2})-(\d{2})-(\d{2})/);
+  if (dateMatch) {
+    const target = Date.UTC(Number(dateMatch[1]), Number(dateMatch[2]) - 1, Number(dateMatch[3]));
+    const [todayYear, todayMonth, todayDay] = todayKey.split("-").map(Number);
+    const today = Date.UTC(todayYear, todayMonth - 1, todayDay);
+    const days = Math.ceil((target - today) / 86400000);
+    if (days < 0) return { label: "已截止", dateLabel: dateMatch[0], tone: "closed", days };
+    if (days === 0) return { label: "今天截止", dateLabel: dateMatch[0], tone: "urgent", days };
+    if (days <= 3) return { label: `仅剩 ${days} 天`, dateLabel: dateMatch[0], tone: "urgent", days };
+    if (days <= 14) return { label: `剩余 ${days} 天`, dateLabel: dateMatch[0], tone: "soon", days };
+    return { label: `剩余 ${days} 天`, dateLabel: dateMatch[0], tone: "active", days };
+  }
+  if (profile.urgency === "closed") return { label: "已截止", dateLabel: profile.closes, tone: "closed", days: null };
+  if (profile.urgency === "rolling") return { label: "滚动招聘", dateLabel: profile.closes, tone: "rolling", days: null };
+  if (profile.urgency === "watch") return { label: "时间待公布", dateLabel: profile.closes, tone: "watch", days: null };
+  return { label: "持续开放", dateLabel: profile.closes, tone: "active", days: null };
 }
 
 function getStructuredJd(job: Job): StructuredJd {
@@ -634,14 +660,16 @@ async function extractResumeFileText(file: File) {
   throw new Error(extension === "doc" ? "暂不支持旧版 .doc 文件，请先在 Word 中另存为 .docx。" : "仅支持 DOCX、PDF 或 TXT 文件。" );
 }
 
-function JobCard({ job, onOpen, saved, onSave }: { job: Job; onOpen: () => void; saved: boolean; onSave: () => void }) {
+function JobCard({ job, onOpen, saved, onSave, todayKey }: { job: Job; onOpen: () => void; saved: boolean; onSave: () => void; todayKey: string }) {
   const deadline = getDeadlineProfile(job);
+  const countdown = getCountdownInfo(deadline, todayKey);
   const detailLevel = getDetailLevel(job);
   return (
     <article className="job-card" onClick={onOpen} tabIndex={0} onKeyDown={(e) => e.key === "Enter" && onOpen()}>
       <div className="company-mark" style={{ background: job.accent }}>{job.initials}</div>
       <div className="job-main">
         <div className="job-title-row"><div><span className="company-name">{job.company}</span><h3>{job.role}</h3></div><button className={saved ? "save-button saved" : "save-button"} onClick={(e) => { e.stopPropagation(); onSave(); }} aria-label={saved ? "取消收藏" : "收藏职位"}>{saved ? "★" : "☆"}</button></div>
+        <div className={`deadline-spotlight countdown-${countdown.tone}`}><span><small>申请截止</small><b>{countdown.dateLabel}</b></span><strong>{countdown.label}</strong></div>
         <p className="job-meta"><span className="opportunity-label">{getOpportunityType(job)}</span><span className={`detail-level level-${detailLevel}`}>{detailLevel}</span><span className={`scale-label scale-${getScaleTier(job)}`}>规模：{job.scale}</span><span>⌖ {job.city}</span><span className={`deadline-label deadline-${deadline.urgency}`}>截止：{deadline.closes}</span><span className={`campaign-badge ${campaignTone[job.campaign]}`}>{job.campaign}</span><span>核验 {job.verifiedAt.slice(5)}</span><a className="apply-link" href={job.sourceUrl} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()}>网申入口 ↗</a></p>
         {job.availabilityNote && <p className={`availability-note ${job.campaign === "当前无美术岗" ? "correction" : "verified"}`}>{job.campaign === "当前无美术岗" ? "!" : "✓"} {job.availabilityNote}</p>}
         <div className="tag-row">{job.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
@@ -670,6 +698,7 @@ export default function Home() {
   const [uploadState, setUploadState] = useState<UploadState>("idle");
   const [uploadMessage, setUploadMessage] = useState("");
   const [dragActive, setDragActive] = useState(false);
+  const [todayKey, setTodayKey] = useState("2026-08-07");
   const [noticeOpen, setNoticeOpen] = useState(false);
 
   useEffect(() => {
@@ -680,6 +709,12 @@ export default function Home() {
       if (parsed.savedIds) setSavedIds(parsed.savedIds);
       if (parsed.statuses) setJobs((current) => current.map((job) => ({ ...job, status: parsed.statuses?.[job.id] ?? job.status })));
     } catch { /* keep demo defaults */ }
+  }, []);
+
+  useEffect(() => {
+    const now = new Date();
+    const pad = (value: number) => String(value).padStart(2, "0");
+    setTodayKey(`${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`);
   }, []);
 
   useEffect(() => {
@@ -696,6 +731,12 @@ export default function Home() {
       && (typeFilter === "全部类型" || getOpportunityType(job) === typeFilter)
       && (scaleFilter === "全部规模" || getScaleTier(job) === scaleFilter);
   }).sort((a, b) => b.match - a.match), [jobs, search, city, campaignFilter, typeFilter, scaleFilter]);
+
+  const deadlineAlerts = useMemo(() => filteredJobs.map((job) => ({ job, countdown: getCountdownInfo(getDeadlineProfile(job), todayKey) }))
+    .filter((item) => item.countdown.days !== null && item.countdown.days >= 0)
+    .sort((a, b) => (a.countdown.days ?? 9999) - (b.countdown.days ?? 9999))
+    .slice(0, 3), [filteredJobs, todayKey]);
+  const rollingJobCount = useMemo(() => filteredJobs.filter((job) => getCountdownInfo(getDeadlineProfile(job), todayKey).tone === "rolling").length, [filteredJobs, todayKey]);
 
   const activeResumeJob = jobs.find((job) => job.id === selectedResumeJob) ?? jobs[0];
   const resumeReport = useMemo(() => analyzeResume(activeResumeJob, resumeText), [activeResumeJob, resumeText]);
@@ -755,6 +796,7 @@ export default function Home() {
     resetResumeResult();
   };
   const selectedDeadline = selectedJob ? getDeadlineProfile(selectedJob) : null;
+  const selectedCountdown = selectedDeadline ? getCountdownInfo(selectedDeadline, todayKey) : null;
   const selectedJd = selectedJob ? getStructuredJd(selectedJob) : null;
 
   return (
@@ -790,7 +832,7 @@ export default function Home() {
           </div>
 
           <div className="dashboard-grid">
-            <section className="panel priority-panel"><header><div><p>PRIORITY MATCHES</p><h2>今日优先申请</h2></div><button onClick={() => setView("jobs")}>全部职位 →</button></header><div className="compact-jobs">{jobs.slice(0, 3).map((job) => <JobCard key={job.id} job={job} saved={savedIds.includes(job.id)} onSave={() => toggleSaved(job.id)} onOpen={() => setSelectedJob(job)} />)}</div></section>
+            <section className="panel priority-panel"><header><div><p>PRIORITY MATCHES</p><h2>今日优先申请</h2></div><button onClick={() => setView("jobs")}>全部职位 →</button></header><div className="compact-jobs">{jobs.slice(0, 3).map((job) => <JobCard key={job.id} job={job} todayKey={todayKey} saved={savedIds.includes(job.id)} onSave={() => toggleSaved(job.id)} onOpen={() => setSelectedJob(job)} />)}</div></section>
             <aside className="panel action-panel"><header><p>THIS WEEK</p><h2>本周行动</h2></header><div className="week-ring"><Donut value={67} /><div><b>4 / 6</b><span>本周任务</span></div></div><ul><li className="done"><i>✓</i><div><b>更新基础简历</b><span>已完成 · 周一</span></div></li><li className="done"><i>✓</i><div><b>整理 UE5 项目图</b><span>已完成 · 周三</span></div></li><li><i>3</i><div><b>完成北辰测试题</b><span className="danger">2 天后截止</span></div></li><li><i>4</i><div><b>投递星海互动</b><span>计划 · 今天</span></div></li></ul><button className="plain-button" onClick={() => setView("pipeline")}>打开投递看板</button></aside>
           </div>
 
@@ -799,10 +841,15 @@ export default function Home() {
 
         {view === "jobs" && <section className="page jobs-page">
           <header className="page-heading"><div><p>GAME STUDIOS · 2027 CAMPUS</p><h1>国内游戏公司校招雷达</h1><span>覆盖大厂、中厂、小型与独立团队，优先收录游戏美术、3D场景、地编和技术美术机会。</span></div><div className="heading-stat"><b>{jobs.length}</b><span>重点机会</span></div></header>
+          <section className="deadline-dashboard">
+            <header><span>⏱</span><div><p>DEADLINE RADAR</p><h2>近期截止提醒</h2><small>今天 {todayKey.replaceAll("-", ".")} · 按剩余天数自动更新</small></div></header>
+            <div className="deadline-alert-list">{deadlineAlerts.length ? deadlineAlerts.map(({ job, countdown }) => <button key={job.id} className={`deadline-alert countdown-${countdown.tone}`} onClick={() => setSelectedJob(job)}><span><b>{job.company}</b><small>{job.role}</small></span><em>{countdown.dateLabel}</em><strong>{countdown.label}</strong></button>) : <p>当前筛选结果中暂无公布明确日期的岗位。</p>}</div>
+            <aside><b>{rollingJobCount}</b><span>个滚动招聘</span><small>没有统一截止日，建议尽早投递</small></aside>
+          </section>
           <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot mismatch" />当前无美术岗</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-08-07</p></div>
           <div className="filter-row"><label><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="搜索畅游、3D场景、UE5…" /></label><select value={city} onChange={(e) => setCity(e.target.value)} aria-label="城市筛选"><option>全部城市</option><option>上海</option><option>杭州</option><option>深圳</option><option>成都</option><option>广州</option><option>北京</option><option>厦门</option><option>重庆</option><option>苏州</option></select><select value={scaleFilter} onChange={(e) => setScaleFilter(e.target.value)} aria-label="公司规模筛选"><option>全部规模</option><option>大型企业</option><option>中型企业</option><option>小型/独立团队</option></select><select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} aria-label="机会类型筛选"><option>全部类型</option><option>正式校招</option><option>实习生</option><option>日常实习</option><option>校招关注</option></select><select value={campaignFilter} onChange={(e) => setCampaignFilter(e.target.value)} aria-label="招聘状态筛选"><option>全部状态</option><option>正在招聘</option><option>实习可转正</option><option>持续开放</option><option>当前无美术岗</option><option>入口关注</option><option>已结束参考</option></select><button>匹配度优先 ↕</button></div>
           <div className="result-bar"><span>找到 <b>{filteredJobs.length}</b> 个重点机会，来自 {new Set(filteredJobs.map((job) => job.company)).size} 家游戏公司</span><span>信息可能随时变化 · 以官网为准</span></div>
-          <div className="job-list">{filteredJobs.map((job) => <JobCard key={job.id} job={job} saved={savedIds.includes(job.id)} onSave={() => toggleSaved(job.id)} onOpen={() => setSelectedJob(job)} />)}</div>
+          <div className="job-list">{filteredJobs.map((job) => <JobCard key={job.id} job={job} todayKey={todayKey} saved={savedIds.includes(job.id)} onSave={() => toggleSaved(job.id)} onOpen={() => setSelectedJob(job)} />)}</div>
         </section>}
 
         {view === "resume" && <section className="page resume-page">
@@ -876,7 +923,7 @@ export default function Home() {
         <footer className="app-footer"><span>跃迁 · 为游戏美术校招生打造</span><span>职位信息为产品演示，请以企业官方页面为准</span></footer>
       </section>
 
-      {selectedJob && selectedDeadline && selectedJd && <div className="drawer-backdrop" onClick={() => setSelectedJob(null)}><aside className="job-drawer detailed-drawer" onClick={(e) => e.stopPropagation()}>
+      {selectedJob && selectedDeadline && selectedCountdown && selectedJd && <div className="drawer-backdrop" onClick={() => setSelectedJob(null)}><aside className="job-drawer detailed-drawer" onClick={(e) => e.stopPropagation()}>
         <button className="drawer-close" onClick={() => setSelectedJob(null)}>×</button>
         <div className="drawer-hero">
           <span className="company-mark" style={{ background: selectedJob.accent }}>{selectedJob.initials}</span>
@@ -886,7 +933,7 @@ export default function Home() {
         </div>
 
         <section className="deadline-section">
-          <div className="drawer-section-title"><div><p>APPLICATION TIMELINE</p><h3>招聘时间与截止规则</h3></div><span className={`deadline-status deadline-${selectedDeadline.urgency}`}>{selectedDeadline.urgency === "closed" ? "已结束" : selectedDeadline.urgency === "watch" ? "等待开放" : "可关注投递"}</span></div>
+          <div className="drawer-section-title"><div><p>APPLICATION TIMELINE</p><h3>招聘时间与截止规则</h3></div><span className={`drawer-countdown countdown-${selectedCountdown.tone}`}>{selectedCountdown.label}</span></div>
           <div className="deadline-grid"><article><span>招聘批次</span><b>{selectedDeadline.batch}</b></article><article><span>开始时间</span><b>{selectedDeadline.opened}</b></article><article className="deadline-primary"><span>最晚投递</span><b>{selectedDeadline.closes}</b></article><article><span>最后核验</span><b>{selectedJob.verifiedAt}</b></article></div>
           <p className="deadline-rule"><i>!</i><span><b>截止说明</b>{selectedDeadline.rule}</span></p>
         </section>
