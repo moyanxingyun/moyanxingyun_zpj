@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const assetUrl = (path: string) => `${basePath}${path}`;
@@ -31,6 +31,10 @@ const capabilityTabs = [
   { key: "pipeline", label: "生产流程", title: "让过程能够被团队复用", body: "通过命名、规格、模块化、贴图预算和清晰拆解证明协作意识，并用 AIGC 辅助参考探索与效率提升。", stat: "PIPELINE / TEAMWORK / AIGC" },
 ];
 
+function GameIcon({ glyph, compact = false, className = "" }: { glyph: string; compact?: boolean; className?: string }) {
+  return <span className={`game-icon ${compact ? "compact" : ""} ${className}`} aria-hidden="true"><i>{glyph}</i></span>;
+}
+
 export default function Home() {
   const [filter, setFilter] = useState("all");
   const [galleryIndex, setGalleryIndex] = useState(0);
@@ -39,6 +43,8 @@ export default function Home() {
   const [isSunlit, setIsSunlit] = useState(false);
   const [copied, setCopied] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const update = () => {
@@ -63,6 +69,12 @@ export default function Home() {
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1600);
   };
+  const toggleVideo = async () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) await video.play();
+    else video.pause();
+  };
   const activeCap = capabilityTabs.find((item) => item.key === activeCapability) ?? capabilityTabs[0];
 
   return (
@@ -72,9 +84,9 @@ export default function Home() {
       <div className="particles" aria-hidden="true">{Array.from({ length: 14 }, (_, i) => <i key={i} />)}</div>
 
       <header className="topbar">
-        <a className="identity" href="#top" aria-label="返回网站顶部"><span className="sigil">◇</span><div><b>王鑫源</b><small>ENVIRONMENT ARTIST</small></div></a>
+        <a className="identity" href="#top" aria-label="返回网站顶部"><GameIcon glyph="✦" className="brand-icon" /><div><b>王鑫源</b><small>ENVIRONMENT ARTIST</small></div></a>
         <nav aria-label="网站导航"><a href="#work">作品</a><a href="#scene-project">场景案例</a><a href="#props-project">资产案例</a><a href="#fit">能力</a><a href="#about">关于</a></nav>
-        <div className="header-actions"><button className="mode-button" type="button" onClick={() => setIsSunlit(!isSunlit)} aria-pressed={isSunlit}><span>{isSunlit ? "☾" : "☼"}</span><small>{isSunlit ? "暮色" : "晨光"}</small></button><a className="contact-link" href="mailto:270061154@qq.com">联系我 <span>↗</span></a></div>
+        <div className="header-actions"><button className="mode-button" type="button" onClick={() => setIsSunlit(!isSunlit)} aria-pressed={isSunlit}><GameIcon glyph={isSunlit ? "☾" : "☼"} compact /><small>{isSunlit ? "暮色" : "晨光"}</small></button><a className="contact-link" href="mailto:270061154@qq.com">联系我 <GameIcon glyph="›" compact /></a></div>
       </header>
 
       <section className="hero" id="top" onPointerMove={(e) => { const r = e.currentTarget.getBoundingClientRect(); e.currentTarget.style.setProperty("--mx", `${(e.clientX - r.left) / r.width - .5}`); e.currentTarget.style.setProperty("--my", `${(e.clientY - r.top) / r.height - .5}`); }}>
@@ -86,16 +98,16 @@ export default function Home() {
           <h1><span>构筑幻想，</span><span>让世界可被探索。</span></h1>
           <p className="hero-role">3D 场景美术 <em>·</em> PBR 场景建模 <em>·</em> UE5 地编</p>
           <p className="hero-intro">从资产到场景，从材质到光影。用清晰的造型、色彩与生产流程，构建适合全球化风格项目的游戏世界。</p>
-          <div className="hero-actions"><a className="fantasy-button primary" href="#work"><span>探索作品</span><b>→</b></a><button className="fantasy-button ghost" type="button" onClick={() => jumpTo("fit")}><span>查看能力</span><b>✦</b></button></div>
+          <div className="hero-actions"><a className="fantasy-button primary" href="#work"><span>探索作品</span><GameIcon glyph="›" /></a><button className="fantasy-button ghost" type="button" onClick={() => jumpTo("fit")}><span>查看能力</span><GameIcon glyph="✦" /></button></div>
         </div>
         <div className="hero-orbit orbit-one" aria-hidden="true">ENVIRONMENT · UE5 · PBR</div><div className="hero-orbit orbit-two" aria-hidden="true">WANG XINYUAN · 2026</div>
         <div className="scroll-hint"><span>SCROLL</span><i /></div>
       </section>
 
       <section className="quest-strip" aria-label="核心能力摘要">
-        <article><span>01</span><div><small>SPECIALTY</small><b>PBR 场景资产</b></div><i>◇</i></article>
-        <article><span>02</span><div><small>ENGINE</small><b>UE5 场景落地</b></div><i>◇</i></article>
-        <article><span>03</span><div><small>STYLE</small><b>全球化风格 3D</b></div><i>◇</i></article>
+        <article><span>01</span><div><small>SPECIALTY</small><b>PBR 场景资产</b></div><GameIcon glyph="✦" compact /></article>
+        <article><span>02</span><div><small>ENGINE</small><b>UE5 场景落地</b></div><GameIcon glyph="✦" compact /></article>
+        <article><span>03</span><div><small>STYLE</small><b>全球化风格 3D</b></div><GameIcon glyph="✦" compact /></article>
       </section>
 
       <section className="work-section" id="work">
@@ -109,7 +121,7 @@ export default function Home() {
               <img src={project.image} alt={`${project.title}项目预览`} /><span className="card-vignette" />
               <div className="card-corners" aria-hidden="true"><i /><i /><i /><i /></div>
               <div className="card-top"><span>{project.no}</span><small>{project.eyebrow}</small></div>
-              <div className="card-copy"><p>{project.note}</p><h3>{project.title}</h3><span className="card-enter">进入项目 <b>↗</b></span></div>
+              <div className="card-copy"><p>{project.note}</p><h3>{project.title}</h3><span className="card-enter">进入项目 <GameIcon glyph="›" compact /></span></div>
             </button>
           ))}
         </div>
@@ -118,10 +130,38 @@ export default function Home() {
       <section className="scene-case" id="scene-project">
         <header className="case-heading"><div><span className="chapter-tag">CHAPTER Ⅲ · UE5 CASE STUDY</span><p>SOLO PROJECT / REAL-TIME ENVIRONMENT</p></div><h2>风格化<br />森林小屋</h2><p>展示自制模块化资产、风格化材质、地形植被、灯光和后处理的完整场景结构。</p></header>
 
+        <section className={`showreel-shell ${isVideoPlaying ? "is-playing" : ""}`} aria-labelledby="showreel-title">
+          <header className="showreel-heading">
+            <div><span>WORLD BUILDING REEL</span><h3 id="showreel-title">UE5 地编作品演示</h3></div>
+            <p>场景构建、植被布置、空间节奏与最终镜头展示</p>
+            <button type="button" className="showreel-toggle" onClick={toggleVideo} aria-label={isVideoPlaying ? "暂停地编作品视频" : "播放地编作品视频"}>
+              <GameIcon glyph={isVideoPlaying ? "Ⅱ" : "▶"} />
+              <span>{isVideoPlaying ? "暂停演示" : "播放演示"}</span>
+            </button>
+          </header>
+          <div className="showreel-frame">
+            <video
+              ref={videoRef}
+              controls={isVideoPlaying}
+              playsInline
+              preload="metadata"
+              poster={assetUrl("/portfolio-scene-wide.jpg")}
+              onPlay={() => setIsVideoPlaying(true)}
+              onPause={() => setIsVideoPlaying(false)}
+              onEnded={() => setIsVideoPlaying(false)}
+            >
+              <source src={assetUrl("/ue5-worldbuilding-reel.mp4")} type="video/mp4" />
+              您的浏览器暂不支持视频播放。
+            </video>
+            {!isVideoPlaying && <button className="video-start" type="button" onClick={toggleVideo} aria-label="播放 UE5 地编作品演示"><GameIcon glyph="▶" className="play-icon" /><span>点击播放完整地编演示</span><small>UE5 · WORLD BUILDING · REAL-TIME</small></button>}
+            <div className="video-corners" aria-hidden="true"><i /><i /><i /><i /></div>
+          </div>
+        </section>
+
         <div className="gallery-shell">
           <div className="gallery-main"><img key={gallery[galleryIndex].image} src={gallery[galleryIndex].image} alt={gallery[galleryIndex].label} /><div className="image-label"><span>{gallery[galleryIndex].code}</span><b>{gallery[galleryIndex].label}</b></div></div>
           <div className="gallery-thumbs">{gallery.map((item, index) => <button type="button" key={item.image} className={galleryIndex === index ? "active" : ""} onClick={() => setGalleryIndex(index)} aria-label={`查看${item.label}`}><img src={item.image} alt="" /><span>{String(index + 1).padStart(2,"0")}</span></button>)}</div>
-          <div className="gallery-nav"><button type="button" onClick={() => setGalleryIndex((galleryIndex + gallery.length - 1) % gallery.length)} aria-label="上一张">←</button><span>{galleryIndex + 1} / {gallery.length}</span><button type="button" onClick={() => setGalleryIndex((galleryIndex + 1) % gallery.length)} aria-label="下一张">→</button></div>
+          <div className="gallery-nav"><button type="button" onClick={() => setGalleryIndex((galleryIndex + gallery.length - 1) % gallery.length)} aria-label="上一张"><GameIcon glyph="‹" compact /></button><span>{galleryIndex + 1} / {gallery.length}</span><button type="button" onClick={() => setGalleryIndex((galleryIndex + 1) % gallery.length)} aria-label="下一张"><GameIcon glyph="›" compact /></button></div>
         </div>
 
         <div className="case-overview ornament-panel">
@@ -130,8 +170,8 @@ export default function Home() {
         </div>
 
         <div className="feature-pair">
-          <article className="image-feature"><div className="feature-frame"><img src={assetUrl("/portfolio-modular.jpg")} alt="房屋模块化资产拆分" /><span>ASSET KIT</span></div><div><small>01 / MODULAR KIT</small><h3>模块化资产系统</h3><p>补充模块尺寸、网格吸附、复用次数和命名规则，让拆分图能够证明生产意识。</p><button type="button" onClick={() => setGalleryIndex(3)}>在画廊中查看 ↗</button></div></article>
-          <article className="image-feature reverse"><div className="feature-frame"><img src={assetUrl("/portfolio-materials.jpg")} alt="自制场景材质" /><span>MATERIAL STUDY</span></div><div><small>02 / MATERIAL</small><h3>材质与表面语言</h3><p>后续加入材质节点、可调参数、贴图通道和同一材质在不同光照下的效果。</p><button type="button" onClick={() => setGalleryIndex(4)}>在画廊中查看 ↗</button></div></article>
+          <article className="image-feature"><div className="feature-frame"><img src={assetUrl("/portfolio-modular.jpg")} alt="房屋模块化资产拆分" /><span>ASSET KIT</span></div><div><small>01 / MODULAR KIT</small><h3>模块化资产系统</h3><p>补充模块尺寸、网格吸附、复用次数和命名规则，让拆分图能够证明生产意识。</p><button type="button" onClick={() => setGalleryIndex(3)}>在画廊中查看 <GameIcon glyph="›" compact /></button></div></article>
+          <article className="image-feature reverse"><div className="feature-frame"><img src={assetUrl("/portfolio-materials.jpg")} alt="自制场景材质" /><span>MATERIAL STUDY</span></div><div><small>02 / MATERIAL</small><h3>材质与表面语言</h3><p>后续加入材质节点、可调参数、贴图通道和同一材质在不同光照下的效果。</p><button type="button" onClick={() => setGalleryIndex(4)}>在画廊中查看 <GameIcon glyph="›" compact /></button></div></article>
         </div>
 
         <div className="process-board">
@@ -149,7 +189,7 @@ export default function Home() {
 
       <section className="props-case" id="props-project">
         <header className="section-heading"><div><span className="chapter-tag dark-tag">CHAPTER Ⅳ · PBR ASSETS</span><h2>道具图鉴</h2></div><p>点击任意资产打开详情卡。正式版为每件代表作补充技术参数和完整制作流程。</p></header>
-        <div className="asset-grid">{assets.map((asset, index) => <button type="button" className={index === 0 ? "asset-card featured" : "asset-card"} key={asset.title} onClick={() => setSelectedAsset(asset)}><img src={asset.image} alt={asset.title} /><span className="asset-shade" /><div className="asset-copy"><small>{asset.type}</small><h3>{asset.title}</h3><span>查看详情 ◇</span></div></button>)}</div>
+        <div className="asset-grid">{assets.map((asset, index) => <button type="button" className={index === 0 ? "asset-card featured" : "asset-card"} key={asset.title} onClick={() => setSelectedAsset(asset)}><img src={asset.image} alt={asset.title} /><span className="asset-shade" /><div className="asset-copy"><small>{asset.type}</small><h3>{asset.title}</h3><span className="asset-enter">查看详情 <GameIcon glyph="›" compact /></span></div></button>)}</div>
         <div className="spec-ribbon"><span>ASSET SPECIFICATION</span><div><small>TRIANGLES</small><b>待补充</b></div><div><small>TEXTURE</small><b>待补充</b></div><div><small>TEXEL DENSITY</small><b>待补充</b></div><div><small>PIPELINE</small><b>HIGH → LOW → BAKE → PBR</b></div></div>
       </section>
 
@@ -163,14 +203,14 @@ export default function Home() {
 
       <section className="about" id="about">
         <div className="about-card ornament-panel"><span className="chapter-tag dark-tag">CHAPTER Ⅵ · ABOUT</span><h2>王鑫源</h2><p className="about-role">3D ENVIRONMENT ARTIST<br />PBR · UE5 · STYLIZED WORLD</p><div className="about-meta"><span>南京林业大学 · 数字媒体艺术</span><span>日语 N2 · 英语 CET-4</span><span>酷家乐 · 唯晶科技实习经历</span></div></div>
-        <div className="about-copy"><p>具备 PBR 场景资产制作与 UE5 场景整合经验，可独立推进建模、拓扑、UV、烘焙、材质、地编、灯光及后处理。希望参与重视风格化、全球化表达与长期内容生产的游戏项目。</p><div className="contact-actions"><a className="fantasy-button primary" href="mailto:270061154@qq.com"><span>发送邮件</span><b>↗</b></a><button className="fantasy-button light" type="button" onClick={copyEmail}><span>{copied ? "邮箱已复制" : "复制邮箱"}</span><b>{copied ? "✓" : "◇"}</b></button></div></div>
+        <div className="about-copy"><p>具备 PBR 场景资产制作与 UE5 场景整合经验，可独立推进建模、拓扑、UV、烘焙、材质、地编、灯光及后处理。希望参与重视风格化、全球化表达与长期内容生产的游戏项目。</p><div className="contact-actions"><a className="fantasy-button primary" href="mailto:270061154@qq.com"><span>发送邮件</span><GameIcon glyph="›" /></a><button className="fantasy-button light" type="button" onClick={copyEmail}><span>{copied ? "邮箱已复制" : "复制邮箱"}</span><GameIcon glyph={copied ? "✓" : "✦"} /></button></div></div>
       </section>
 
-      <footer><div><span className="sigil">◇</span><b>王鑫源</b><small>WANG XINYUAN</small></div><p>ENVIRONMENT ART · UE5 · PBR</p><p>© 2026 PORTFOLIO</p><a href="#top">返回顶部 ↑</a></footer>
+      <footer><div><GameIcon glyph="✦" compact /><b>王鑫源</b><small>WANG XINYUAN</small></div><p>ENVIRONMENT ART · UE5 · PBR</p><p>© 2026 PORTFOLIO</p><a href="#top">返回顶部 <GameIcon glyph="↑" compact /></a></footer>
 
-      <button className="floating-top" type="button" onClick={() => jumpTo("top")} aria-label="返回顶部">↑</button>
+      <button className="floating-top icon-button" type="button" onClick={() => jumpTo("top")} aria-label="返回顶部"><GameIcon glyph="↑" /></button>
 
-      {selectedAsset && <div className="modal-backdrop" role="presentation" onMouseDown={() => setSelectedAsset(null)}><section className="asset-modal" role="dialog" aria-modal="true" aria-labelledby="asset-modal-title" onMouseDown={(e) => e.stopPropagation()}><button className="modal-close" type="button" onClick={() => setSelectedAsset(null)} aria-label="关闭详情">×</button><div className="modal-image"><img src={selectedAsset.image} alt={selectedAsset.title} /></div><div className="modal-copy"><span>{selectedAsset.type}</span><h2 id="asset-modal-title">{selectedAsset.title}</h2><p>{selectedAsset.detail}</p><dl><div><dt>TRIANGLES</dt><dd>待补充</dd></div><div><dt>TEXTURES</dt><dd>待补充</dd></div><div><dt>TOOLS</dt><dd>Maya / SP / Marmoset</dd></div></dl><button className="fantasy-button primary" type="button" onClick={() => setSelectedAsset(null)}><span>返回图鉴</span><b>←</b></button></div></section></div>}
+      {selectedAsset && <div className="modal-backdrop" role="presentation" onMouseDown={() => setSelectedAsset(null)}><section className="asset-modal" role="dialog" aria-modal="true" aria-labelledby="asset-modal-title" onMouseDown={(e) => e.stopPropagation()}><button className="modal-close icon-button" type="button" onClick={() => setSelectedAsset(null)} aria-label="关闭详情"><GameIcon glyph="×" /></button><div className="modal-image"><img src={selectedAsset.image} alt={selectedAsset.title} /></div><div className="modal-copy"><span>{selectedAsset.type}</span><h2 id="asset-modal-title">{selectedAsset.title}</h2><p>{selectedAsset.detail}</p><dl><div><dt>TRIANGLES</dt><dd>待补充</dd></div><div><dt>TEXTURES</dt><dd>待补充</dd></div><div><dt>TOOLS</dt><dd>Maya / SP / Marmoset</dd></div></dl><button className="fantasy-button primary" type="button" onClick={() => setSelectedAsset(null)}><span>返回图鉴</span><GameIcon glyph="‹" /></button></div></section></div>}
     </main>
   );
 }
