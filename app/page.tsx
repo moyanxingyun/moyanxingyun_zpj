@@ -8,6 +8,7 @@ type CampaignStatus = "正在招聘" | "实习可转正" | "持续开放" | "入
 type OpportunityType = "正式校招" | "实习生" | "日常实习" | "校招关注";
 type ScaleTier = "大型企业" | "中型企业" | "小型/独立团队";
 type UploadState = "idle" | "parsing" | "success" | "error";
+type DetailLevel = "具体岗位" | "招聘批次" | "公司级监控";
 
 type Job = {
   id: number;
@@ -372,6 +373,92 @@ const getScaleTier = (job: Job): ScaleTier => job.scaleTier ?? (
   job.scale.includes("小型") || job.scale.includes("独立") ? "小型/独立团队" : job.scale.includes("中型") ? "中型企业" : "大型企业"
 );
 
+type DeadlineProfile = {
+  batch: string;
+  opened: string;
+  closes: string;
+  rule: string;
+  urgency: "open" | "rolling" | "watch" | "closed";
+};
+
+type StructuredJd = {
+  level: DetailLevel;
+  responsibilities: string[];
+  qualifications: string[];
+  portfolio: string[];
+  process: string[];
+  note: string;
+};
+
+const deadlineOverrides: Record<number, Partial<DeadlineProfile>> = {
+  1: { batch: "2027届秋季校园招聘", opened: "2026年7月已公开启动", closes: "官网未公布统一截止日", rule: "各工作室独立滚动筛选，岗位可能提前关闭；建议发现具体岗位后立即投递。", urgency: "rolling" },
+  2: { batch: "2027届游戏美术实习招聘", opened: "2026年春季已启动", closes: "招满即止，无统一日期", rule: "面向毕业时间为2026年9月至2027年12月31日的学生；具体工作室岗位随招随关。", urgency: "rolling" },
+  3: { batch: "2027届实习生项目", opened: "2026年春季已启动", closes: "招满即止", rule: "官网未披露所有美术岗位的统一截止日；每人最多投递两个职位。", urgency: "rolling" },
+  4: { batch: "NOVA 2027训练营", opened: "已启动", closes: "招满即止", rule: "训练营按方向分批筛选，测试题发放后需以邮件中的个人截止时间为准。", urgency: "rolling" },
+  5: { batch: "校园招聘常规批次", opened: "官网岗位页持续开放", closes: "以具体职位页为准", rule: "当前入口同时保留多类岗位；投递前必须确认职位仍标注为校园招聘。", urgency: "open" },
+  11: { batch: "2027届校园招聘监控", opened: "正式批次尚未确认", closes: "尚未公布", rule: "目前仅作为公司级监控项，不能视为已开放的具体3D场景岗位。", urgency: "watch" },
+  13: { batch: "2027届实习招聘历史批次", opened: "2026年春季", closes: "2026-05-31（已结束）", rule: "该批次已经结束，仅用于准备后续秋招或补录；请勿按当前开放岗位投递。", urgency: "closed" },
+  15: { batch: "2027秋季校园招聘提前批", opened: "2026年7月已公开启动", closes: "官网未公布统一截止日", rule: "按职位滚动推进；官网同时存在校招和日常实习入口，投递时需核对岗位性质。", urgency: "rolling" },
+  16: { batch: "2027届暑期实习", opened: "2026年春季已启动", closes: "招满即止", rule: "实习提供转正机会；美术细分职位和关闭时间以官网实时列表为准。", urgency: "rolling" },
+  28: { batch: "2027 Elite Program+", opened: "2026年已公开启动", closes: "官网未公布统一截止日", rule: "项目采用滚动筛选；游戏美术方向需进入官网选择实际职位，岗位招满后会提前下线。", urgency: "rolling" },
+};
+
+function getDetailLevel(job: Job): DetailLevel {
+  if (job.campaign === "入口关注" || job.role.includes("关注") || job.role.includes("机会")) return "公司级监控";
+  if (job.role.includes("方向") || job.role.includes("类") || job.role.includes("训练营")) return "招聘批次";
+  return "具体岗位";
+}
+
+function getDeadlineProfile(job: Job): DeadlineProfile {
+  const base: DeadlineProfile = {
+    batch: `${getOpportunityType(job)}招聘`,
+    opened: job.campaign === "已结束参考" ? "历史批次" : "以官网职位发布时间为准",
+    closes: job.deadline,
+    rule: job.deadline.includes("招满") || job.deadline.includes("滚动") ? "没有统一截止日期，岗位会在招满后提前关闭。" : "官网未披露统一日期时，以具体职位页显示为准。",
+    urgency: job.campaign === "已结束参考" ? "closed" : job.campaign === "入口关注" ? "watch" : job.deadline.includes("招满") || job.deadline.includes("滚动") ? "rolling" : "open",
+  };
+  return { ...base, ...deadlineOverrides[job.id] };
+}
+
+function getStructuredJd(job: Job): StructuredJd {
+  const text = `${job.role}${job.tags.join("")}`.toLowerCase();
+  const level = getDetailLevel(job);
+  let responsibilities: string[];
+  let qualifications: string[];
+  let portfolio: string[];
+
+  if (text.includes("像素")) {
+    responsibilities = ["根据策划需求制作角色、场景、道具等像素美术资源。", "与策划、程序协作，将资源导入 Unity 并跟进游戏内最终效果。", "按照项目规范完成切图、动画帧和资源迭代。"];
+    qualifications = ["能够使用 Aseprite 或 Photoshop 完成像素资产。", "理解像素比例、色板控制、轮廓可读性与基础动画规律。", "能够接受远程或项目制协作并按节点交付。"];
+    portfolio = ["提交像素角色、场景和至少一组动画帧。", "标注使用工具、个人职责和资源在 Unity 中的最终效果。"];
+  } else if (text.includes("技术美术") || text.includes("ta") || text.includes("shader") || text.includes("蓝图")) {
+    responsibilities = ["连接美术与程序团队，定位并解决资产、材质、渲染和性能问题。", "参与 Shader、材质模板、自动化工具或美术生产管线的制作与维护。", "制定资源规范，分析 Draw Call、显存、帧率等指标并推动优化落地。"];
+    qualifications = ["熟悉 UE / Unity 至少一种引擎及其材质、渲染和资源管理流程。", "具备 Shader、蓝图、Python 或其他脚本能力中的至少一项。", "能清楚解释美术效果与性能成本之间的取舍。"];
+    portfolio = ["至少展示一个可运行的材质、Shader、工具或优化案例。", "必须提供问题、实现思路、性能前后对比和你负责的代码/节点部分。"];
+  } else if (text.includes("地编") || text.includes("关卡") || text.includes("开放世界")) {
+    responsibilities = ["依据世界观、关卡灰盒和玩法需求完成地形、道路、建筑、植被与环境资产布置。", "与关卡策划协作调整动线、视线引导、探索节奏和战斗空间。", "在引擎中完成灯光、氛围、LOD、流送与性能检查，保证画面和玩法落地。"];
+    qualifications = ["熟悉 UE5 地形、植被、PCG / Foliage、灯光和关卡组织方式。", "具备空间构图、自然规律、模块化搭建和环境叙事能力。", "了解开放世界分区、资源复用及基础性能预算。"];
+    portfolio = ["提供灰盒到最终画面的完整过程，而不只展示最终截图。", "补充俯视动线图、资产复用图、植被规则、性能数据及个人职责。"];
+  } else if (text.includes("3d") || text.includes("场景") || text.includes("建模") || text.includes("次世代")) {
+    responsibilities = ["根据概念图和项目风格完成建筑、道具、地形等3D场景资产。", "负责高低模、拓扑、UV、烘焙、PBR材质及引擎内效果还原。", "遵循命名、面数、贴图和LOD规范，并与原画、关卡、TA协作完成优化。"];
+    qualifications = ["熟悉 Maya / Blender、ZBrush、Substance Painter 等主流工具。", "理解造型、比例、色彩、PBR材质、灯光和模块化资产流程。", "能够在 UE / Unity 中完成资源导入、材质设置和基础性能检查。"];
+    portfolio = ["建议包含写实或风格化完整场景，以及不少于一组资产拆解。", "每个项目标注面数、贴图规格、制作周期、软件流程和个人贡献。", "必须提供线框、UV、材质通道、引擎截图；团队项目需区分个人职责。"];
+  } else {
+    responsibilities = ["参与游戏角色、场景、道具、UI或特效等美术资源的设计与制作。", "根据项目风格和技术规范持续迭代，并跟进资源在游戏中的最终表现。", "与策划、程序及其他美术岗位协作完成版本目标。"];
+    qualifications = ["具备造型、构图、色彩和审美基础，能够匹配项目风格。", "至少熟练掌握一个目标美术方向的核心软件和完整制作流程。", "具备学习能力、沟通能力和对游戏产品的理解。"];
+    portfolio = ["作品集需聚焦申请方向，避免混入大量无关作业。", "标注个人职责、制作过程和最终落地效果。"];
+  }
+
+  return {
+    level,
+    responsibilities,
+    qualifications: [...job.requirements, ...qualifications].slice(0, 6),
+    portfolio,
+    process: ["官网网申 / 简历与作品集筛选", "美术测试或专业面试（是否设置以职位通知为准）", "业务面试 / HR沟通", "录用或实习转正评估"],
+    note: level === "公司级监控" ? "当前公开信息尚未形成可直接投递的具体岗位JD；以下为对应方向的准备标准，不代表该公司已经开放该职位。" : "以下内容由公开招聘要求按职责、能力和作品集结构归纳；最终以官网具体职位页和邮件通知为准。",
+  };
+}
+
 type ResumeAdvice = {
   title: string;
   detail: string;
@@ -523,12 +610,14 @@ async function extractResumeFileText(file: File) {
 }
 
 function JobCard({ job, onOpen, saved, onSave }: { job: Job; onOpen: () => void; saved: boolean; onSave: () => void }) {
+  const deadline = getDeadlineProfile(job);
+  const detailLevel = getDetailLevel(job);
   return (
     <article className="job-card" onClick={onOpen} tabIndex={0} onKeyDown={(e) => e.key === "Enter" && onOpen()}>
       <div className="company-mark" style={{ background: job.accent }}>{job.initials}</div>
       <div className="job-main">
         <div className="job-title-row"><div><span className="company-name">{job.company}</span><h3>{job.role}</h3></div><button className={saved ? "save-button saved" : "save-button"} onClick={(e) => { e.stopPropagation(); onSave(); }} aria-label={saved ? "取消收藏" : "收藏职位"}>{saved ? "★" : "☆"}</button></div>
-        <p className="job-meta"><span className="opportunity-label">{getOpportunityType(job)}</span><span className={`scale-label scale-${getScaleTier(job)}`}>规模：{job.scale}</span><span>⌖ {job.city}</span><span>◷ {job.deadline}</span><span className={`campaign-badge ${campaignTone[job.campaign]}`}>{job.campaign}</span><span>核验 {job.verifiedAt.slice(5)}</span><a className="apply-link" href={job.sourceUrl} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()}>网申入口 ↗</a></p>
+        <p className="job-meta"><span className="opportunity-label">{getOpportunityType(job)}</span><span className={`detail-level level-${detailLevel}`}>{detailLevel}</span><span className={`scale-label scale-${getScaleTier(job)}`}>规模：{job.scale}</span><span>⌖ {job.city}</span><span className={`deadline-label deadline-${deadline.urgency}`}>截止：{deadline.closes}</span><span className={`campaign-badge ${campaignTone[job.campaign]}`}>{job.campaign}</span><span>核验 {job.verifiedAt.slice(5)}</span><a className="apply-link" href={job.sourceUrl} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()}>网申入口 ↗</a></p>
         <div className="tag-row">{job.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
       </div>
       <div className="match-cell"><Donut value={job.match} /><span>岗位匹配</span></div>
@@ -639,6 +728,8 @@ export default function Home() {
     setResumeText("");
     resetResumeResult();
   };
+  const selectedDeadline = selectedJob ? getDeadlineProfile(selectedJob) : null;
+  const selectedJd = selectedJob ? getStructuredJd(selectedJob) : null;
 
   return (
     <main className="career-app">
@@ -759,7 +850,35 @@ export default function Home() {
         <footer className="app-footer"><span>跃迁 · 为游戏美术校招生打造</span><span>职位信息为产品演示，请以企业官方页面为准</span></footer>
       </section>
 
-      {selectedJob && <div className="drawer-backdrop" onClick={() => setSelectedJob(null)}><aside className="job-drawer" onClick={(e) => e.stopPropagation()}><button className="drawer-close" onClick={() => setSelectedJob(null)}>×</button><div className="drawer-hero"><span className="company-mark" style={{ background: selectedJob.accent }}>{selectedJob.initials}</span><p>{selectedJob.company} <span className={`campaign-badge ${campaignTone[selectedJob.campaign]}`}>{selectedJob.campaign}</span></p><h2>{selectedJob.role}</h2><div className="tag-row">{selectedJob.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div><div className="drawer-score"><Donut value={selectedJob.match} /><div><b>与你的画像高度匹配</b><span>基于技能、项目风格与求职偏好综合计算</span></div></div><section><h3>公司情报</h3><dl><div><dt>主营业务</dt><dd>{selectedJob.business}</dd></div><div><dt>公司规模</dt><dd>{selectedJob.scale}</dd></div><div><dt>项目方向</dt><dd>{selectedJob.project}</dd></div><div><dt>信息来源</dt><dd><a href={selectedJob.sourceUrl} target="_blank" rel="noreferrer">{selectedJob.source} ↗</a></dd></div><div><dt>最后核验</dt><dd>{selectedJob.verifiedAt} · 投递前请再次确认</dd></div></dl></section><section><h3>岗位要求拆解</h3><ul>{selectedJob.requirements.map((item) => <li key={item}><i>✓</i>{item}</li>)}</ul></section><section className="fit-note"><h3>为什么推荐给你</h3>{selectedJob.reasons.map((item) => <p key={item}><span>＋</span>{item}</p>)}{selectedJob.missing.map((item) => <p className="gap" key={item}><span>!</span>{item}</p>)}</section><div className="drawer-actions expanded"><button onClick={() => toggleSaved(selectedJob.id)}>{savedIds.includes(selectedJob.id) ? "★ 已收藏" : "☆ 收藏职位"}</button><button onClick={() => { setSelectedResumeJob(selectedJob.id); setView("resume"); setSelectedJob(null); }}>诊断简历</button><a href={selectedJob.sourceUrl} target="_blank" rel="noreferrer">打开招聘入口 ↗</a></div></aside></div>}
+      {selectedJob && selectedDeadline && selectedJd && <div className="drawer-backdrop" onClick={() => setSelectedJob(null)}><aside className="job-drawer detailed-drawer" onClick={(e) => e.stopPropagation()}>
+        <button className="drawer-close" onClick={() => setSelectedJob(null)}>×</button>
+        <div className="drawer-hero">
+          <span className="company-mark" style={{ background: selectedJob.accent }}>{selectedJob.initials}</span>
+          <p>{selectedJob.company} <span className={`campaign-badge ${campaignTone[selectedJob.campaign]}`}>{selectedJob.campaign}</span><span className={`detail-level level-${selectedJd.level}`}>{selectedJd.level}</span></p>
+          <h2>{selectedJob.role}</h2>
+          <div className="tag-row">{selectedJob.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+        </div>
+
+        <section className="deadline-section">
+          <div className="drawer-section-title"><div><p>APPLICATION TIMELINE</p><h3>招聘时间与截止规则</h3></div><span className={`deadline-status deadline-${selectedDeadline.urgency}`}>{selectedDeadline.urgency === "closed" ? "已结束" : selectedDeadline.urgency === "watch" ? "等待开放" : "可关注投递"}</span></div>
+          <div className="deadline-grid"><article><span>招聘批次</span><b>{selectedDeadline.batch}</b></article><article><span>开始时间</span><b>{selectedDeadline.opened}</b></article><article className="deadline-primary"><span>最晚投递</span><b>{selectedDeadline.closes}</b></article><article><span>最后核验</span><b>{selectedJob.verifiedAt}</b></article></div>
+          <p className="deadline-rule"><i>!</i><span><b>截止说明</b>{selectedDeadline.rule}</span></p>
+        </section>
+
+        <section><div className="drawer-section-title"><div><p>COMPANY INTELLIGENCE</p><h3>公司与项目信息</h3></div></div><dl><div><dt>主营业务</dt><dd>{selectedJob.business}</dd></div><div><dt>公司规模</dt><dd>{selectedJob.scale}</dd></div><div><dt>项目方向</dt><dd>{selectedJob.project}</dd></div><div><dt>信息来源</dt><dd><a href={selectedJob.sourceUrl} target="_blank" rel="noreferrer">{selectedJob.source} ↗</a></dd></div></dl></section>
+
+        <section className="structured-jd">
+          <div className="drawer-section-title"><div><p>FULL JOB DESCRIPTION</p><h3>岗位 JD 结构化拆解</h3></div></div>
+          <p className={`jd-note ${selectedJd.level === "公司级监控" ? "warning" : ""}`}><i>{selectedJd.level === "公司级监控" ? "!" : "✓"}</i>{selectedJd.note}</p>
+          <article className="jd-block"><h4><span>01</span>岗位职责</h4><ul>{selectedJd.responsibilities.map((item) => <li key={item}>{item}</li>)}</ul></article>
+          <article className="jd-block"><h4><span>02</span>任职要求</h4><ul>{selectedJd.qualifications.map((item) => <li key={item}>{item}</li>)}</ul></article>
+          <article className="jd-block"><h4><span>03</span>作品集要求</h4><ul>{selectedJd.portfolio.map((item) => <li key={item}>{item}</li>)}</ul></article>
+          <article className="jd-block"><h4><span>04</span>预计招聘流程</h4><ol>{selectedJd.process.map((item) => <li key={item}>{item}</li>)}</ol></article>
+        </section>
+
+        <section className="fit-note"><h3>为什么推荐给你</h3>{selectedJob.reasons.map((item) => <p key={item}><span>＋</span>{item}</p>)}{selectedJob.missing.map((item) => <p className="gap" key={item}><span>!</span>{item}</p>)}</section>
+        <div className="drawer-actions expanded"><button onClick={() => toggleSaved(selectedJob.id)}>{savedIds.includes(selectedJob.id) ? "★ 已收藏" : "☆ 收藏职位"}</button><button onClick={() => { setSelectedResumeJob(selectedJob.id); setView("resume"); setSelectedJob(null); }}>诊断简历</button><a href={selectedJob.sourceUrl} target="_blank" rel="noreferrer">打开招聘入口 ↗</a></div>
+      </aside></div>}
     </main>
   );
 }
