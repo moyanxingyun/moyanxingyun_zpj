@@ -86,3 +86,20 @@
 .draft-actions{display:flex;gap:9px;margin-top:10px}.draft-actions button{flex:1;padding:11px;border:1px solid var(--green);border-radius:7px;background:#fff;color:var(--green);font-size:11px;font-weight:800}.draft-actions button:last-child{background:var(--green);color:#fff}
 .draft-panel>p{margin:10px 0 0;color:#788179;font-size:10px;line-height:1.5}
 @media(max-width:760px){.keyword-summary{grid-template-columns:1fr}.draft-panel>header{align-items:flex-start;flex-direction:column}.draft-actions{flex-direction:column}.draft-panel>textarea{height:360px}}
+
+/* Local DOCX / PDF resume import */
+.resume-upload{position:relative;margin-bottom:14px;padding:16px;border:1px dashed #bfc9c0;border-radius:10px;background:#f8faf7;transition:.18s ease}
+.resume-upload.drag-active{border-color:var(--green);background:#eaf2eb;box-shadow:0 0 0 3px rgba(47,93,70,.09)}
+.resume-upload.upload-error{border-color:#c98b78;background:#fdf8f5}
+.resume-upload>input{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.upload-empty{display:flex;align-items:center;justify-content:center;gap:12px;min-height:58px;text-align:left}
+.upload-empty>span{width:38px;height:38px;display:grid;place-items:center;border-radius:50%;background:var(--green-soft);color:var(--green);font-size:18px;font-weight:800}
+.upload-empty>div{display:flex;flex-direction:column;gap:5px}.upload-empty b{font-size:12px}.upload-empty label,.uploaded-file label{cursor:pointer;color:var(--green);font-weight:800;text-decoration:underline;text-underline-offset:3px}
+.upload-empty small{color:#858e86;font-size:10px}
+.uploaded-file{display:grid;grid-template-columns:44px minmax(0,1fr) auto auto;align-items:center;gap:10px}
+.uploaded-file .file-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:8px;background:#e4ece5;color:var(--green);font-size:9px;font-weight:900}
+.uploaded-file>div{min-width:0;display:flex;flex-direction:column;gap:4px}.uploaded-file b{overflow:hidden;color:#34433a;font-size:11px;text-overflow:ellipsis;white-space:nowrap}.uploaded-file>div>span{color:#838c84;font-size:9px}
+.uploaded-file label{font-size:10px}.uploaded-file button{width:25px;height:25px;border:0;border-radius:50%;background:#eceeea;color:#687069;font-size:15px}
+.upload-message{margin:11px 0 0;padding-top:9px;border-top:1px solid #e0e5df;font-size:10px;line-height:1.5}.upload-message.success{color:#39704d}.upload-message.error{color:#a5553f}
+.input-divider{display:flex;align-items:center;gap:10px;margin:2px 0 11px;color:#899189;font-size:9px}.input-divider::before,.input-divider::after{content:"";height:1px;flex:1;background:#e3e4df}.input-divider span{white-space:nowrap}
+@media(max-width:480px){.resume-upload{padding:13px}.uploaded-file{grid-template-columns:40px minmax(0,1fr) auto}.uploaded-file label{display:none}.upload-empty{justify-content:flex-start}.upload-empty small{line-height:1.45}}

@@ -7,6 +7,7 @@ type JobStatus = "收藏" | "准备中" | "已投递" | "笔试/测试" | "面�
 type CampaignStatus = "正在招聘" | "实习可转正" | "持续开放" | "入口关注" | "已结束参考";
 type OpportunityType = "正式校招" | "实习生" | "日常实习" | "校招关注";
 type ScaleTier = "大型企业" | "中型企业" | "小型/独立团队";
+type UploadState = "idle" | "parsing" | "success" | "error";
 
 type Job = {
   id: number;
@@ -490,6 +491,37 @@ ${text.trim() || "［尚未填写］"}
 □ 投递前再次核对官网岗位状态与作品集要求`;
 }
 
+const MAX_RESUME_FILE_SIZE = 12 * 1024 * 1024;
+
+async function extractResumeFileText(file: File) {
+  const extension = file.name.split(".").pop()?.toLowerCase();
+  const arrayBuffer = await file.arrayBuffer();
+
+  if (extension === "docx") {
+    const mammoth = await import("mammoth");
+    const result = await mammoth.extractRawText({ arrayBuffer });
+    return result.value.replace(/\n{3,}/g, "\n\n").trim();
+  }
+
+  if (extension === "pdf") {
+    const pdfjs = await import("pdfjs-dist");
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+    pdfjs.GlobalWorkerOptions.workerSrc = `${window.location.origin}${basePath}/pdf.worker.min.mjs`;
+    const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+    const pages: string[] = [];
+    for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
+      const page = await pdf.getPage(pageNumber);
+      const content = await page.getTextContent();
+      const pageText = content.items.map((item) => "str" in item ? item.str : "").join(" ").replace(/\s+/g, " ").trim();
+      if (pageText) pages.push(pageText);
+    }
+    return pages.join("\n\n").trim();
+  }
+
+  if (extension === "txt") return (await file.text()).trim();
+  throw new Error(extension === "doc" ? "暂不支持旧版 .doc 文件，请先在 Word 中另存为 .docx。" : "仅支持 DOCX、PDF 或 TXT 文件。" );
+}
+
 function JobCard({ job, onOpen, saved, onSave }: { job: Job; onOpen: () => void; saved: boolean; onSave: () => void }) {
   return (
     <article className="job-card" onClick={onOpen} tabIndex={0} onKeyDown={(e) => e.key === "Enter" && onOpen()}>
@@ -519,6 +551,10 @@ export default function Home() {
   const [analyzed, setAnalyzed] = useState(false);
   const [draftOpen, setDraftOpen] = useState(false);
   const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">("idle");
+  const [resumeFile, setResumeFile] = useState<{ name: string; size: number } | null>(null);
+  const [uploadState, setUploadState] = useState<UploadState>("idle");
+  const [uploadMessage, setUploadMessage] = useState("");
+  const [dragActive, setDragActive] = useState(false);
   const [noticeOpen, setNoticeOpen] = useState(false);
 
   useEffect(() => {
@@ -573,6 +609,36 @@ export default function Home() {
     anchor.click();
     URL.revokeObjectURL(url);
   };
+  const handleResumeUpload = async (file?: File) => {
+    if (!file) return;
+    resetResumeResult();
+    setUploadMessage("");
+    if (file.size > MAX_RESUME_FILE_SIZE) {
+      setUploadState("error");
+      setUploadMessage("文件超过 12MB，请压缩后重新上传。");
+      return;
+    }
+    setUploadState("parsing");
+    setResumeFile({ name: file.name, size: file.size });
+    try {
+      const extractedText = await extractResumeFileText(file);
+      if (extractedText.length < 20) throw new Error("没有提取到足够的文字；如果是扫描版 PDF，请先进行 OCR 文字识别。");
+      setResumeText(extractedText);
+      setUploadState("success");
+      setUploadMessage(`已提取 ${extractedText.length} 字，并生成岗位诊断。`);
+      setAnalyzed(true);
+    } catch (error) {
+      setUploadState("error");
+      setUploadMessage(error instanceof Error ? error.message : "文件解析失败，请尝试粘贴文字。" );
+    }
+  };
+  const clearResumeFile = () => {
+    setResumeFile(null);
+    setUploadState("idle");
+    setUploadMessage("");
+    setResumeText("");
+    resetResumeResult();
+  };
 
   return (
     <main className="career-app">
@@ -623,16 +689,27 @@ export default function Home() {
         </section>}
 
         {view === "resume" && <section className="page resume-page">
-          <header className="page-heading"><div><p>AI RESUME STUDIO</p><h1>针对岗位，重写你的优势。</h1><span>选择目标职位，系统会根据岗位要求和你粘贴的内容生成修改方案；所有待补数据都会明确标为占位符。</span></div></header>
+          <header className="page-heading"><div><p>AI RESUME STUDIO</p><h1>针对岗位，重写你的优势。</h1><span>上传 Word / PDF 或直接粘贴简历内容，系统会对照岗位要求生成修改方案；文件只在当前设备中解析。</span></div></header>
           <div className="resume-layout">
             <section className="resume-editor panel">
               <div className="step-label"><b>01</b><span>选择目标岗位</span></div>
               <select value={selectedResumeJob} onChange={(e) => { setSelectedResumeJob(Number(e.target.value)); resetResumeResult(); }}>{jobs.map((job) => <option value={job.id} key={job.id}>{job.company} · {job.role}</option>)}</select>
               <div className="selected-role"><span className="company-mark" style={{ background: activeResumeJob.accent }}>{activeResumeJob.initials}</span><div><b>{activeResumeJob.role}</b><span>{activeResumeJob.company} · {activeResumeJob.city} · 岗位基础匹配 {activeResumeJob.match}%</span></div></div>
-              <div className="step-label"><b>02</b><span>粘贴简历内容</span><small>{resumeText.length} 字</small></div>
+              <div className="step-label"><b>02</b><span>上传或粘贴简历</span><small>{resumeText.length} 字</small></div>
+              <div
+                className={`resume-upload ${dragActive ? "drag-active" : ""} ${uploadState === "error" ? "upload-error" : ""}`}
+                onDragOver={(event) => { event.preventDefault(); setDragActive(true); }}
+                onDragLeave={(event) => { event.preventDefault(); setDragActive(false); }}
+                onDrop={(event) => { event.preventDefault(); setDragActive(false); void handleResumeUpload(event.dataTransfer.files[0]); }}
+              >
+                <input id="resume-file-upload" type="file" accept=".docx,.pdf,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain" onChange={(event) => { void handleResumeUpload(event.target.files?.[0]); event.currentTarget.value = ""; }} />
+                {resumeFile ? <div className="uploaded-file"><span className="file-icon">{resumeFile.name.toLowerCase().endsWith(".pdf") ? "PDF" : resumeFile.name.toLowerCase().endsWith(".docx") ? "DOCX" : "TXT"}</span><div><b>{resumeFile.name}</b><span>{(resumeFile.size / 1024 / 1024).toFixed(2)} MB · {uploadState === "parsing" ? "正在提取文字…" : uploadState === "success" ? "已成功导入" : "解析遇到问题"}</span></div><label htmlFor="resume-file-upload">更换</label><button type="button" onClick={clearResumeFile} aria-label="移除已上传的简历">×</button></div> : <div className="upload-empty"><span>⇧</span><div><b>拖拽简历到这里，或 <label htmlFor="resume-file-upload">选择文件</label></b><small>支持 Word（.docx）、PDF、TXT · 最大 12MB</small></div></div>}
+                {uploadState !== "idle" && uploadMessage && <p className={`upload-message ${uploadState}`}>{uploadState === "success" ? "✓" : "!"} {uploadMessage}</p>}
+              </div>
+              <div className="input-divider"><span>或直接粘贴 / 编辑提取后的文字</span></div>
               <textarea value={resumeText} onChange={(e) => { setResumeText(e.target.value); resetResumeResult(); }} aria-label="简历内容" placeholder="粘贴个人简介、技能和项目经历，信息越完整，建议越准确。" />
               <button className="analyze-button" disabled={!resumeText.trim()} onClick={() => { setAnalyzed(true); setDraftOpen(false); setCopyState("idle"); }}><span>✦</span>{analyzed ? "重新生成岗位诊断" : "开始岗位匹配诊断"}</button>
-              <p className="privacy-note">⌾ 内容仅在当前设备中处理和展示</p>
+              <p className="privacy-note">⌾ 文件不会上传到服务器；内容仅在当前浏览器中处理</p>
             </section>
 
             <section className={analyzed ? "analysis-panel active" : "analysis-panel"}>
