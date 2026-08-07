@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 
 type View = "overview" | "jobs" | "resume" | "pipeline";
 type JobStatus = "收藏" | "准备中" | "已投递" | "笔试/测试" | "面试";
-type CampaignStatus = "正在招聘" | "实习可转正" | "持续开放" | "入口关注" | "已结束参考";
+type CampaignStatus = "正在招聘" | "实习可转正" | "持续开放" | "入口关注" | "当前无美术岗" | "已结束参考";
 type OpportunityType = "正式校招" | "实习生" | "日常实习" | "校招关注";
 type ScaleTier = "大型企业" | "中型企业" | "小型/独立团队";
 type UploadState = "idle" | "parsing" | "success" | "error";
@@ -31,6 +31,10 @@ type Job = {
   scaleTier?: ScaleTier;
   verifiedAt: string;
   requirements: string[];
+  responsibilities?: string[];
+  portfolioRequirements?: string[];
+  publishedAt?: string;
+  availabilityNote?: string;
   reasons: string[];
   missing: string[];
   accent: string;
@@ -208,6 +212,14 @@ const demoJobs: Job[] = [
     requirements: ["暑期实习面向2027届毕业生并提供转正机会", "游戏美术大类岗位以官网开放情况为准", "日常实习也向其他年级在校生开放"], reasons: ["岗位体系包含3D场景与技术美术方向", "实习转正路径清晰", "你的数字媒体艺术背景符合美术岗位偏好"], missing: ["需要准备稳定的实习时间说明", "建议增加写实MMO环境资产"], accent: "#1d77b7",
   },
   {
+    id: 44, company: "搜狐畅游", initials: "CY", role: "2027届秋招提前批｜3D场景设计师", city: "北京", deadline: "2026-09-14", daysLeft: 38, match: 95, status: "准备中", opportunityType: "正式校招", scaleTier: "大型企业",
+    tags: ["27届秋招", "3D场景", "Maya/3ds Max", "PBR/手绘"], business: "网络游戏研发、发行与运营", scale: "大型老牌游戏公司", project: "武侠、国风、科幻、欧美等多风格项目", source: "搜狐畅游官方校园招聘职位页", sourceUrl: "https://app.mokahr.com/campus-recruitment/cyou-inc/42233#/job/9549790e-834d-41f4-9e71-adc1560f5c3e", campaign: "正在招聘", verifiedAt: "2026-08-07", publishedAt: "2026-07-27", availabilityNote: "官方当前在招｜职位发布于 2026-07-27｜网申截止 2026-09-14",
+    responsibilities: ["负责游戏场景模型、场景布局、气氛渲染或资源整合设计中的一个主要方向，并随能力成长承担更多3D美术工作。", "与原画和策划沟通需求、确认可行方案，并与协作岗位共同保证最终效果还原。", "根据项目需要适配武侠、国风、科幻、欧美等不同美术风格。"],
+    requirements: ["面向2027届，游戏设计、数字媒体、动漫、美术相关专业优先", "具备美术基础和审美能力", "掌握 3ds Max / Maya / ZBrush / Substance Painter / Photoshop，岗位包含手绘与PBR方向", "能够按时保质完成任务，具备责任心、学习能力和团队沟通能力", "热爱游戏且游戏经历丰富者优先"],
+    portfolioRequirements: ["投递时必须附能够证明3D场景能力的作品集链接。", "可附 ArtStation、站酷等作品主页；大文件可按官方JD发送至 cyzuopin@vip.163.com。", "作品需标注个人职责、使用软件、制作流程及最终效果。"],
+    reasons: ["这是畅游官方当前在招的2027届3D场景具体岗位", "数字媒体艺术专业和软件技能要求与你的方向直接匹配", "同时接受手绘与PBR方向，作品集适配空间较大"], missing: ["建议增加武侠或国风环境资产", "需要明确标注每个项目的个人职责和软件流程"], accent: "#176da6",
+  },
+  {
     id: 17, company: "FunPlus", initials: "FP", role: "转正实习｜游戏美术方向", city: "北京/上海/广州", deadline: "关注实时岗位", daysLeft: 99, match: 84, status: "收藏", opportunityType: "实习生",
     tags: ["转正实习", "全球发行", "SLG", "游戏美术"], business: "游戏研发与全球发行", scale: "大型全球化游戏公司", project: "SLG与多品类全球化游戏", source: "FunPlus校园招聘官网", sourceUrl: "https://campus.funplus.com.cn/", campaign: "实习可转正", verifiedAt: "2026-08-07",
     requirements: ["官网公开春招补录与转正实习项目", "具体毕业区间和美术岗位以当期列表为准", "全球化项目重视风格适配和协作能力"], reasons: ["SLG项目需要大量场景与环境资产", "全球化方向有利于扩展作品风格", "转正实习可提前进入校招流程"], missing: ["建议增加移动端场景可读性展示", "需要补充英文软件与项目说明"], accent: "#e05a35",
@@ -263,9 +275,9 @@ const demoJobs: Job[] = [
     requirements: ["校园招聘官网设有美术类职位入口", "具体岗位与毕业年份以实时页面为准", "美术岗位通常要求提交作品"], reasons: ["广州适合与其他公司组合投递", "MMO项目与场景资产方向相关", "可作为扩展投递池的重要补充"], missing: ["当前细分场景岗位需进一步核验", "建议增加批量资产和协作规范说明"], accent: "#ef863d",
   },
   {
-    id: 28, company: "点点互动（Century Games）", initials: "CG", role: "2027届 Elite Program+｜游戏美术 / 3D场景", city: "北京/上海/广州/深圳", deadline: "招满即止", daysLeft: 99, match: 90, status: "收藏", opportunityType: "正式校招", scaleTier: "大型企业",
-    tags: ["27届校招", "游戏美术", "3D场景", "全球化"], business: "全球化游戏研发、发行与长线运营", scale: "大型全球化游戏公司（公开信息为上千人）", project: "无尽冬日、奔奔王国等全球化项目", source: "点点互动官方招聘入口及2027届人才计划公告", sourceUrl: "https://career.centurygames.cn/4/jobs", campaign: "正在招聘", verifiedAt: "2026-08-07",
-    requirements: ["2027届 Elite Program+ 已启动，职位以官方实时列表为准", "公开的2027届及以后项目曾覆盖游戏美术、场景原画与3D场景", "美术方向需要提交能说明个人职责的作品集"], reasons: ["3D场景方向与你的主修高度相关", "全球化SLG与模拟经营项目需要大量环境资产", "当前已有2027届官方职位入口"], missing: ["不同批次开放岗位会变化，投递前需再次筛选美术类别", "建议增加移动端场景性能与批量资产案例"], accent: "#e44b34",
+    id: 28, company: "点点互动（Century Games）", initials: "CG", role: "2027届 Elite Program+｜当前无美术岗位", city: "北京/上海/广州/深圳", deadline: "未公布统一截止日", daysLeft: 99, match: 35, status: "收藏", opportunityType: "校招关注", scaleTier: "大型企业",
+    tags: ["27届校招", "策划/程序", "市场/数据", "无美术岗"], business: "全球化游戏研发、发行与长线运营", scale: "大型全球化游戏公司（公开信息为上千人）", project: "无尽冬日、奔奔王国等全球化项目", source: "点点互动官方 Elite Program+ 实时职位列表", sourceUrl: "https://career.centurygames.cn/4/jobs", campaign: "当前无美术岗", verifiedAt: "2026-08-07", publishedAt: "2026-07-12", availabilityNote: "重要纠正：官方当前12个Elite Program+职位中没有美术类或3D场景岗位",
+    requirements: ["截至2026-08-07，官方列表显示12个Elite Program+在招职位", "当前职位仅分布在策划类、程序类、市场类和数据类", "美术类筛选项存在，但当前实际职位数量为0"], reasons: ["当前不建议作为游戏美术方向投递目标", "仅保留为后续是否新增美术岗位的监控项"], missing: ["不要把Elite Program+项目启动误判为美术岗位开放", "后续只有官方列表出现实际美术职位后才重新提高匹配度"], accent: "#9a5a4b",
   },
   {
     id: 29, company: "4399游戏", initials: "4399", role: "校招入口关注｜3D场景 / 美术设计类", city: "广州/厦门", deadline: "等待27届批次", daysLeft: 99, match: 86, status: "收藏", opportunityType: "校招关注", scaleTier: "大型企业",
@@ -362,6 +374,7 @@ const campaignTone: Record<CampaignStatus, string> = {
   "实习可转正": "intern",
   "持续开放": "open",
   "入口关注": "watch",
+  "当前无美术岗": "mismatch",
   "已结束参考": "closed",
 };
 
@@ -400,10 +413,12 @@ const deadlineOverrides: Record<number, Partial<DeadlineProfile>> = {
   13: { batch: "2027届实习招聘历史批次", opened: "2026年春季", closes: "2026-05-31（已结束）", rule: "该批次已经结束，仅用于准备后续秋招或补录；请勿按当前开放岗位投递。", urgency: "closed" },
   15: { batch: "2027秋季校园招聘提前批", opened: "2026年7月已公开启动", closes: "官网未公布统一截止日", rule: "按职位滚动推进；官网同时存在校招和日常实习入口，投递时需核对岗位性质。", urgency: "rolling" },
   16: { batch: "2027届暑期实习", opened: "2026年春季已启动", closes: "招满即止", rule: "实习提供转正机会；美术细分职位和关闭时间以官网实时列表为准。", urgency: "rolling" },
-  28: { batch: "2027 Elite Program+", opened: "2026年已公开启动", closes: "官网未公布统一截止日", rule: "项目采用滚动筛选；游戏美术方向需进入官网选择实际职位，岗位招满后会提前下线。", urgency: "rolling" },
+  28: { batch: "2027 Elite Program+", opened: "12个职位于2026-07-12发布", closes: "未公布统一截止日", rule: "当前12个实际职位仅覆盖策划、程序、市场和数据，未开放美术类；仅保留监控，不建议投递。", urgency: "watch" },
+  44: { batch: "2027届秋招提前批", opened: "职位发布：2026-07-27；网申开放：2026-08-06", closes: "2026-09-14", rule: "官方流程页明确网申期为8月6日至9月14日；2027届秋招最多投递两个职位，建议优先投递3D场景。", urgency: "open" },
 };
 
 function getDetailLevel(job: Job): DetailLevel {
+  if (job.campaign === "当前无美术岗") return "招聘批次";
   if (job.campaign === "入口关注" || job.role.includes("关注") || job.role.includes("机会")) return "公司级监控";
   if (job.role.includes("方向") || job.role.includes("类") || job.role.includes("训练营")) return "招聘批次";
   return "具体岗位";
@@ -415,7 +430,7 @@ function getDeadlineProfile(job: Job): DeadlineProfile {
     opened: job.campaign === "已结束参考" ? "历史批次" : "以官网职位发布时间为准",
     closes: job.deadline,
     rule: job.deadline.includes("招满") || job.deadline.includes("滚动") ? "没有统一截止日期，岗位会在招满后提前关闭。" : "官网未披露统一日期时，以具体职位页显示为准。",
-    urgency: job.campaign === "已结束参考" ? "closed" : job.campaign === "入口关注" ? "watch" : job.deadline.includes("招满") || job.deadline.includes("滚动") ? "rolling" : "open",
+    urgency: job.campaign === "已结束参考" ? "closed" : job.campaign === "入口关注" || job.campaign === "当前无美术岗" ? "watch" : job.deadline.includes("招满") || job.deadline.includes("滚动") ? "rolling" : "open",
   };
   return { ...base, ...deadlineOverrides[job.id] };
 }
@@ -423,6 +438,16 @@ function getDeadlineProfile(job: Job): DeadlineProfile {
 function getStructuredJd(job: Job): StructuredJd {
   const text = `${job.role}${job.tags.join("")}`.toLowerCase();
   const level = getDetailLevel(job);
+  if (job.campaign === "当前无美术岗") {
+    return {
+      level,
+      responsibilities: ["当前Elite Program+共12个职位：系统/数值策划、客户端/AI/数据工程、广告创意与投放。", "当前官方列表没有美术类、3D场景、场景原画或技术美术职位。"],
+      qualifications: job.requirements,
+      portfolio: ["当前没有可对应的美术岗位，因此不建议为该批次制作定向美术作品集。", "后续只有官方职位列表出现实际美术职位后，再根据具体JD准备作品。"],
+      process: ["暂不投递美术方向", "持续监控官方Elite Program+职位列表", "出现实际美术职位后重新核验JD与截止时间"],
+      note: "已纠正：Elite Program+项目正在招聘，不等于美术岗位正在招聘。当前官方12个职位中美术类为0。",
+    };
+  }
   let responsibilities: string[];
   let qualifications: string[];
   let portfolio: string[];
@@ -451,9 +476,9 @@ function getStructuredJd(job: Job): StructuredJd {
 
   return {
     level,
-    responsibilities,
+    responsibilities: job.responsibilities ?? responsibilities,
     qualifications: [...job.requirements, ...qualifications].slice(0, 6),
-    portfolio,
+    portfolio: job.portfolioRequirements ?? portfolio,
     process: ["官网网申 / 简历与作品集筛选", "美术测试或专业面试（是否设置以职位通知为准）", "业务面试 / HR沟通", "录用或实习转正评估"],
     note: level === "公司级监控" ? "当前公开信息尚未形成可直接投递的具体岗位JD；以下为对应方向的准备标准，不代表该公司已经开放该职位。" : "以下内容由公开招聘要求按职责、能力和作品集结构归纳；最终以官网具体职位页和邮件通知为准。",
   };
@@ -618,6 +643,7 @@ function JobCard({ job, onOpen, saved, onSave }: { job: Job; onOpen: () => void;
       <div className="job-main">
         <div className="job-title-row"><div><span className="company-name">{job.company}</span><h3>{job.role}</h3></div><button className={saved ? "save-button saved" : "save-button"} onClick={(e) => { e.stopPropagation(); onSave(); }} aria-label={saved ? "取消收藏" : "收藏职位"}>{saved ? "★" : "☆"}</button></div>
         <p className="job-meta"><span className="opportunity-label">{getOpportunityType(job)}</span><span className={`detail-level level-${detailLevel}`}>{detailLevel}</span><span className={`scale-label scale-${getScaleTier(job)}`}>规模：{job.scale}</span><span>⌖ {job.city}</span><span className={`deadline-label deadline-${deadline.urgency}`}>截止：{deadline.closes}</span><span className={`campaign-badge ${campaignTone[job.campaign]}`}>{job.campaign}</span><span>核验 {job.verifiedAt.slice(5)}</span><a className="apply-link" href={job.sourceUrl} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()}>网申入口 ↗</a></p>
+        {job.availabilityNote && <p className={`availability-note ${job.campaign === "当前无美术岗" ? "correction" : "verified"}`}>{job.campaign === "当前无美术岗" ? "!" : "✓"} {job.availabilityNote}</p>}
         <div className="tag-row">{job.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
       </div>
       <div className="match-cell"><Donut value={job.match} /><span>岗位匹配</span></div>
@@ -669,7 +695,7 @@ export default function Home() {
       && (campaignFilter === "全部状态" || job.campaign === campaignFilter)
       && (typeFilter === "全部类型" || getOpportunityType(job) === typeFilter)
       && (scaleFilter === "全部规模" || getScaleTier(job) === scaleFilter);
-  }), [jobs, search, city, campaignFilter, typeFilter, scaleFilter]);
+  }).sort((a, b) => b.match - a.match), [jobs, search, city, campaignFilter, typeFilter, scaleFilter]);
 
   const activeResumeJob = jobs.find((job) => job.id === selectedResumeJob) ?? jobs[0];
   const resumeReport = useMemo(() => analyzeResume(activeResumeJob, resumeText), [activeResumeJob, resumeText]);
@@ -750,7 +776,7 @@ export default function Home() {
           <div className="mobile-brand"><span>△</span><b>跃迁</b></div>
           <label className="global-search"><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} onFocus={() => setView("jobs")} placeholder="搜索公司、岗位或技能关键词" /><kbd>⌘ K</kbd></label>
           <div className="top-actions"><span className="demo-pill verified-pill">✓ 来源已核验</span><button className="notice-button" onClick={() => setNoticeOpen(!noticeOpen)} aria-label="查看通知">♢<i /></button><button className="add-button" onClick={() => { setView("jobs"); setSearch(""); }}>＋ 发现职位</button></div>
-          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>点点互动 2027 届 Elite Program+ 已启动，游戏美术岗位请进入官网实时核验。</p><p>职位库已扩展到大型、中型与独立游戏团队。</p></div>}
+          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>搜狐畅游2027秋招已经开放3D场景设计师，网申截止至2026年9月14日。</p><p>点点互动Elite Program+当前12个职位中没有美术类岗位，暂不建议投递。</p></div>}
         </header>
 
         {view === "overview" && <section className="page overview-page">
@@ -773,8 +799,8 @@ export default function Home() {
 
         {view === "jobs" && <section className="page jobs-page">
           <header className="page-heading"><div><p>GAME STUDIOS · 2027 CAMPUS</p><h1>国内游戏公司校招雷达</h1><span>覆盖大厂、中厂、小型与独立团队，优先收录游戏美术、3D场景、地编和技术美术机会。</span></div><div className="heading-stat"><b>{jobs.length}</b><span>重点机会</span></div></header>
-          <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-08-07</p></div>
-          <div className="filter-row"><label><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="搜索点点互动、3D场景、UE5…" /></label><select value={city} onChange={(e) => setCity(e.target.value)} aria-label="城市筛选"><option>全部城市</option><option>上海</option><option>杭州</option><option>深圳</option><option>成都</option><option>广州</option><option>北京</option><option>厦门</option><option>重庆</option><option>苏州</option></select><select value={scaleFilter} onChange={(e) => setScaleFilter(e.target.value)} aria-label="公司规模筛选"><option>全部规模</option><option>大型企业</option><option>中型企业</option><option>小型/独立团队</option></select><select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} aria-label="机会类型筛选"><option>全部类型</option><option>正式校招</option><option>实习生</option><option>日常实习</option><option>校招关注</option></select><select value={campaignFilter} onChange={(e) => setCampaignFilter(e.target.value)} aria-label="招聘状态筛选"><option>全部状态</option><option>正在招聘</option><option>实习可转正</option><option>持续开放</option><option>入口关注</option><option>已结束参考</option></select><button>匹配度优先 ↕</button></div>
+          <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot mismatch" />当前无美术岗</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-08-07</p></div>
+          <div className="filter-row"><label><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="搜索畅游、3D场景、UE5…" /></label><select value={city} onChange={(e) => setCity(e.target.value)} aria-label="城市筛选"><option>全部城市</option><option>上海</option><option>杭州</option><option>深圳</option><option>成都</option><option>广州</option><option>北京</option><option>厦门</option><option>重庆</option><option>苏州</option></select><select value={scaleFilter} onChange={(e) => setScaleFilter(e.target.value)} aria-label="公司规模筛选"><option>全部规模</option><option>大型企业</option><option>中型企业</option><option>小型/独立团队</option></select><select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} aria-label="机会类型筛选"><option>全部类型</option><option>正式校招</option><option>实习生</option><option>日常实习</option><option>校招关注</option></select><select value={campaignFilter} onChange={(e) => setCampaignFilter(e.target.value)} aria-label="招聘状态筛选"><option>全部状态</option><option>正在招聘</option><option>实习可转正</option><option>持续开放</option><option>当前无美术岗</option><option>入口关注</option><option>已结束参考</option></select><button>匹配度优先 ↕</button></div>
           <div className="result-bar"><span>找到 <b>{filteredJobs.length}</b> 个重点机会，来自 {new Set(filteredJobs.map((job) => job.company)).size} 家游戏公司</span><span>信息可能随时变化 · 以官网为准</span></div>
           <div className="job-list">{filteredJobs.map((job) => <JobCard key={job.id} job={job} saved={savedIds.includes(job.id)} onSave={() => toggleSaved(job.id)} onOpen={() => setSelectedJob(job)} />)}</div>
         </section>}
