@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 type View = "overview" | "jobs" | "resume" | "pipeline";
 type JobStatus = "收藏" | "准备中" | "已投递" | "笔试/测试" | "面试";
 type CampaignStatus = "正在招聘" | "实习可转正" | "持续开放" | "入口关注" | "已结束参考";
+type OpportunityType = "正式校招" | "实习生" | "日常实习" | "校招关注";
 
 type Job = {
   id: number;
@@ -23,6 +24,7 @@ type Job = {
   source: string;
   sourceUrl: string;
   campaign: CampaignStatus;
+  opportunityType?: OpportunityType;
   verifiedAt: string;
   requirements: string[];
   reasons: string[];
@@ -191,6 +193,71 @@ const demoJobs: Job[] = [
     tags: ["27届实习", "游戏美术", "研发发行"], business: "游戏研发、发行与电竞相关业务", scale: "大型游戏公司", project: "多品类移动与主机游戏项目", source: "高校就业网招聘公告", sourceUrl: "https://www.yingxiong.com/", campaign: "正在招聘", verifiedAt: "2026-08-07",
     requirements: ["2027届实习项目公开包含美术类岗位", "具体场景岗位需以实时职位列表为准", "建议准备作品集与可持续实习时间说明"], reasons: ["适合作为大厂之外的重点补充投递", "研发与发行项目覆盖多个美术方向", "可积累真实游戏生产经验"], missing: ["当前公开信息未细分到场景岗位", "投递前需再次核验职位名称和地点"], accent: "#315d82",
   },
+  {
+    id: 15, company: "鹰角网络", initials: "HG", role: "2027秋季校园招聘提前批｜美术表现类", city: "上海", deadline: "招满即止", daysLeft: 99, match: 91, status: "收藏", opportunityType: "正式校招",
+    tags: ["27届秋招", "美术表现", "3D场景", "日常实习"], business: "原创游戏与文化内容研发", scale: "头部精品游戏研发公司", project: "明日方舟及多款在研项目", source: "鹰角网络校园招聘官网", sourceUrl: "https://campus.hypergryph.com/", campaign: "正在招聘", verifiedAt: "2026-08-07",
+    requirements: ["2027秋招提前批已经启动", "招聘官网设有美术表现类岗位和日常实习入口", "美术岗位需以官网实时职位和作品集要求为准"], reasons: ["场景风格研究与艺术表达权重较高", "你的风格化场景方向具备潜在匹配度", "同时可关注日常实习积累生产经验"], missing: ["需要提升作品的原创世界观表达", "建议增加一套强风格化场景设计"], accent: "#202326",
+  },
+  {
+    id: 16, company: "搜狐畅游", initials: "CY", role: "2027届暑期实习｜游戏美术类", city: "北京", deadline: "招满即止", daysLeft: 99, match: 87, status: "收藏", opportunityType: "实习生",
+    tags: ["27届实习", "可转正", "3D场景", "技术美术"], business: "网络游戏研发与运营", scale: "大型老牌游戏公司", project: "天龙八部系列及多款在研项目", source: "畅游校园招聘官网", sourceUrl: "https://campus.changyou.com/", campaign: "实习可转正", verifiedAt: "2026-08-07",
+    requirements: ["暑期实习面向2027届毕业生并提供转正机会", "游戏美术大类岗位以官网开放情况为准", "日常实习也向其他年级在校生开放"], reasons: ["岗位体系包含3D场景与技术美术方向", "实习转正路径清晰", "你的数字媒体艺术背景符合美术岗位偏好"], missing: ["需要准备稳定的实习时间说明", "建议增加写实MMO环境资产"], accent: "#1d77b7",
+  },
+  {
+    id: 17, company: "FunPlus", initials: "FP", role: "转正实习｜游戏美术方向", city: "北京/上海/广州", deadline: "关注实时岗位", daysLeft: 99, match: 84, status: "收藏", opportunityType: "实习生",
+    tags: ["转正实习", "全球发行", "SLG", "游戏美术"], business: "游戏研发与全球发行", scale: "大型全球化游戏公司", project: "SLG与多品类全球化游戏", source: "FunPlus校园招聘官网", sourceUrl: "https://campus.funplus.com.cn/", campaign: "实习可转正", verifiedAt: "2026-08-07",
+    requirements: ["官网公开春招补录与转正实习项目", "具体毕业区间和美术岗位以当期列表为准", "全球化项目重视风格适配和协作能力"], reasons: ["SLG项目需要大量场景与环境资产", "全球化方向有利于扩展作品风格", "转正实习可提前进入校招流程"], missing: ["建议增加移动端场景可读性展示", "需要补充英文软件与项目说明"], accent: "#e05a35",
+  },
+  {
+    id: 18, company: "心动网络", initials: "XD", role: "校园招聘关注｜游戏美术 / 3D方向", city: "上海", deadline: "关注岗位更新", daysLeft: 99, match: 85, status: "收藏", opportunityType: "校招关注",
+    tags: ["TapTap", "自研游戏", "美术", "实习关注"], business: "游戏研发发行与TapTap平台", scale: "上市游戏与平台公司", project: "心动小镇、火炬之光等", source: "心动网络招聘入口", sourceUrl: "https://www.xd.com/join", campaign: "入口关注", verifiedAt: "2026-08-07",
+    requirements: ["校招和实习岗位以官网实时列表为准", "自研项目覆盖多种美术风格", "作品集应突出个人职责与引擎内效果"], reasons: ["项目风格跨度适合场景美术方向", "上海岗位与你的目标城市匹配", "可同步关注TapTap招聘动态"], missing: ["尚未确认当前27届场景岗位余量", "建议设置每周官网检查提醒"], accent: "#3d8bdb",
+  },
+  {
+    id: 19, company: "游族网络", initials: "YZ", role: "校园招聘关注｜3D场景 / 游戏美术", city: "上海", deadline: "关注岗位更新", daysLeft: 99, match: 82, status: "收藏", opportunityType: "校招关注",
+    tags: ["全球化卡牌", "3D场景", "美术", "校招"], business: "游戏研发与全球发行", scale: "上市游戏公司", project: "全球化卡牌与策略游戏", source: "游族网络校园招聘官网", sourceUrl: "https://campus.yoozoo.com/", campaign: "入口关注", verifiedAt: "2026-08-07",
+    requirements: ["官网保留独立校园招聘入口", "具体27届岗位需等待实时更新", "全球化项目重视多风格适应能力"], reasons: ["策略与卡牌项目具有稳定环境资产需求", "上海地点符合求职偏好", "适合作为第二梯队重点监控"], missing: ["需要补充卡牌场景与叙事构图", "当前岗位开放状态待确认"], accent: "#92643f",
+  },
+  {
+    id: 20, company: "盛趣游戏", initials: "SQ", role: "校招 / 实习机会｜游戏美术方向", city: "上海", deadline: "关注岗位更新", daysLeft: 99, match: 83, status: "收藏", opportunityType: "日常实习",
+    tags: ["实习机会", "技术美术", "MMO", "上海"], business: "网络游戏研发、发行与运营", scale: "大型老牌游戏公司", project: "传奇世界、最终幻想14等", source: "盛趣游戏加入我们", sourceUrl: "https://www.shengqugames.com/cn/join", campaign: "持续开放", verifiedAt: "2026-08-07",
+    requirements: ["官网同时提供校园招聘和实习机会入口", "历史项目包含技术美术实习与转校招", "具体岗位需在入口内实时核验"], reasons: ["MMO项目对场景资源需求长期存在", "日常实习可以补充团队项目经历", "上海地点便于集中投递"], missing: ["入口部分页面为往届专题，需核验发布日期", "建议优先查找3D场景或TA岗位"], accent: "#b03039",
+  },
+  {
+    id: 21, company: "多益网络", initials: "DY", role: "校园招聘关注｜技术美术 / 美术设计", city: "广州/成都", deadline: "等待27届批次", daysLeft: 99, match: 81, status: "收藏", opportunityType: "校招关注",
+    tags: ["技术美术", "原画", "特效", "校招"], business: "互联网游戏研发与运营", scale: "大型游戏研发公司", project: "神武、梦想世界等", source: "多益网络校园招聘官网", sourceUrl: "https://xz.duoyi.com/", campaign: "入口关注", verifiedAt: "2026-08-07",
+    requirements: ["往届校招持续开放技术美术、原画、特效等岗位", "2027届批次需等待官网确认", "不同岗位可能包含线上笔试或作品测试"], reasons: ["技术美术方向可作为能力扩展", "广州和成都均是游戏岗位集中城市", "官网招聘体系完整"], missing: ["纯3D场景岗位开放情况待确认", "TA方向需补充脚本或Shader基础"], accent: "#e56b2f",
+  },
+  {
+    id: 22, company: "祖龙娱乐", initials: "ZL", role: "校园招聘关注｜3D美术 / 技术美术", city: "北京/苏州", deadline: "关注实时岗位", daysLeft: 99, match: 88, status: "收藏", opportunityType: "校招关注",
+    tags: ["UE4/UE5", "次世代", "3D场景", "MMORPG"], business: "精品3D游戏研发与全球发行", scale: "大型上市游戏公司", project: "龙族幻想、以闪亮之名等", source: "祖龙娱乐官方网站校招入口", sourceUrl: "http://campus.zulong.com/", campaign: "入口关注", verifiedAt: "2026-08-07",
+    requirements: ["官方设有独立校招站与校园招聘邮箱", "美术岗位需附个人作品", "次世代3D项目重视引擎和资产制作能力"], reasons: ["UE与次世代场景方向高度匹配", "大型3D项目适合你的长期发展方向", "官网保留校招网申入口"], missing: ["需要增加大型写实场景作品", "当前27届岗位需实时确认"], accent: "#8055aa",
+  },
+  {
+    id: 23, company: "友塔游戏", initials: "YT", role: "校园招聘关注｜游戏美术 / TA", city: "上海", deadline: "关注岗位更新", daysLeft: 99, match: 80, status: "收藏", opportunityType: "校招关注",
+    tags: ["SLG", "全球发行", "技术美术", "校招"], business: "移动游戏研发与全球发行", scale: "大型出海游戏公司", project: "全球化SLG与模拟经营项目", source: "友塔游戏校园招聘官网", sourceUrl: "https://www.yottagames.com.cn/zh/campus", campaign: "入口关注", verifiedAt: "2026-08-07",
+    requirements: ["官网保留校园招聘职位入口", "历史校招包含技术美术与美术工具方向", "具体27届岗位以实时页面为准"], reasons: ["全球化SLG有大量环境与建筑资产", "上海地点适合集中投递", "TA岗位可作为场景美术的延伸"], missing: ["当前页面仍有往届信息，需核对岗位年份", "建议补充批量资产生产思路"], accent: "#173d5d",
+  },
+  {
+    id: 24, company: "沐瞳科技", initials: "MT", role: "校园招聘关注｜美术 / 全球化游戏", city: "上海", deadline: "关注岗位更新", daysLeft: 99, match: 82, status: "收藏", opportunityType: "校招关注",
+    tags: ["全球化", "MOBA", "游戏美术", "出海"], business: "全球化游戏研发、发行与电竞", scale: "大型全球化游戏公司", project: "Mobile Legends: Bang Bang", source: "沐瞳科技官网", sourceUrl: "https://cn.moonton.com/", campaign: "入口关注", verifiedAt: "2026-08-07",
+    requirements: ["往届春招开放美术类岗位", "具体27届批次和投递入口需关注官网更新", "全球化项目重视跨文化审美与协作"], reasons: ["全球项目可以扩展作品集竞争力", "上海游戏美术岗位集中", "适合作为出海方向重点监控"], missing: ["当前官网未展示明确27届场景岗位", "建议准备英文版作品说明"], accent: "#2a63b7",
+  },
+  {
+    id: 25, company: "朝夕光年", initials: "NVS", role: "招聘入口关注｜游戏美术 / 3D场景", city: "北京/上海/杭州", deadline: "关注岗位更新", daysLeft: 99, match: 81, status: "收藏", opportunityType: "校招关注",
+    tags: ["游戏美术", "开放世界", "国风", "招聘官网"], business: "游戏研发与全球发行", scale: "大型游戏业务品牌", project: "多品类自研与发行项目", source: "朝夕光年招聘官网", sourceUrl: "https://www.nvsgames.cn/hire.html", campaign: "入口关注", verifiedAt: "2026-08-07",
+    requirements: ["官网提供独立招聘职位入口", "具体校招和实习岗位以实时列表为准", "项目方向覆盖写实、国风与二次元"], reasons: ["美术风格覆盖范围广", "可能开放场景与技术美术相关岗位", "适合作为补录和日常实习监控入口"], missing: ["当前27届校园批次未明确", "投递前需确认具体业务线"], accent: "#111c2b",
+  },
+  {
+    id: 26, company: "IGG", initials: "IGG", role: "招聘关注｜游戏3D美术 / GUI / 场景", city: "福州/上海", deadline: "持续关注", daysLeft: 99, match: 79, status: "收藏", opportunityType: "日常实习",
+    tags: ["全球发行", "3D美术", "SLG", "日常机会"], business: "移动游戏研发与全球发行", scale: "上市全球化游戏公司", project: "王国纪元等全球化游戏", source: "IGG中国招聘官网", sourceUrl: "https://cn-jobs.igg.com/", campaign: "持续开放", verifiedAt: "2026-08-07",
+    requirements: ["招聘官网持续发布中国区职位", "美术岗位需准备作品集", "校招与实习属性需以职位详情为准"], reasons: ["全球化SLG需要大量场景和建筑资产", "可作为日常实习与社招储备入口", "适合补充海外项目经验"], missing: ["需筛选明确接受应届生的岗位", "建议准备英文作品集页面"], accent: "#cf3238",
+  },
+  {
+    id: 27, company: "乐牛游戏", initials: "LN", role: "校园招聘｜游戏美术类", city: "广州", deadline: "关注岗位更新", daysLeft: 99, match: 78, status: "收藏", opportunityType: "正式校招",
+    tags: ["美术类", "MMO", "广州", "校招入口"], business: "移动游戏研发与运营", scale: "中大型游戏公司", project: "MMO与多品类移动游戏", source: "乐牛游戏校园招聘官网", sourceUrl: "https://campus.leniu.com/", campaign: "持续开放", verifiedAt: "2026-08-07",
+    requirements: ["校园招聘官网设有美术类职位入口", "具体岗位与毕业年份以实时页面为准", "美术岗位通常要求提交作品"], reasons: ["广州适合与其他公司组合投递", "MMO项目与场景资产方向相关", "可作为扩展投递池的重要补充"], missing: ["当前细分场景岗位需进一步核验", "建议增加批量资产和协作规范说明"], accent: "#ef863d",
+  },
 ];
 
 const navItems: { key: View; label: string; icon: string }[] = [
@@ -214,13 +281,17 @@ const campaignTone: Record<CampaignStatus, string> = {
   "已结束参考": "closed",
 };
 
+const getOpportunityType = (job: Job): OpportunityType => job.opportunityType ?? (
+  job.role.includes("实习") || job.role.includes("训练营") ? "实习生" : job.campaign === "入口关注" ? "校招关注" : "正式校招"
+);
+
 function JobCard({ job, onOpen, saved, onSave }: { job: Job; onOpen: () => void; saved: boolean; onSave: () => void }) {
   return (
     <article className="job-card" onClick={onOpen} tabIndex={0} onKeyDown={(e) => e.key === "Enter" && onOpen()}>
       <div className="company-mark" style={{ background: job.accent }}>{job.initials}</div>
       <div className="job-main">
-        <div className="job-title-row"><div><span>{job.company}</span><h3>{job.role}</h3></div><button className={saved ? "save-button saved" : "save-button"} onClick={(e) => { e.stopPropagation(); onSave(); }} aria-label={saved ? "取消收藏" : "收藏职位"}>{saved ? "★" : "☆"}</button></div>
-        <p className="job-meta"><span>⌖ {job.city}</span><span>◷ {job.deadline}</span><span className={`campaign-badge ${campaignTone[job.campaign]}`}>{job.campaign}</span><span>核验 {job.verifiedAt.slice(5)}</span></p>
+        <div className="job-title-row"><div><span className="company-name">{job.company}</span><h3>{job.role}</h3></div><button className={saved ? "save-button saved" : "save-button"} onClick={(e) => { e.stopPropagation(); onSave(); }} aria-label={saved ? "取消收藏" : "收藏职位"}>{saved ? "★" : "☆"}</button></div>
+        <p className="job-meta"><span className="opportunity-label">{getOpportunityType(job)}</span><span>⌖ {job.city}</span><span>◷ {job.deadline}</span><span className={`campaign-badge ${campaignTone[job.campaign]}`}>{job.campaign}</span><span>核验 {job.verifiedAt.slice(5)}</span><a className="apply-link" href={job.sourceUrl} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()}>网申入口 ↗</a></p>
         <div className="tag-row">{job.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
       </div>
       <div className="match-cell"><Donut value={job.match} /><span>岗位匹配</span></div>
@@ -236,6 +307,7 @@ export default function Home() {
   const [search, setSearch] = useState("");
   const [city, setCity] = useState("全部城市");
   const [campaignFilter, setCampaignFilter] = useState("全部状态");
+  const [typeFilter, setTypeFilter] = useState("全部类型");
   const [selectedResumeJob, setSelectedResumeJob] = useState(1);
   const [resumeText, setResumeText] = useState("熟悉 Maya、ZBrush、Substance Painter 与 UE5，独立完成过写实废墟和风格化森林场景。负责模型、UV、材质、灯光及最终画面呈现。熟悉模块化资产制作和基础 PBR 工作流。");
   const [analyzed, setAnalyzed] = useState(false);
@@ -259,8 +331,11 @@ export default function Home() {
   const filteredJobs = useMemo(() => jobs.filter((job) => {
     const query = search.trim().toLowerCase();
     const searchHit = !query || `${job.company}${job.role}${job.tags.join("")}`.toLowerCase().includes(query);
-    return searchHit && (city === "全部城市" || job.city.includes(city)) && (campaignFilter === "全部状态" || job.campaign === campaignFilter);
-  }), [jobs, search, city, campaignFilter]);
+    return searchHit
+      && (city === "全部城市" || job.city.includes(city))
+      && (campaignFilter === "全部状态" || job.campaign === campaignFilter)
+      && (typeFilter === "全部类型" || getOpportunityType(job) === typeFilter);
+  }), [jobs, search, city, campaignFilter, typeFilter]);
 
   const activeResumeJob = jobs.find((job) => job.id === selectedResumeJob) ?? jobs[0];
   const changeStatus = (jobId: number, status: JobStatus) => setJobs((current) => current.map((job) => job.id === jobId ? { ...job, status } : job));
@@ -309,7 +384,7 @@ export default function Home() {
         {view === "jobs" && <section className="page jobs-page">
           <header className="page-heading"><div><p>MAJOR GAME STUDIOS · 2027 CAMPUS</p><h1>国内大厂校招雷达</h1><span>优先收录游戏美术、3D场景、地编与技术美术机会；投递前请打开来源链接核验实时余量。</span></div><div className="heading-stat"><b>{jobs.length}</b><span>重点机会</span></div></header>
           <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-08-07</p></div>
-          <div className="filter-row"><label><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="搜索腾讯、网易、3D场景、UE5…" /></label><select value={city} onChange={(e) => setCity(e.target.value)} aria-label="城市筛选"><option>全部城市</option><option>上海</option><option>杭州</option><option>深圳</option><option>成都</option><option>广州</option><option>北京</option><option>厦门</option></select><select value={campaignFilter} onChange={(e) => setCampaignFilter(e.target.value)} aria-label="招聘状态筛选"><option>全部状态</option><option>正在招聘</option><option>实习可转正</option><option>持续开放</option><option>入口关注</option><option>已结束参考</option></select><button>匹配度优先 ↕</button></div>
+          <div className="filter-row"><label><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="搜索腾讯、网易、3D场景、UE5…" /></label><select value={city} onChange={(e) => setCity(e.target.value)} aria-label="城市筛选"><option>全部城市</option><option>上海</option><option>杭州</option><option>深圳</option><option>成都</option><option>广州</option><option>北京</option><option>厦门</option></select><select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} aria-label="机会类型筛选"><option>全部类型</option><option>正式校招</option><option>实习生</option><option>日常实习</option><option>校招关注</option></select><select value={campaignFilter} onChange={(e) => setCampaignFilter(e.target.value)} aria-label="招聘状态筛选"><option>全部状态</option><option>正在招聘</option><option>实习可转正</option><option>持续开放</option><option>入口关注</option><option>已结束参考</option></select><button>匹配度优先 ↕</button></div>
           <div className="result-bar"><span>找到 <b>{filteredJobs.length}</b> 个重点机会，来自 {new Set(filteredJobs.map((job) => job.company)).size} 家游戏公司</span><span>信息可能随时变化 · 以官网为准</span></div>
           <div className="job-list">{filteredJobs.map((job) => <JobCard key={job.id} job={job} saved={savedIds.includes(job.id)} onSave={() => toggleSaved(job.id)} onOpen={() => setSelectedJob(job)} />)}</div>
         </section>}
