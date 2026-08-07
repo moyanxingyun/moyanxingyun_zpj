@@ -1,4 +1,4 @@
-export type StudioTab = "radar" | "inspiration" | "actions";
+export type StudioTab = "radar" | "century" | "inspiration" | "actions";
 
 export type ArtStyle = "风格化" | "半写实" | "写实" | "待确认";
 export type WorkDirection = "美术方向" | "开发技术" | "混合方向";
@@ -42,4 +42,25 @@ export interface ArtistRecommendation {
   artDirection: string;
   studyFocus: string;
   featured?: boolean;
+}
+
+export interface CenturyJobSignal {
+  id: string;
+  title: string;
+  track: "美术岗位" | "技术岗位";
+  locations: string;
+  status: string;
+  requirements: string[];
+  portfolioEvidence: string;
+  sourceUrl: string;
+}
+
+export interface CenturyDirection {
+  id: string;
+  index: string;
+  title: string;
+  signal: string;
+  opportunity: string;
+  action: string;
+  sourceUrl: string;
 }

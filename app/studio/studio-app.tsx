@@ -2,13 +2,15 @@
 
 import { FormEvent, useMemo, useState } from "react";
 import { artistRecommendations, intelItems, starterActions } from "./_data/mock-data";
-import type { ArtStyle, ArtistRecommendation, IntelItem, StudioTab, WorkDirection } from "./_types";
+import { centuryDirections, centuryJobs, centuryProfile } from "./_data/century-data";
+import type { ArtStyle, ArtistRecommendation, CenturyJobSignal, IntelItem, StudioTab, WorkDirection } from "./_types";
 import styles from "./studio.module.css";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const tabs: Array<{ id: StudioTab; label: string; count?: number }> = [
   { id: "radar", label: "今日前沿", count: intelItems.length },
+  { id: "century", label: "点点互动专供", count: centuryJobs.length },
   { id: "inspiration", label: "灵感收藏" },
   { id: "actions", label: "求职行动", count: starterActions.filter((item) => !item.done).length },
 ];
@@ -86,6 +88,22 @@ function ArtistCard({ item }: { item: ArtistRecommendation }) {
   );
 }
 
+function CenturyJobCard({ item }: { item: CenturyJobSignal }) {
+  return (
+    <article className={styles.centuryJobCard}>
+      <div className={styles.centuryJobTop}>
+        <span>{item.track}</span>
+        <i>{item.status}</i>
+      </div>
+      <h3>{item.title}</h3>
+      <p className={styles.jobLocation}>⌖ {item.locations}</p>
+      <ul>{item.requirements.map((requirement) => <li key={requirement}>{requirement}</li>)}</ul>
+      <div className={styles.portfolioProof}><span>作品集证据</span><p>{item.portfolioEvidence}</p></div>
+      <a href={item.sourceUrl} target="_blank" rel="noreferrer">到官方招聘页核验 <span>↗</span></a>
+    </article>
+  );
+}
+
 export default function StudioApp() {
   const [activeTab, setActiveTab] = useState<StudioTab>("radar");
   const [items, setItems] = useState(intelItems);
@@ -125,6 +143,22 @@ export default function StudioApp() {
         output: "过程截图、结果对比与三条制作结论",
         duration: "2 小时",
         skill: `${item.direction} / ${item.style}`,
+        done: false,
+      },
+      ...current,
+    ]);
+    setActiveTab("actions");
+  };
+
+  const addCenturySprint = () => {
+    const id = "century-portfolio-sprint";
+    setActions((current) => current.some((action) => action.id === id) ? current : [
+      {
+        id,
+        title: "完成一组点点互动适配的风格化 SLG 主城",
+        output: "概念探索、模块化资产、三档升级、AIGC 修正记录与 UE5 最终图",
+        duration: "1 天",
+        skill: "点点互动专供 / 风格化场景 / 移动端 SLG",
         done: false,
       },
       ...current,
@@ -248,6 +282,66 @@ export default function StudioApp() {
               )) : <div className={styles.emptyCollection}><span>◇</span><h3>收藏夹正在等待第一条灵感</h3><p>回到今日前沿收藏内容，或粘贴一个你喜欢的作品链接。</p><button type="button" onClick={() => setActiveTab("radar")}>去发现内容</button></div>}
             </div>
           </>
+        )}
+
+        {activeTab === "century" && (
+          <section className={styles.centuryModule}>
+            <header className={styles.centuryHero}>
+              <div className={styles.centuryHeroCopy}>
+                <span className={styles.centuryKicker}>CENTURY GAMES · TARGET INTELLIGENCE</span>
+                <h2>点点互动专供</h2>
+                <p>把公开岗位、产品方向和你的作品集证据放在同一张路线图里。这里不只推送“有什么岗位”，更说明你该用什么作品证明自己适合。</p>
+                <div className={styles.centuryHeroActions}>
+                  <a href={centuryProfile.officialCareerUrl} target="_blank" rel="noreferrer">打开官方招聘 <span>↗</span></a>
+                  <a href={centuryProfile.companyUrl} target="_blank" rel="noreferrer">查看公司产品方向</a>
+                </div>
+              </div>
+              <aside className={styles.targetGauge} aria-label={`当前目标适配度 ${centuryProfile.targetScore} 分`}>
+                <span>TARGET FIT</span>
+                <strong>{centuryProfile.targetScore}</strong>
+                <small>/ 100</small>
+                <div><i style={{ width: `${centuryProfile.targetScore}%` }} /></div>
+                <p>优势：风格化场景与 UE5<br />待补：移动端产品化案例</p>
+              </aside>
+            </header>
+
+            <div className={styles.centuryNotice}>
+              <div><i /> 最近核验：{centuryProfile.lastChecked}</div>
+              <p>岗位状态来自公开招聘方向，不等于当前仍有空缺；投递前请以官方招聘页面为准。</p>
+              <span>OFFICIAL CHECK REQUIRED</span>
+            </div>
+
+            <section className={styles.centuryBlock} aria-labelledby="century-jobs-title">
+              <header className={styles.centuryBlockHeader}>
+                <div><span>01 / ROLE SIGNALS</span><h2 id="century-jobs-title">岗位方向雷达</h2></div>
+                <p>优先筛选与你的场景美术、UE5 和 AIGC 能力相关的方向。</p>
+              </header>
+              <div className={styles.centuryJobGrid}>{centuryJobs.map((item) => <CenturyJobCard key={item.id} item={item} />)}</div>
+            </section>
+
+            <section className={styles.centuryBlock} aria-labelledby="century-direction-title">
+              <header className={styles.centuryBlockHeader}>
+                <div><span>02 / DIRECTION MAP</span><h2 id="century-direction-title">公司发展方向 → 你的机会</h2></div>
+                <p>公开信号经过求职视角转译，不代表公司内部规划。</p>
+              </header>
+              <div className={styles.directionList}>
+                {centuryDirections.map((item) => (
+                  <article key={item.id}>
+                    <span>{item.index}</span>
+                    <div><small>DEVELOPMENT SIGNAL</small><h3>{item.title}</h3><p>{item.signal}</p></div>
+                    <div className={styles.directionOpportunity}><small>对你的机会</small><p>{item.opportunity}</p></div>
+                    <div className={styles.directionAction}><small>建议作品</small><p>{item.action}</p><a href={item.sourceUrl} target="_blank" rel="noreferrer">查看依据 ↗</a></div>
+                  </article>
+                ))}
+              </div>
+            </section>
+
+            <section className={styles.centurySprint}>
+              <div><span>30-DAY PORTFOLIO SPRINT</span><h2>如果只补一个项目</h2><p>做一组适配全球化风格化 SLG 的移动端主城：包含概念探索、模块化资产、三档升级状态、AI 辅助过程与 UE5 最终画面。</p></div>
+              <ol><li><b>01</b>定义题材钩子与世界观母题</li><li><b>02</b>完成移动端视角与信息层级</li><li><b>03</b>搭建模块化资产和等级变化</li><li><b>04</b>记录 AI 到人工修正的判断</li></ol>
+              <button type="button" onClick={addCenturySprint}>加入求职行动 <span>＋</span></button>
+            </section>
+          </section>
         )}
 
         {activeTab === "actions" && (
