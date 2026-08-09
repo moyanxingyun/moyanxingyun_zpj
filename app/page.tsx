@@ -104,7 +104,7 @@ const demoJobs: Job[] = [
     source: "完美世界校园招聘官网",
     sourceUrl: "https://recruit.games.wanmei.com/",
     campaign: "实习可转正",
-    verifiedAt: "2026-08-07",
+    verifiedAt: "2026-08-09",
     requirements: ["2027届实习面向2026年9月至2027年8月毕业生", "美术设计类岗位必须上传作品集", "每位候选人最多可投递两个职位"],
     reasons: ["官方明确开放2027届实习项目", "大型3D项目对场景资产与引擎能力需求稳定", "你的完整场景案例适合作为第一志愿材料"],
     missing: ["需要明确展示三角面、贴图规格和优化思路", "建议强化写实建筑与模块化资产案例"],
@@ -205,8 +205,8 @@ const demoJobs: Job[] = [
     requirements: ["2027届实习项目公开包含美术类岗位", "具体场景岗位需以实时职位列表为准", "建议准备作品集与可持续实习时间说明"], reasons: ["适合作为大厂之外的重点补充投递", "研发与发行项目覆盖多个美术方向", "可积累真实游戏生产经验"], missing: ["当前公开信息未细分到场景岗位", "投递前需再次核验职位名称和地点"], accent: "#315d82",
   },
   {
-    id: 15, company: "鹰角网络", initials: "HG", role: "2027届秋招｜场景模型", city: "上海", deadline: "2026-10-31", daysLeft: 84, match: 96, status: "准备中", opportunityType: "正式校招", scaleTier: "大型企业",
-    tags: ["27届秋招", "场景模型", "模块化建筑", "植被/地编"], business: "原创游戏与文化内容研发", scale: "头部精品游戏研发公司", project: "明日方舟及多款在研项目", source: "鹰角网络2027届秋招官方职位页", sourceUrl: "https://app.mokahr.com/campus-recruitment/hypergryph/26326#/job/fa56465b-87ce-498e-b26a-4b38286af876", campaign: "正在招聘", verifiedAt: "2026-08-08", publishedAt: "2026-08-07", availabilityNote: "官方当前在招｜网申期 2026-08-07 至 2026-10-31｜每人最多投递2次",
+    id: 15, company: "鹰角网络", initials: "HG", role: "2027届秋招｜场景模型", city: "上海", deadline: "2026-10-31", daysLeft: 83, match: 96, status: "准备中", opportunityType: "正式校招", scaleTier: "大型企业",
+    tags: ["27届秋招", "场景模型", "模块化建筑", "植被/地编"], business: "原创游戏与文化内容研发", scale: "头部精品游戏研发公司", project: "明日方舟及多款在研项目", source: "鹰角网络2027届秋招官方职位页", sourceUrl: "https://app.mokahr.com/campus-recruitment/hypergryph/26326#/job/fa56465b-87ce-498e-b26a-4b38286af876", campaign: "正在招聘", verifiedAt: "2026-08-09", publishedAt: "2026-08-07", availabilityNote: "官方当前在招｜网申期 2026-08-07 至 2026-10-31｜每人最多投递2次",
     responsibilities: ["制作植被、山石、地形、建筑、部件和道具等游戏场景模型资源。", "独立完成高模、低模、UV、贴图全流程，并掌握生态与建筑物件的材质表现。", "控制面数与视觉效果，使用模块化建筑思路平衡资源复用性和独特性。"],
     requirements: ["美术、动画、数字媒体、环境艺术等相关专业优先", "熟练使用 3ds Max 或 Maya，并掌握 Photoshop、Substance Painter、ZBrush", "理解自然生态形态、建筑结构、机械构造及不同地域和时代风格", "PBR、SpeedTree、地编流程或建筑史知识属于加分项"],
     portfolioRequirements: ["投递时必须附作品集，官方优先接收 PDF。", "作品集中需标明使用软件、制作日期和制作时间，并尽可能包含近期素描。", "建议完整展示高低模、UV、贴图、模块化拆分、植被和性能优化。"],
@@ -218,8 +218,8 @@ const demoJobs: Job[] = [
     requirements: ["暑期实习面向2027届毕业生并提供转正机会", "游戏美术大类岗位以官网开放情况为准", "日常实习也向其他年级在校生开放"], reasons: ["岗位体系包含3D场景与技术美术方向", "实习转正路径清晰", "你的数字媒体艺术背景符合美术岗位偏好"], missing: ["需要准备稳定的实习时间说明", "建议增加写实MMO环境资产"], accent: "#1d77b7",
   },
   {
-    id: 44, company: "搜狐畅游", initials: "CY", role: "2027届秋招提前批｜3D场景设计师", city: "北京", deadline: "2026-09-14", daysLeft: 37, match: 95, status: "准备中", opportunityType: "正式校招", scaleTier: "大型企业",
-    tags: ["27届秋招", "3D场景", "Maya/3ds Max", "PBR/手绘"], business: "网络游戏研发、发行与运营", scale: "大型老牌游戏公司", project: "武侠、国风、科幻、欧美等多风格项目", source: "搜狐畅游官方校园招聘职位页", sourceUrl: "https://app.mokahr.com/campus-recruitment/cyou-inc/42233#/job/9549790e-834d-41f4-9e71-adc1560f5c3e", campaign: "正在招聘", verifiedAt: "2026-08-08", publishedAt: "2026-07-27", availabilityNote: "官方当前在招｜职位发布于 2026-07-27｜网申截止 2026-09-14",
+    id: 44, company: "搜狐畅游", initials: "CY", role: "2027届秋招提前批｜3D场景设计师", city: "北京", deadline: "2026-09-14", daysLeft: 36, match: 95, status: "准备中", opportunityType: "正式校招", scaleTier: "大型企业",
+    tags: ["27届秋招", "3D场景", "Maya/3ds Max", "PBR/手绘"], business: "网络游戏研发、发行与运营", scale: "大型老牌游戏公司", project: "武侠、国风、科幻、欧美等多风格项目", source: "搜狐畅游官方校园招聘职位页", sourceUrl: "https://app.mokahr.com/campus-recruitment/cyou-inc/42233#/job/9549790e-834d-41f4-9e71-adc1560f5c3e", campaign: "正在招聘", verifiedAt: "2026-08-09", publishedAt: "2026-07-27", availabilityNote: "官方当前在招｜职位发布于 2026-07-27｜网申截止 2026-09-14",
     responsibilities: ["负责游戏场景模型、场景布局、气氛渲染或资源整合设计中的一个主要方向，并随能力成长承担更多3D美术工作。", "与原画和策划沟通需求、确认可行方案，并与协作岗位共同保证最终效果还原。", "根据项目需要适配武侠、国风、科幻、欧美等不同美术风格。"],
     requirements: ["面向2027届，游戏设计、数字媒体、动漫、美术相关专业优先", "具备美术基础和审美能力", "掌握 3ds Max / Maya / ZBrush / Substance Painter / Photoshop，岗位包含手绘与PBR方向", "能够按时保质完成任务，具备责任心、学习能力和团队沟通能力", "热爱游戏且游戏经历丰富者优先"],
     portfolioRequirements: ["投递时必须附能够证明3D场景能力的作品集链接。", "可附 ArtStation、站酷等作品主页；大文件可按官方JD发送至 cyzuopin@vip.163.com。", "作品需标注个人职责、使用软件、制作流程及最终效果。"],
@@ -282,8 +282,8 @@ const demoJobs: Job[] = [
   },
   {
     id: 28, company: "点点互动（Century Games）", initials: "CG", role: "2027届 Elite Program+｜当前无美术岗位", city: "北京/上海/广州/深圳", deadline: "未公布统一截止日", daysLeft: 99, match: 35, status: "收藏", opportunityType: "校招关注", scaleTier: "大型企业",
-    tags: ["27届校招", "策划/程序", "市场/数据", "无美术岗"], business: "全球化游戏研发、发行与长线运营", scale: "大型全球化游戏公司（公开信息为上千人）", project: "无尽冬日、奔奔王国等全球化项目", source: "点点互动官方 Elite Program+ 实时职位列表", sourceUrl: "https://career.centurygames.cn/4/jobs", campaign: "当前无美术岗", verifiedAt: "2026-08-08", publishedAt: "2026-07-12", availabilityNote: "重要纠正：官方当前12个Elite Program+职位中没有美术类或3D场景岗位",
-    requirements: ["截至2026-08-07，官方列表显示12个Elite Program+在招职位", "当前职位仅分布在策划类、程序类、市场类和数据类", "美术类筛选项存在，但当前实际职位数量为0"], reasons: ["当前不建议作为游戏美术方向投递目标", "仅保留为后续是否新增美术岗位的监控项"], missing: ["不要把Elite Program+项目启动误判为美术岗位开放", "后续只有官方列表出现实际美术职位后才重新提高匹配度"], accent: "#9a5a4b",
+    tags: ["27届校招", "策划/程序", "市场/数据", "无美术岗"], business: "全球化游戏研发、发行与长线运营", scale: "大型全球化游戏公司（公开信息为上千人）", project: "无尽冬日、奔奔王国等全球化项目", source: "点点互动官方 Elite Program+ 实时职位列表", sourceUrl: "https://career.centurygames.cn/4/jobs", campaign: "当前无美术岗", verifiedAt: "2026-08-09", publishedAt: "2026-07-12", availabilityNote: "重要纠正：官方当前12个Elite Program+职位中没有美术类或3D场景岗位",
+    requirements: ["截至2026-08-09，官方列表显示12个Elite Program+在招职位", "当前职位仅分布在策划类、程序类、市场类和数据类", "美术类筛选项存在，但当前实际职位数量为0"], reasons: ["当前不建议作为游戏美术方向投递目标", "仅保留为后续是否新增美术岗位的监控项"], missing: ["不要把Elite Program+项目启动误判为美术岗位开放", "后续只有官方列表出现实际美术职位后才重新提高匹配度"], accent: "#9a5a4b",
   },
   {
     id: 29, company: "4399游戏", initials: "4399", role: "校招入口关注｜3D场景 / 美术设计类", city: "广州/厦门", deadline: "等待27届批次", daysLeft: 99, match: 86, status: "收藏", opportunityType: "校招关注", scaleTier: "大型企业",
@@ -465,6 +465,18 @@ function getCountdownInfo(profile: DeadlineProfile, todayKey: string): Countdown
   if (profile.urgency === "rolling") return { label: "滚动招聘", dateLabel: profile.closes, tone: "rolling", days: null };
   if (profile.urgency === "watch") return { label: "时间待公布", dateLabel: profile.closes, tone: "watch", days: null };
   return { label: "持续开放", dateLabel: profile.closes, tone: "active", days: null };
+}
+
+function formatTodayLabel(todayKey: string) {
+  const [year, month, day] = todayKey.split("-").map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  const weekdays = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+  const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+  return `${weekdays[date.getUTCDay()]} · ${months[month - 1]} ${String(day).padStart(2, "0")}`;
+}
+
+function getPipelineDeadlineLabel(job: Job, todayKey: string) {
+  return getCountdownInfo(getDeadlineProfile(job), todayKey).label;
 }
 
 function getStructuredJd(job: Job): StructuredJd {
@@ -704,7 +716,7 @@ export default function Home() {
   const [uploadState, setUploadState] = useState<UploadState>("idle");
   const [uploadMessage, setUploadMessage] = useState("");
   const [dragActive, setDragActive] = useState(false);
-  const [todayKey, setTodayKey] = useState("2026-08-07");
+  const [todayKey, setTodayKey] = useState("2026-08-09");
   const [noticeOpen, setNoticeOpen] = useState(false);
 
   useEffect(() => {
@@ -824,11 +836,11 @@ export default function Home() {
           <div className="mobile-brand"><span>△</span><b>跃迁</b></div>
           <label className="global-search"><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} onFocus={() => setView("jobs")} placeholder="搜索公司、岗位或技能关键词" /><kbd>⌘ K</kbd></label>
           <div className="top-actions"><span className="demo-pill verified-pill">✓ 来源已核验</span><button className="notice-button" onClick={() => setNoticeOpen(!noticeOpen)} aria-label="查看通知">♢<i /></button><button className="add-button" onClick={() => { setView("jobs"); setSearch(""); }}>＋ 发现职位</button></div>
-          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>鹰角网络2027秋招场景模型岗已开放，网申截止至2026年10月31日。</p><p>灵犀互娱2027届游戏3D场景岗已在阿里官方职位库开放；点点互动当前仍无美术岗。</p></div>}
+          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>鹰角网络2027秋招场景模型岗已开放，网申截止至2026年10月31日。</p><p>灵犀互娱2027届游戏3D场景岗已在阿里官方职位库开放；点点互动 Elite Program+ 当前仍无美术岗。</p></div>}
         </header>
 
         {view === "overview" && <section className="page overview-page">
-          <div className="welcome"><div><p>SATURDAY · AUG 08</p><h1>早上好，王同学。</h1><span>已追踪 <b>{jobs.length} 个</b> 国内游戏公司机会，覆盖大型、中型与独立团队；其中 {jobs.filter((job) => ["正在招聘", "实习可转正"].includes(job.campaign)).length} 个建议优先核验。</span></div><button onClick={() => setView("jobs")}>查看公司雷达 <span>→</span></button></div>
+          <div className="welcome"><div><p>{formatTodayLabel(todayKey)}</p><h1>早上好，王同学。</h1><span>已追踪 <b>{jobs.length} 个</b> 国内游戏公司机会，覆盖大型、中型与独立团队；其中 {jobs.filter((job) => ["正在招聘", "实习可转正"].includes(job.campaign)).length} 个建议优先核验。</span></div><button onClick={() => setView("jobs")}>查看公司雷达 <span>→</span></button></div>
 
           <div className="metric-grid">
             <article><span className="metric-icon green">↗</span><div><p>重点厂商机会</p><b>{jobs.length}</b><small><i>{jobs.filter((job) => job.campaign === "正在招聘").length} 个</i> 正在招聘</small></div><div className="spark bars"><i /><i /><i /><i /><i /><i /></div></article>
@@ -923,7 +935,7 @@ export default function Home() {
 
         {view === "pipeline" && <section className="page pipeline-page">
           <header className="page-heading pipeline-heading"><div><p>APPLICATION PIPELINE</p><h1>投递看板</h1><span>把每次投递变成可以复盘、可以优化的过程。</span></div><button onClick={() => setView("jobs")}>＋ 添加职位</button></header>
-          <div className="pipeline-board">{statusOrder.map((status) => { const columnJobs = jobs.filter((job) => job.status === status); return <section className="pipeline-column" key={status}><header><span><i className={`status-dot s${statusOrder.indexOf(status)}`} />{status}</span><b>{columnJobs.length}</b></header><div>{columnJobs.map((job) => <article className="pipeline-card" key={job.id}><div><span className="company-mark" style={{ background: job.accent }}>{job.initials}</span><small>{job.company}</small></div><h3>{job.role}</h3><p>⌖ {job.city} <span>·</span> {job.match}% 匹配</p><div className="pipeline-date"><span>{job.daysLeft <= 7 ? `还剩 ${job.daysLeft} 天` : job.deadline}</span><select value={job.status} onChange={(e) => changeStatus(job.id, e.target.value as JobStatus)} aria-label={`更新${job.company}投递状态`}>{statusOrder.map((item) => <option key={item}>{item}</option>)}</select></div></article>)}</div><button className="column-add">＋ 添加到{status}</button></section>; })}</div>
+          <div className="pipeline-board">{statusOrder.map((status) => { const columnJobs = jobs.filter((job) => job.status === status); return <section className="pipeline-column" key={status}><header><span><i className={`status-dot s${statusOrder.indexOf(status)}`} />{status}</span><b>{columnJobs.length}</b></header><div>{columnJobs.map((job) => <article className="pipeline-card" key={job.id}><div><span className="company-mark" style={{ background: job.accent }}>{job.initials}</span><small>{job.company}</small></div><h3>{job.role}</h3><p>⌖ {job.city} <span>·</span> {job.match}% 匹配</p><div className="pipeline-date"><span>{getPipelineDeadlineLabel(job, todayKey)}</span><select value={job.status} onChange={(e) => changeStatus(job.id, e.target.value as JobStatus)} aria-label={`更新${job.company}投递状态`}>{statusOrder.map((item) => <option key={item}>{item}</option>)}</select></div></article>)}</div><button className="column-add">＋ 添加到{status}</button></section>; })}</div>
         </section>}
 
         <footer className="app-footer"><span>跃迁 · 为游戏美术校招生打造</span><span>职位信息为产品演示，请以企业官方页面为准</span></footer>

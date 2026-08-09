@@ -64,7 +64,7 @@ export const centuryDirections: CenturyDirection[] = [
 ];
 
 export const centuryProfile = {
-  lastChecked: "2026.08.07",
+  lastChecked: "2026.08.09",
   officialCareerUrl: "https://career.centurygames.cn/campus/jobs",
   companyUrl: "https://www.centurygames.cn/",
   targetScore: 82,
