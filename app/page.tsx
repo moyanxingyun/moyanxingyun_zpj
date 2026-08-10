@@ -157,9 +157,19 @@ const demoJobs: Job[] = [
     accent: "#d15b44",
   },
   {
-    id: 6, company: "米哈游", initials: "MHY", role: "校园招聘｜场景美术 / 3D方向", city: "上海", deadline: "关注岗位更新", daysLeft: 99, match: 88, status: "收藏",
-    tags: ["二次元", "卡通渲染", "全球化", "3D场景"], business: "原创IP游戏与多元内容研发", scale: "官网披露约5000人", project: "原神、崩坏：星穹铁道、绝区零等", source: "米哈游校园招聘官网", sourceUrl: "https://jobs.mihoyo.com/campus", campaign: "入口关注", verifiedAt: "2026-08-07",
-    requirements: ["具体开放岗位以校园招聘列表为准", "重视扎实美术基础、风格理解与完成度", "需要提供完整作品集及清晰的个人职责说明"], reasons: ["场景项目强调完整世界构建与引擎表现", "你的风格化场景可作为匹配起点", "官方校园招聘入口持续维护"], missing: ["作品完成度需要达到更高精度", "建议补充二次元或卡通渲染专项案例"], accent: "#5d81bb",
+    id: 6, company: "米哈游", initials: "MHY", role: "2027届秋招｜场景模型师", city: "上海", deadline: "2026-10-31", daysLeft: 82, match: 96, status: "准备中", opportunityType: "正式校招", scaleTier: "大型企业",
+    tags: ["27届秋招", "场景模型", "3D场景", "作品集"], business: "原创IP游戏与多元内容研发", scale: "官网披露约5000人", project: "原神、崩坏：星穹铁道、绝区零等", source: "米哈游2027届校园招聘官方职位列表", sourceUrl: "https://jobs.mihoyo.com/#/campus/position?jobName=%E5%9C%BA%E6%99%AF&projectIds%5B0%5D=13&competencyTypes%5B0%5D=2", campaign: "正在招聘", verifiedAt: "2026-08-10", availabilityNote: "官方当前在招｜2027届应届生职位117个｜美术&表现类30个｜应届生截止2026-10-31",
+    requirements: ["官方职位列表当前显示场景模型师为上海全职岗位", "面向2027届毕业生，毕业区间为2026年9月至2027年8月", "应届生职位仅能投递1个，需在场景模型与其他方向之间慎重选择", "具体制作要求、测试安排与作品集格式以登录后的职位详情和邮件通知为准"], reasons: ["官方当前存在明确的场景模型师职位，不再只是公司级关注", "岗位与3D场景建模、PBR材质和引擎落地方向高度匹配", "上海同时开放关卡美术和技术美术，可横向比较后选择唯一志愿"], missing: ["建议强化风格化场景完成度与引擎内最终效果", "投递前需在官方详情中再次核对作品集格式和美术测试要求"], accent: "#5d81bb",
+  },
+  {
+    id: 45, company: "米哈游", initials: "MHY", role: "2027届秋招｜关卡美术设计师", city: "上海", deadline: "2026-10-31", daysLeft: 82, match: 95, status: "准备中", opportunityType: "正式校招", scaleTier: "大型企业",
+    tags: ["27届秋招", "关卡美术", "场景地编", "开放世界"], business: "原创IP游戏与多元内容研发", scale: "官网披露约5000人", project: "原神、崩坏：星穹铁道、绝区零等", source: "米哈游2027届校园招聘官方职位列表", sourceUrl: "https://jobs.mihoyo.com/#/campus/position?jobName=%E5%9C%BA%E6%99%AF&projectIds%5B0%5D=13&competencyTypes%5B0%5D=2", campaign: "正在招聘", verifiedAt: "2026-08-10", availabilityNote: "官方当前在招｜场景关键词筛选共6个结果｜应届生截止2026-10-31",
+    requirements: ["官方职位列表当前显示关卡美术设计师为上海全职岗位", "面向2027届毕业生，毕业区间为2026年9月至2027年8月", "应届生职位仅能投递1个，不能同时投递场景模型师", "具体职责、作品集和专业测试要求以官方职位详情为准"], reasons: ["岗位名称与游戏场景地编和关卡落地方向直接对应", "UE5地编、模块化资产、环境叙事和动线设计可作为核心作品证据", "适合用完整场景从灰盒到最终画面的流程说明进行定向投递"], missing: ["建议补充灰盒、动线、视线引导和资产复用拆解", "需明确展示画面质量与关卡可玩性的平衡过程"], accent: "#5d81bb",
+  },
+  {
+    id: 46, company: "米哈游", initials: "MHY", role: "2027届秋招｜技术美术-多方向", city: "上海", deadline: "2026-10-31", daysLeft: 82, match: 92, status: "收藏", opportunityType: "正式校招", scaleTier: "大型企业",
+    tags: ["27届秋招", "技术美术", "渲染/工具", "性能优化/PCG"], business: "原创IP游戏与多元内容研发", scale: "官网披露约5000人", project: "原神、崩坏：星穹铁道、绝区零等", source: "米哈游2027届校园招聘官方职位列表", sourceUrl: "https://jobs.mihoyo.com/#/campus/position?projectIds%5B0%5D=13&competencyTypes%5B0%5D=2", campaign: "正在招聘", verifiedAt: "2026-08-10", availabilityNote: "官方当前在招｜方向包含渲染、动画、工具、特效、性能优化与PCG｜应届生截止2026-10-31",
+    requirements: ["官方职位列表当前显示技术美术-多方向为上海全职岗位", "公开方向标签包含渲染、动画、工具、特效、性能优化和PCG", "面向2027届毕业生，毕业区间为2026年9月至2027年8月", "应届生职位仅能投递1个，建议先比较TA与纯场景美术的作品匹配度"], reasons: ["地编流程、材质节点、性能优化和PCG能力可以向TA方向延伸", "可用工具化、批量资产生产与性能对比展示差异化", "岗位方向覆盖面较广，适合已有引擎技术积累的场景美术学生"], missing: ["需要至少一项可运行的Shader、工具、PCG或性能优化案例", "如果技术证明不足，应优先投递场景模型师或关卡美术"], accent: "#5d81bb",
   },
   {
     id: 7, company: "莉莉丝游戏", initials: "LLS", role: "校园招聘｜游戏美术方向", city: "上海", deadline: "关注岗位更新", daysLeft: 99, match: 86, status: "收藏",
@@ -422,12 +432,15 @@ const deadlineOverrides: Record<number, Partial<DeadlineProfile>> = {
   3: { batch: "2027届实习生项目", opened: "2026年春季已启动", closes: "招满即止", rule: "官网未披露所有美术岗位的统一截止日；每人最多投递两个职位。", urgency: "rolling" },
   4: { batch: "NOVA 2027训练营", opened: "已启动", closes: "招满即止", rule: "训练营按方向分批筛选，测试题发放后需以邮件中的个人截止时间为准。", urgency: "rolling" },
   5: { batch: "校园招聘常规批次", opened: "官网岗位页持续开放", closes: "以具体职位页为准", rule: "当前入口同时保留多类岗位；投递前必须确认职位仍标注为校园招聘。", urgency: "open" },
+  6: { batch: "米哈游2027届秋季校园招聘", opened: "2026年8月起", closes: "2026-10-31", rule: "官网显示应届生职位仅能投递1个；场景模型、关卡美术和技术美术需要择一投递。", urgency: "open" },
   11: { batch: "2027届校园招聘监控", opened: "正式批次尚未确认", closes: "尚未公布", rule: "目前仅作为公司级监控项，不能视为已开放的具体3D场景岗位。", urgency: "watch" },
   13: { batch: "阿里巴巴2027届应届生｜灵犀互娱", opened: "职位于2026-08-06更新", closes: "官网未公布统一截止日", rule: "官方当前显示在招；毕业时间要求为2026-11-01至2027-10-31，岗位可能滚动关闭，建议尽早投递。", urgency: "rolling" },
   15: { batch: "鹰角网络2027届秋季校园招聘", opened: "2026-08-07", closes: "2026-10-31", rule: "2027届应届生在网申期内最多投递2次；场景模型岗位当前可申请。", urgency: "open" },
   16: { batch: "2027届暑期实习", opened: "2026年春季已启动", closes: "招满即止", rule: "实习提供转正机会；美术细分职位和关闭时间以官网实时列表为准。", urgency: "rolling" },
   28: { batch: "2027 Elite Program+", opened: "12个职位于2026-07-12发布", closes: "未公布统一截止日", rule: "当前12个实际职位仅覆盖策划、程序、市场和数据，未开放美术类；仅保留监控，不建议投递。", urgency: "watch" },
   44: { batch: "2027届秋招提前批", opened: "职位发布：2026-07-27；网申开放：2026-08-06", closes: "2026-09-14", rule: "官方流程页明确网申期为8月6日至9月14日；2027届秋招最多投递两个职位，建议优先投递3D场景。", urgency: "open" },
+  45: { batch: "米哈游2027届秋季校园招聘", opened: "2026年8月起", closes: "2026-10-31", rule: "官网显示应届生职位仅能投递1个；关卡美术与场景模型、技术美术不能同时投递。", urgency: "open" },
+  46: { batch: "米哈游2027届秋季校园招聘", opened: "2026年8月起", closes: "2026-10-31", rule: "官网显示应届生职位仅能投递1个；技术美术方向覆盖渲染、工具、性能优化和PCG等分支。", urgency: "open" },
 };
 
 function getDetailLevel(job: Job): DetailLevel {
@@ -836,7 +849,7 @@ export default function Home() {
           <div className="mobile-brand"><span>△</span><b>跃迁</b></div>
           <label className="global-search"><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} onFocus={() => setView("jobs")} placeholder="搜索公司、岗位或技能关键词" /><kbd>⌘ K</kbd></label>
           <div className="top-actions"><span className="demo-pill verified-pill">✓ 来源已核验</span><button className="notice-button" onClick={() => setNoticeOpen(!noticeOpen)} aria-label="查看通知">♢<i /></button><button className="add-button" onClick={() => { setView("jobs"); setSearch(""); }}>＋ 发现职位</button></div>
-          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>鹰角网络2027秋招场景模型岗已开放，网申截止至2026年10月31日。</p><p>灵犀互娱2027届游戏3D场景岗已在阿里官方职位库开放；点点互动 Elite Program+ 当前仍无美术岗。</p></div>}
+          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>米哈游2027秋招已开放场景模型、关卡美术和技术美术岗位，应届生截止至2026年10月31日且只能投递1个职位。</p><p>搜狐畅游3D场景岗9月14日截止；点点互动 Elite Program+ 当前12个职位中仍无美术岗。</p></div>}
         </header>
 
         {view === "overview" && <section className="page overview-page">
