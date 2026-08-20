@@ -267,6 +267,13 @@ const demoJobs: Job[] = [
     reasons: ["这是畅游官方当前在招的2027届3D场景具体岗位", "数字媒体艺术专业和软件技能要求与你的方向直接匹配", "同时接受手绘与PBR方向，作品集适配空间较大"], missing: ["建议增加武侠或国风环境资产", "需要明确标注每个项目的个人职责和软件流程"], accent: "#176da6",
   },
   {
+    id: 48, company: "搜狐畅游", initials: "CY", role: "2027届秋招｜技术美术（场景）", city: "北京", deadline: "官网未公布统一截止日", daysLeft: 99, match: 92, status: "准备中", opportunityType: "正式校招", scaleTier: "大型企业",
+    tags: ["27届秋招", "技术美术", "Unity", "Shader/性能优化"], business: "网络游戏研发、发行与运营", scale: "大型老牌游戏公司", project: "大型次世代游戏及多款在研项目", source: "搜狐畅游2027校园招聘官方职位页", sourceUrl: "https://zhaopin.changyou.com/wt/changyou/web/index/webPosition210!getOnePosition?brandCode=1&columnId=1&importPost=0&positionType=0%2F1227%2F100402&postIdEnc=62b65ba357adf0a4&recruitType=1", campaign: "正在招聘", verifiedAt: "2026-08-20", availabilityNote: "官方2027校园招聘页当前列出并开放申请｜工作地点北京｜官网未显示统一截止日，第三方日期不得作为官方截止时间",
+    responsibilities: ["研究游戏美术内容制作与引擎应用工具，制定资源制作规范和工作流程。", "负责资源导入导出、画面与资源性能优化，并为美术环节提供技术解决方案。", "协同引擎工程师研发高级美术效果，编写插件、脚本和Shader以提升制作效率。", "优化不同硬件配置下的游戏表现，降低性能门槛。"],
+    requirements: ["具备美术专业能力和审美能力", "熟悉Unity编辑器、灯光氛围营造与烘焙渲染", "深入理解PBR和卡通渲染，熟悉3ds Max、Maya、ZBrush、Photoshop、Substance Painter", "熟悉Shader编辑、脚本语言或编程语言", "具备大型次世代游戏项目开发经验者优先"],
+    reasons: ["岗位同时覆盖场景表现、灯光、资源流程和性能优化，与场景地编方向高度相关", "现有PBR、UE5和场景资产经验可迁移到TA作品案例", "官方JD明确需要美术与技术协作能力"], missing: ["需要至少补充一个Shader、工具脚本或性能优化案例", "建议展示高低配置对比、烘焙参数和优化数据", "该岗位偏Unity，需补充Unity灯光与资源管线经验"], accent: "#176da6",
+  },
+  {
     id: 17, company: "FunPlus", initials: "FP", role: "转正实习｜游戏美术方向", city: "北京/上海/广州", deadline: "关注实时岗位", daysLeft: 99, match: 84, status: "收藏", opportunityType: "实习生",
     tags: ["转正实习", "全球发行", "SLG", "游戏美术"], business: "游戏研发与全球发行", scale: "大型全球化游戏公司", project: "SLG与多品类全球化游戏", source: "FunPlus校园招聘官网", sourceUrl: "https://campus.funplus.com.cn/", campaign: "实习可转正", verifiedAt: "2026-08-07",
     requirements: ["官网公开春招补录与转正实习项目", "具体毕业区间和美术岗位以当期列表为准", "全球化项目重视风格适配和协作能力"], reasons: ["SLG项目需要大量场景与环境资产", "全球化方向有利于扩展作品风格", "转正实习可提前进入校招流程"], missing: ["建议增加移动端场景可读性展示", "需要补充英文软件与项目说明"], accent: "#e05a35",
