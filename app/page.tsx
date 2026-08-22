@@ -304,9 +304,9 @@ const demoJobs: Job[] = [
     requirements: ["官网保留独立校园招聘入口", "具体27届岗位需等待实时更新", "全球化项目重视多风格适应能力"], reasons: ["策略与卡牌项目具有稳定环境资产需求", "上海地点符合求职偏好", "适合作为第二梯队重点监控"], missing: ["需要补充卡牌场景与叙事构图", "当前岗位开放状态待确认"], accent: "#92643f",
   },
   {
-    id: 20, company: "盛趣游戏", initials: "SQ", role: "校招 / 实习机会｜游戏美术方向", city: "上海", deadline: "关注岗位更新", daysLeft: 99, match: 83, status: "收藏", opportunityType: "日常实习",
-    tags: ["实习机会", "技术美术", "MMO", "上海"], business: "网络游戏研发、发行与运营", scale: "大型老牌游戏公司", project: "传奇世界、最终幻想14等", source: "盛趣游戏加入我们", sourceUrl: "https://www.shengqugames.com/cn/join", campaign: "持续开放", verifiedAt: "2026-08-07",
-    requirements: ["官网同时提供校园招聘和实习机会入口", "历史项目包含技术美术实习与转校招", "具体岗位需在入口内实时核验"], reasons: ["MMO项目对场景资源需求长期存在", "日常实习可以补充团队项目经历", "上海地点便于集中投递"], missing: ["入口部分页面为往届专题，需核验发布日期", "建议优先查找3D场景或TA岗位"], accent: "#b03039",
+    id: 20, company: "盛趣游戏", initials: "SQ", role: "2027届实习｜原画 / 3D模型美术", city: "上海", deadline: "招满即止", daysLeft: 99, match: 86, status: "准备中", opportunityType: "实习生", scaleTier: "大型企业",
+    tags: ["27届实习", "原画", "3D模型", "实习转正"], business: "网络游戏研发、发行与运营", scale: "大型老牌游戏研发与运营公司（官网未披露人数）", project: "传奇世界、最终幻想14、龙之谷等", source: "盛趣游戏2027校园招聘官方页面", sourceUrl: "https://app.mokahr.com/campus-recruitment/shengqu/96336", campaign: "实习可转正", verifiedAt: "2026-08-22", publishedAt: "2026-08-03", availabilityNote: "官方2027秋招与实习批次已开放｜热招美术实习包含原画、UI、动画、2D特效与3D模型｜上海岗位｜实习表现优秀可获得校招转正机会｜岗位招满即止",
+    requirements: ["部分实习岗位面向2027届及2028届海内外高校毕业生", "官方当前明确列出原画与3D模型等美术实习方向", "工作地点为上海，具体出勤天数、实习周期和作品集要求以实时职位页为准", "校招内推活动为2026-08-03至2026-11-30，但这不是所有实习岗位的统一截止日"], reasons: ["官方批次已明确开放3D模型美术实习，不再只是公司级关注", "老牌MMO和多品类项目需要大量角色、场景与环境资产", "实习表现优秀可进入2027届校招转正通道"], missing: ["官方批次公告未说明当前3D模型岗位具体偏角色还是场景，投递前必须查看实时JD", "若职位详情未写场景制作，不应将其当作3D场景岗", "建议准备高低模、UV、PBR材质和引擎展示的完整流程"], accent: "#b03039",
   },
   {
     id: 21, company: "多益网络", initials: "DY", role: "校园招聘关注｜技术美术 / 美术设计", city: "广州/成都", deadline: "等待27届批次", daysLeft: 99, match: 81, status: "收藏", opportunityType: "校招关注",
@@ -491,6 +491,7 @@ const deadlineOverrides: Record<number, Partial<DeadlineProfile>> = {
   13: { batch: "阿里巴巴2027届应届生｜灵犀互娱", opened: "职位于2026-08-06更新", closes: "官网未公布统一截止日", rule: "官方当前显示在招；毕业时间要求为2026-11-01至2027-10-31，岗位可能滚动关闭，建议尽早投递。", urgency: "rolling" },
   15: { batch: "鹰角网络2027届秋季校园招聘", opened: "2026-08-07", closes: "2026-10-31", rule: "2027届应届生在网申期内最多投递2次；场景模型岗位当前可申请。", urgency: "open" },
   16: { batch: "2027届暑期实习", opened: "2026年春季已启动", closes: "招满即止", rule: "实习提供转正机会；美术细分职位和关闭时间以官网实时列表为准。", urgency: "rolling" },
+  20: { batch: "盛趣游戏2027届实习招聘", opened: "2026-08-03", closes: "招满即止", rule: "官方批次列出原画与3D模型等美术实习；内推活动持续至11月30日，但该日期不是所有实习岗位的统一截止日。", urgency: "rolling" },
   28: { batch: "2027 Elite Program+", opened: "12个职位于2026-07-12发布", closes: "未公布统一截止日", rule: "当前12个实际职位仅覆盖策划、程序、市场和数据，未开放美术类；仅保留监控，不建议投递。", urgency: "watch" },
   44: { batch: "2027届秋招提前批", opened: "职位发布：2026-07-27；网申开放：2026-08-06", closes: "2026-09-14", rule: "官方流程页明确网申期为8月6日至9月14日；2027届秋招最多投递两个职位，建议优先投递3D场景。", urgency: "open" },
   45: { batch: "米哈游2027届秋季校园招聘", opened: "2026年8月起", closes: "2026-10-31", rule: "官网显示应届生职位仅能投递1个；关卡美术与场景模型、技术美术不能同时投递。", urgency: "open" },
