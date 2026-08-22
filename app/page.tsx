@@ -222,9 +222,20 @@ const demoJobs: Job[] = [
     requirements: ["官网提供独立校园招聘职位入口", "岗位覆盖美术、策划、技术和发行方向", "具体美术细分岗位以实时列表为准"], reasons: ["风格化与多品类项目覆盖面较广", "你的完整场景案例可适配美术设计岗", "研发与发行一体有利于理解生产流程"], missing: ["建议增加更鲜明的风格化作品", "需要关注厦门和深圳的地点偏好"], accent: "#da6b3d",
   },
   {
-    id: 10, company: "三七互娱", initials: "37", role: "2027届实习｜UE / 3D美术方向", city: "广州", deadline: "关注补录", daysLeft: 99, match: 82, status: "收藏",
-    tags: ["27届实习", "UE蓝图", "3D动画", "全球发行"], business: "游戏研发、运营与全球发行", scale: "大型上市游戏公司", project: "多品类手游与海外发行项目", source: "三七互娱招聘官网", sourceUrl: "https://zhaopin.37.com/", campaign: "入口关注", verifiedAt: "2026-08-07",
-    requirements: ["2027届实习项目曾开放UE视频、UE蓝图及3D动画等岗位", "美术设计类通常包含作品或测试环节", "当前具体余量需在官网实时核验"], reasons: ["UE技能与岗位关键词相关", "广州是重要游戏研发城市", "实习可作为秋招前的生产经验补充"], missing: ["更偏视频和蓝图，需谨慎判断岗位方向", "建议补充UE Sequencer或蓝图案例"], accent: "#d39b28",
+    id: 10, company: "三七互娱", initials: "37", role: "2027届秋招｜场景原画 / 2D场景编辑", city: "广州/上海/北京", deadline: "招满即止", daysLeft: 99, match: 86, status: "准备中", opportunityType: "正式校招", scaleTier: "大型企业",
+    tags: ["27届秋招", "场景原画", "2D场景编辑", "作品集"], business: "游戏研发、运营与全球发行", scale: "1000–5000人（高校官方招聘页披露）", project: "斗罗大陆：魂师对决、Puzzles & Survival、寻道大千等", source: "三七互娱官方招聘入口及高校就业网招聘简章", sourceUrl: "https://zhaopin.37.com/", campaign: "正在招聘", verifiedAt: "2026-08-22", publishedAt: "2026-08-14", availabilityNote: "2027届秋招已于2026-08-14开放｜场景相关岗位包含场景原画与2D场景编辑｜岗位招满即止｜未标注城市的岗位默认广州",
+    responsibilities: ["参与项目场景视觉方向的设计与生产，依据项目风格完成场景原画或2D场景编辑工作。", "与策划、程序及其他美术岗位协作，跟进场景资源在游戏中的最终落地效果。", "根据版本反馈持续迭代画面，保证风格统一、信息可读与制作质量。"],
+    requirements: ["面向2027届毕业生，毕业时间为2026年9月至2027年8月", "公开美术岗位包含场景原画师与2D场景编辑师；当前正式批未列出3D场景模型或地编岗", "每位同学可投递2个志愿，岗位招满即止", "具体作品集格式、测试题与岗位余量以官方投递系统为准"],
+    portfolioRequirements: ["场景美术岗位应随简历附作品集，并清楚标注个人职责。", "建议把构图、色彩、空间层次与场景叙事过程放在前部。", "你的3D场景作品可转化为场景设计证据，但需补充2D设计稿、氛围草图或paint-over过程。"],
+    reasons: ["正式秋招已开启，且有明确的场景原画与2D场景编辑岗位", "UE5场景与模块化资产能力可作为空间设计和落地能力证明", "全球发行项目重视风格适配与移动端画面可读性"], missing: ["当前批次没有公开3D场景模型或地编岗位，不应误标为3D方向", "如果缺少2D场景设计过程，应优先补充草图、构图与色彩方案"], accent: "#d39b28",
+  },
+  {
+    id: 49, company: "乐狗游戏", initials: "LG", role: "2027届秋招｜游戏场景原画设计", city: "成都", deadline: "2026-09-11", daysLeft: 20, match: 84, status: "准备中", opportunityType: "正式校招", scaleTier: "中型企业",
+    tags: ["27届秋招", "场景原画", "欧美卡通", "SLG"], business: "策略游戏研发与全球市场产品开发", scale: "中型精品游戏研发公司（官网未披露人数）", project: "万国觉醒、万龙觉醒", source: "乐狗游戏官方校招专场职位页", sourceUrl: "https://www.nowcoder.com/jobs/company-project?projectId=2638&urlSource=sitemap", campaign: "正在招聘", verifiedAt: "2026-08-22", publishedAt: "2026-08-17", availabilityNote: "2027届秋招已于2026-08-17启动｜简历投递截止2026-09-11｜远程面试2026-08-24至09-30｜9月中旬起陆续发放Offer",
+    responsibilities: ["根据游戏整体风格完成场景原画设计与绘制。", "负责项目宣传所需插图，并为UI设计提供必要的原画内容支持。", "按项目负责人安排完成其他相关美术工作并配合团队迭代。"],
+    requirements: ["2027届本科及以上学历，美术、设计等相关专业", "具备扎实的手绘、造型与色彩能力，能适应多种绘画风格", "熟悉电脑绘图流程并熟练使用Photoshop等2D设计软件", "了解游戏中不同风格的定位与差异，对欧美卡通风格有热情", "简历中需备注个人游戏经历"],
+    portfolioRequirements: ["申请时必须上传个人作品集，擅长欧美卡通风格更佳。", "建议展示场景构图、色彩稿、建筑设计与最终氛围图的完整过程。", "如果以3D场景作品申请，需补充前期设计稿和对欧美卡通风格的转译说明。"],
+    reasons: ["这是当前明确开放并设有准确截止日的中型游戏公司场景美术岗位", "万国觉醒与万龙觉醒的SLG项目需要清晰的建筑层级和场景叙事", "你的3D场景能力可证明空间设计与最终落地能力"], missing: ["岗位核心偏2D场景原画，并非3D场景建模或地编", "需重点补充欧美卡通场景的手绘、造型与色彩能力"], accent: "#4e7d63",
   },
   {
     id: 11, company: "库洛游戏", initials: "KU", role: "校园招聘关注｜3D场景 / 地编", city: "广州/上海", deadline: "等待27届批次", daysLeft: 99, match: 89, status: "收藏",
@@ -472,9 +483,10 @@ const deadlineOverrides: Record<number, Partial<DeadlineProfile>> = {
   1: { batch: "2027届秋季校园招聘", opened: "2026年7月已公开启动", closes: "官网未公布统一截止日", rule: "各工作室独立滚动筛选，岗位可能提前关闭；建议发现具体岗位后立即投递。", urgency: "rolling" },
   2: { batch: "2027届游戏美术实习招聘", opened: "2026年春季已启动", closes: "招满即止，无统一日期", rule: "面向毕业时间为2026年9月至2027年12月31日的学生；具体工作室岗位随招随关。", urgency: "rolling" },
   3: { batch: "2027届实习生项目", opened: "2026年春季已启动", closes: "招满即止", rule: "官网未披露所有美术岗位的统一截止日；每人最多投递两个职位。", urgency: "rolling" },
-  4: { batch: "NOVA 2027训练营", opened: "已启动", closes: "招满即止", rule: "训练营按方向分批筛选，测试题发放后需以邮件中的个人截止时间为准。", urgency: "rolling" },
+  4: { batch: "叠纸游戏2027届秋季校园招聘", opened: "2026-08-05", closes: "2026-10-31", rule: "正式秋招面向2026年9月至2027年8月毕业生，每人最多同时投递2个岗位；原NOVA训练营已结束。", urgency: "open" },
   5: { batch: "校园招聘常规批次", opened: "官网岗位页持续开放", closes: "以具体职位页为准", rule: "当前入口同时保留多类岗位；投递前必须确认职位仍标注为校园招聘。", urgency: "open" },
   6: { batch: "米哈游2027届秋季校园招聘", opened: "2026年8月起", closes: "2026-10-31", rule: "官网显示应届生职位仅能投递1个；场景模型、关卡美术和技术美术需要择一投递。", urgency: "open" },
+  10: { batch: "三七互娱2027届秋季校园招聘", opened: "2026-08-14", closes: "招满即止", rule: "每位同学可投递2个志愿；当前公开场景相关岗位为场景原画与2D场景编辑，岗位可能在招满后提前关闭。", urgency: "rolling" },
   11: { batch: "2027届校园招聘监控", opened: "正式批次尚未确认", closes: "尚未公布", rule: "目前仅作为公司级监控项，不能视为已开放的具体3D场景岗位。", urgency: "watch" },
   13: { batch: "阿里巴巴2027届应届生｜灵犀互娱", opened: "职位于2026-08-06更新", closes: "官网未公布统一截止日", rule: "官方当前显示在招；毕业时间要求为2026-11-01至2027-10-31，岗位可能滚动关闭，建议尽早投递。", urgency: "rolling" },
   15: { batch: "鹰角网络2027届秋季校园招聘", opened: "2026-08-07", closes: "2026-10-31", rule: "2027届应届生在网申期内最多投递2次；场景模型岗位当前可申请。", urgency: "open" },
@@ -483,6 +495,7 @@ const deadlineOverrides: Record<number, Partial<DeadlineProfile>> = {
   44: { batch: "2027届秋招提前批", opened: "职位发布：2026-07-27；网申开放：2026-08-06", closes: "2026-09-14", rule: "官方流程页明确网申期为8月6日至9月14日；2027届秋招最多投递两个职位，建议优先投递3D场景。", urgency: "open" },
   45: { batch: "米哈游2027届秋季校园招聘", opened: "2026年8月起", closes: "2026-10-31", rule: "官网显示应届生职位仅能投递1个；关卡美术与场景模型、技术美术不能同时投递。", urgency: "open" },
   46: { batch: "米哈游2027届秋季校园招聘", opened: "2026年8月起", closes: "2026-10-31", rule: "官网显示应届生职位仅能投递1个；技术美术方向覆盖渲染、工具、性能优化和PCG等分支。", urgency: "open" },
+  49: { batch: "乐狗游戏2027届秋季校园招聘", opened: "2026-08-17", closes: "2026-09-11", rule: "校招专场职位页显示9月11日截止；场景原画岗位要求上传作品集，并在简历中备注个人游戏经历。", urgency: "open" },
 };
 
 function getDetailLevel(job: Job): DetailLevel {
@@ -919,7 +932,7 @@ export default function Home() {
             <div className="deadline-alert-list">{deadlineAlerts.length ? deadlineAlerts.map(({ job, countdown }) => <button key={job.id} className={`deadline-alert countdown-${countdown.tone}`} onClick={() => setSelectedJob(job)}><span><b>{job.company}</b><small>{job.role}</small></span><em>{countdown.dateLabel}</em><strong>{countdown.label}</strong></button>) : <p>当前筛选结果中暂无公布明确日期的岗位。</p>}</div>
             <aside><b>{rollingJobCount}</b><span>个滚动招聘</span><small>没有统一截止日，建议尽早投递</small></aside>
           </section>
-          <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot mismatch" />当前无美术岗</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-08-08</p></div>
+          <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot mismatch" />当前无美术岗</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-08-22</p></div>
           <div className="filter-row"><label><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="搜索畅游、3D场景、UE5…" /></label><select value={city} onChange={(e) => setCity(e.target.value)} aria-label="城市筛选"><option>全部城市</option><option>上海</option><option>杭州</option><option>深圳</option><option>成都</option><option>广州</option><option>北京</option><option>厦门</option><option>重庆</option><option>苏州</option></select><select value={scaleFilter} onChange={(e) => setScaleFilter(e.target.value)} aria-label="公司规模筛选"><option>全部规模</option><option>大型企业</option><option>中型企业</option><option>小型/独立团队</option></select><select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} aria-label="机会类型筛选"><option>全部类型</option><option>正式校招</option><option>实习生</option><option>日常实习</option><option>校招关注</option></select><select value={campaignFilter} onChange={(e) => setCampaignFilter(e.target.value)} aria-label="招聘状态筛选"><option>全部状态</option><option>正在招聘</option><option>实习可转正</option><option>持续开放</option><option>当前无美术岗</option><option>入口关注</option><option>已结束参考</option></select><button>匹配度优先 ↕</button></div>
           <div className="result-bar"><span>找到 <b>{filteredJobs.length}</b> 个重点机会，来自 {new Set(filteredJobs.map((job) => job.company)).size} 家游戏公司</span><span>信息可能随时变化 · 以官网为准</span></div>
           <div className="job-list">{filteredJobs.map((job) => <JobCard key={job.id} job={job} todayKey={todayKey} saved={savedIds.includes(job.id)} onSave={() => toggleSaved(job.id)} onOpen={() => setSelectedJob(job)} />)}</div>
