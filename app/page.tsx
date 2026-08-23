@@ -349,9 +349,12 @@ const demoJobs: Job[] = [
     requirements: ["截至2026-08-09，官方列表显示12个Elite Program+在招职位", "当前职位仅分布在策划类、程序类、市场类和数据类", "美术类筛选项存在，但当前实际职位数量为0"], reasons: ["当前不建议作为游戏美术方向投递目标", "仅保留为后续是否新增美术岗位的监控项"], missing: ["不要把Elite Program+项目启动误判为美术岗位开放", "后续只有官方列表出现实际美术职位后才重新提高匹配度"], accent: "#9a5a4b",
   },
   {
-    id: 29, company: "4399游戏", initials: "4399", role: "校招入口关注｜3D场景 / 美术设计类", city: "广州/厦门", deadline: "等待27届批次", daysLeft: 99, match: 86, status: "收藏", opportunityType: "校招关注", scaleTier: "大型企业",
-    tags: ["3D场景", "美术设计", "小游戏", "多项目"], business: "游戏平台、游戏研发、发行与运营", scale: "大型综合游戏与互联网公司", project: "多款移动游戏、小游戏与海外发行项目", source: "4399官方招聘网站", sourceUrl: "https://u.4399.com/hr/zhaopin?cid=1", campaign: "入口关注", verifiedAt: "2026-08-07",
-    requirements: ["官方招聘页设有校园招聘和美术设计类入口", "历史校招覆盖3D场景、场景原画、技术美术等方向", "2027届正式批次仍需等待官网更新"], reasons: ["美术岗位数量通常较多", "广州与厦门均有游戏研发岗位", "适合补充多项目生产经验"], missing: ["当前页面仍包含2026届信息", "需根据项目风格重新排序作品集"], accent: "#ef7925",
+    id: 29, company: "4399游戏", initials: "4399", role: "2027届秋招｜3D场景设计师", city: "广州", deadline: "官网未公布统一截止日", daysLeft: 99, match: 94, status: "准备中", opportunityType: "正式校招", scaleTier: "大型企业",
+    tags: ["27届秋招", "3D场景", "地编", "U3D/UE"], business: "游戏平台、游戏研发、发行与运营", scale: "千人精英研运团队（官方校招简章披露）", project: "冒险大作战、文明与征服、狩猎使命等", source: "4399游戏2027届秋招官方校招信息及同名官方职位页", sourceUrl: "https://web.4399.com/campus", campaign: "正在招聘", verifiedAt: "2026-08-23", publishedAt: "2026-08-04", availabilityNote: "官方2027届秋招已启动｜网申自2026-07-31开放｜美术类明确包含3D场景设计师｜面试8月起陆续开展｜官网未公布统一截止日",
+    responsibilities: ["结合游戏品类、题材与美术风格，提出地编规划或优化方案并合理规划地图资源。", "基于场景概念或参考搭建整体游戏场景，构建氛围并统一美术风格。", "与策划、程序和相关美术环节协作，对引擎内地编效果进行把控与调优。", "参与审核外包资源并反馈质量问题；具体校招职责以登录后的2027职位详情为准。"],
+    requirements: ["广州4399游戏2027届秋招当前明确开放3D场景设计师", "校招简章公开网申、笔试、面试与Offer流程，但未披露统一网申截止日", "同名官方职位页强调3D场景全流程、场景还原、氛围营造及U3D/UE地编能力", "2027届具体学历、专业、作品集大小与测试要求以校招投递页为准，不沿用社招经验年限"],
+    portfolioRequirements: ["投递时应附个人作品压缩包或可访问的个人主页、作品链接。", "建议展示建筑、山石植被、材质、灯光、地编与引擎最终效果。", "用一页拆解地图资源规划、动线、模块复用和性能优化，直接回应官方同名岗位职责。"],
+    reasons: ["正式批次已确认，不再只是入口关注", "岗位同时覆盖3D场景搭建、氛围营造与引擎地编，和你的主修方向高度一致", "千人规模、多项目研发环境能提供较完整的美术生产流程"], missing: ["官网未公布统一截止日，岗位可能滚动关闭", "投递前需登录校招系统核对具体学历、测试题和作品集文件限制"], accent: "#ef7925",
   },
   {
     id: 30, company: "乐元素", initials: "HE", role: "校园招聘关注｜游戏美术 / 场景设计", city: "北京/上海", deadline: "关注岗位更新", daysLeft: 99, match: 82, status: "收藏", opportunityType: "校招关注", scaleTier: "中型企业",
@@ -493,6 +496,7 @@ const deadlineOverrides: Record<number, Partial<DeadlineProfile>> = {
   16: { batch: "2027届暑期实习", opened: "2026年春季已启动", closes: "招满即止", rule: "实习提供转正机会；美术细分职位和关闭时间以官网实时列表为准。", urgency: "rolling" },
   20: { batch: "盛趣游戏2027届实习招聘", opened: "2026-08-03", closes: "招满即止", rule: "官方批次列出原画与3D模型等美术实习；内推活动持续至11月30日，但该日期不是所有实习岗位的统一截止日。", urgency: "rolling" },
   28: { batch: "2027 Elite Program+", opened: "12个职位于2026-07-12发布", closes: "未公布统一截止日", rule: "当前12个实际职位仅覆盖策划、程序、市场和数据，未开放美术类；仅保留监控，不建议投递。", urgency: "watch" },
+  29: { batch: "4399游戏2027届秋季校园招聘", opened: "2026-07-31", closes: "官网未公布统一截止日", rule: "官方校招简章确认3D场景设计师正在本批次招聘；8月起陆续面试，岗位可能滚动关闭，建议尽早投递。", urgency: "rolling" },
   44: { batch: "2027届秋招提前批", opened: "职位发布：2026-07-27；网申开放：2026-08-06", closes: "2026-09-14", rule: "官方流程页明确网申期为8月6日至9月14日；2027届秋招最多投递两个职位，建议优先投递3D场景。", urgency: "open" },
   45: { batch: "米哈游2027届秋季校园招聘", opened: "2026年8月起", closes: "2026-10-31", rule: "官网显示应届生职位仅能投递1个；关卡美术与场景模型、技术美术不能同时投递。", urgency: "open" },
   46: { batch: "米哈游2027届秋季校园招聘", opened: "2026年8月起", closes: "2026-10-31", rule: "官网显示应届生职位仅能投递1个；技术美术方向覆盖渲染、工具、性能优化和PCG等分支。", urgency: "open" },
@@ -933,7 +937,7 @@ export default function Home() {
             <div className="deadline-alert-list">{deadlineAlerts.length ? deadlineAlerts.map(({ job, countdown }) => <button key={job.id} className={`deadline-alert countdown-${countdown.tone}`} onClick={() => setSelectedJob(job)}><span><b>{job.company}</b><small>{job.role}</small></span><em>{countdown.dateLabel}</em><strong>{countdown.label}</strong></button>) : <p>当前筛选结果中暂无公布明确日期的岗位。</p>}</div>
             <aside><b>{rollingJobCount}</b><span>个滚动招聘</span><small>没有统一截止日，建议尽早投递</small></aside>
           </section>
-          <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot mismatch" />当前无美术岗</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-08-22</p></div>
+          <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot mismatch" />当前无美术岗</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-08-23</p></div>
           <div className="filter-row"><label><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="搜索畅游、3D场景、UE5…" /></label><select value={city} onChange={(e) => setCity(e.target.value)} aria-label="城市筛选"><option>全部城市</option><option>上海</option><option>杭州</option><option>深圳</option><option>成都</option><option>广州</option><option>北京</option><option>厦门</option><option>重庆</option><option>苏州</option></select><select value={scaleFilter} onChange={(e) => setScaleFilter(e.target.value)} aria-label="公司规模筛选"><option>全部规模</option><option>大型企业</option><option>中型企业</option><option>小型/独立团队</option></select><select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} aria-label="机会类型筛选"><option>全部类型</option><option>正式校招</option><option>实习生</option><option>日常实习</option><option>校招关注</option></select><select value={campaignFilter} onChange={(e) => setCampaignFilter(e.target.value)} aria-label="招聘状态筛选"><option>全部状态</option><option>正在招聘</option><option>实习可转正</option><option>持续开放</option><option>当前无美术岗</option><option>入口关注</option><option>已结束参考</option></select><button>匹配度优先 ↕</button></div>
           <div className="result-bar"><span>找到 <b>{filteredJobs.length}</b> 个重点机会，来自 {new Set(filteredJobs.map((job) => job.company)).size} 家游戏公司</span><span>信息可能随时变化 · 以官网为准</span></div>
           <div className="job-list">{filteredJobs.map((job) => <JobCard key={job.id} job={job} todayKey={todayKey} saved={savedIds.includes(job.id)} onSave={() => toggleSaved(job.id)} onOpen={() => setSelectedJob(job)} />)}</div>
