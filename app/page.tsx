@@ -345,8 +345,13 @@ const demoJobs: Job[] = [
   },
   {
     id: 28, company: "点点互动（Century Games）", initials: "CG", role: "2027届 Elite Program+｜当前无美术岗位", city: "北京/上海/广州/深圳", deadline: "未公布统一截止日", daysLeft: 99, match: 35, status: "收藏", opportunityType: "校招关注", scaleTier: "大型企业",
-    tags: ["27届校招", "策划/程序", "市场/数据", "无美术岗"], business: "全球化游戏研发、发行与长线运营", scale: "大型全球化游戏公司（公开信息为上千人）", project: "无尽冬日、奔奔王国等全球化项目", source: "点点互动官方 Elite Program+ 实时职位列表", sourceUrl: "https://career.centurygames.cn/4/jobs", campaign: "当前无美术岗", verifiedAt: "2026-08-09", publishedAt: "2026-07-12", availabilityNote: "重要纠正：官方当前12个Elite Program+职位中没有美术类或3D场景岗位",
-    requirements: ["截至2026-08-09，官方列表显示12个Elite Program+在招职位", "当前职位仅分布在策划类、程序类、市场类和数据类", "美术类筛选项存在，但当前实际职位数量为0"], reasons: ["当前不建议作为游戏美术方向投递目标", "仅保留为后续是否新增美术岗位的监控项"], missing: ["不要把Elite Program+项目启动误判为美术岗位开放", "后续只有官方列表出现实际美术职位后才重新提高匹配度"], accent: "#9a5a4b",
+    tags: ["27届校招", "策划/程序", "市场/数据", "无美术岗"], business: "全球化游戏研发、发行与长线运营", scale: "大型全球化游戏公司（公开信息为上千人）", project: "无尽冬日、奔奔王国等全球化项目", source: "点点互动官方 Elite Program+ 实时职位列表", sourceUrl: "https://career.centurygames.cn/4/jobs", campaign: "当前无美术岗", verifiedAt: "2026-08-23", publishedAt: "2026-07-12", availabilityNote: "重要纠正：Elite Program+ 当前仍无美术类或3D场景岗位；点点互动另一个独立的2027届应届生校招项目已开放美术岗位",
+    requirements: ["截至2026-08-23，Elite Program+公开岗位仍不包含美术类", "当前职位方向覆盖策划、程序、市场、数据与AI等类别", "应届生校招与Elite Program+是两个独立项目，美术方向应从应届生校招入口投递"], reasons: ["当前不建议把Elite Program+作为游戏美术方向投递目标", "仅保留为后续是否新增美术岗位的监控项"], missing: ["不要把Elite Program+项目启动误判为美术岗位开放", "美术方向请查看单独列出的点点互动2027届应届生校招"], accent: "#9a5a4b",
+  },
+  {
+    id: 50, company: "点点互动（Century Games）", initials: "CG", role: "2027届应届生校招｜美术方向（技术美术 / 游戏原画）", city: "北京/上海/深圳/广州/福州/成都", deadline: "官网未公布统一截止日", daysLeft: 99, match: 88, status: "准备中", opportunityType: "正式校招", scaleTier: "大型企业",
+    tags: ["27届校招", "技术美术", "游戏原画", "游戏动效"], business: "全球化游戏研发、发行与长线运营", scale: "大型全球化游戏公司（公开信息为上千人）", project: "无尽冬日、消消闯天下、菲菲大冒险、奔奔王国", source: "点点互动2027届应届生校招官方投递入口及高校官方招聘公告", sourceUrl: "https://ddhd.cn/campus", campaign: "正在招聘", verifiedAt: "2026-08-23", publishedAt: "2026-08-14", availabilityNote: "官方2027届应届生校招已启动｜美术类包含游戏原画师、技术美术、游戏动效设计师｜与Elite Program+为两个独立项目｜每个项目可投递3次｜官网未公布统一截止日",
+    requirements: ["面向2027届全球高校毕业生，毕业时间为2026年9月至2027年8月", "当前美术岗位类别为游戏原画师、技术美术与游戏动效设计师；未公开3D场景模型岗位", "工作城市池为北京、上海、深圳、广州、福州、成都，具体岗位城市以官方系统为准", "流程为网申、部分岗位笔试、面试、Offer随面即发", "每个项目有3次投递机会，Elite Program+与应届生校招可分别投递"], reasons: ["技术美术与场景制作中的材质、渲染和工具能力具有较强关联", "全球化SLG项目可匹配建筑、环境与模块化资产作品", "正式校招已确认开放美术类别，不再只是公司级关注项"], missing: ["官方公开公告只到岗位类别，技术美术的具体Shader、工具与渲染JD需在投递系统核验", "当前未出现3D场景模型或地编岗位，不能标记为3D场景岗", "岗位具体城市与作品集格式需在职位详情确认"], accent: "#9a5a4b",
   },
   {
     id: 29, company: "4399游戏", initials: "4399", role: "2027届秋招｜3D场景设计师", city: "广州", deadline: "官网未公布统一截止日", daysLeft: 99, match: 94, status: "准备中", opportunityType: "正式校招", scaleTier: "大型企业",
@@ -496,6 +501,7 @@ const deadlineOverrides: Record<number, Partial<DeadlineProfile>> = {
   16: { batch: "2027届暑期实习", opened: "2026年春季已启动", closes: "招满即止", rule: "实习提供转正机会；美术细分职位和关闭时间以官网实时列表为准。", urgency: "rolling" },
   20: { batch: "盛趣游戏2027届实习招聘", opened: "2026-08-03", closes: "招满即止", rule: "官方批次列出原画与3D模型等美术实习；内推活动持续至11月30日，但该日期不是所有实习岗位的统一截止日。", urgency: "rolling" },
   28: { batch: "2027 Elite Program+", opened: "12个职位于2026-07-12发布", closes: "未公布统一截止日", rule: "当前12个实际职位仅覆盖策划、程序、市场和数据，未开放美术类；仅保留监控，不建议投递。", urgency: "watch" },
+  50: { batch: "点点互动2027届应届生校园招聘", opened: "2026-08-14", closes: "官网未公布统一截止日", rule: "应届生校招与Elite Program+是两个独立项目；美术岗仅在应届生校招中开放，每个项目可投递3次，岗位可能滚动关闭。", urgency: "rolling" },
   29: { batch: "4399游戏2027届秋季校园招聘", opened: "2026-07-31", closes: "官网未公布统一截止日", rule: "官方校招简章确认3D场景设计师正在本批次招聘；8月起陆续面试，岗位可能滚动关闭，建议尽早投递。", urgency: "rolling" },
   44: { batch: "2027届秋招提前批", opened: "职位发布：2026-07-27；网申开放：2026-08-06", closes: "2026-09-14", rule: "官方流程页明确网申期为8月6日至9月14日；2027届秋招最多投递两个职位，建议优先投递3D场景。", urgency: "open" },
   45: { batch: "米哈游2027届秋季校园招聘", opened: "2026年8月起", closes: "2026-10-31", rule: "官网显示应届生职位仅能投递1个；关卡美术与场景模型、技术美术不能同时投递。", urgency: "open" },
@@ -909,7 +915,7 @@ export default function Home() {
           <div className="mobile-brand"><span>△</span><b>跃迁</b></div>
           <label className="global-search"><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} onFocus={() => setView("jobs")} placeholder="搜索公司、岗位或技能关键词" /><kbd>⌘ K</kbd></label>
           <div className="top-actions"><span className="demo-pill verified-pill">✓ 来源已核验</span><button className="notice-button" onClick={() => setNoticeOpen(!noticeOpen)} aria-label="查看通知">♢<i /></button><button className="add-button" onClick={() => { setView("jobs"); setSearch(""); }}>＋ 发现职位</button></div>
-          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>米哈游2027秋招已开放场景模型、关卡美术和技术美术岗位，应届生截止至2026年10月31日且只能投递1个职位。</p><p>搜狐畅游3D场景岗9月14日截止；点点互动 Elite Program+ 当前12个职位中仍无美术岗。</p></div>}
+          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>米哈游2027秋招已开放场景模型、关卡美术和技术美术岗位，应届生截止至2026年10月31日且只能投递1个职位。</p><p>搜狐畅游3D场景岗9月14日截止；点点互动常规应届生校招已开放技术美术、游戏原画和游戏动效，Elite Program+ 仍无美术岗。</p></div>}
         </header>
 
         {view === "overview" && <section className="page overview-page">
