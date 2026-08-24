@@ -115,6 +115,33 @@ const demoJobs: Job[] = [
     accent: "#7258a5",
   },
   {
+    id: 52,
+    company: "完美世界游戏",
+    initials: "PW",
+    role: "2027届秋招｜美术设计类（3D / 原画）",
+    city: "北京/上海/苏州",
+    deadline: "招满即止",
+    daysLeft: 99,
+    match: 89,
+    status: "准备中",
+    opportunityType: "正式校招",
+    scaleTier: "大型企业",
+    tags: ["27届秋招", "3D美术", "原画", "作品集"],
+    business: "游戏研发、发行及电竞相关业务",
+    scale: "大型上市游戏公司",
+    project: "异环、诛仙、完美世界、幻塔、P5X等",
+    source: "完美世界官方校招入口及华中科技大学官方就业公告",
+    sourceUrl: "https://jobs.games.wanmei.com/school.html",
+    campaign: "正在招聘",
+    verifiedAt: "2026-08-24",
+    publishedAt: "2026-08-19",
+    availabilityNote: "完美世界2027届秋季校园招聘已启动｜美术设计类明确包含原画、3D、动画、特效、UI和编导｜北京、上海、苏州｜岗位招满即止｜公开公告尚未细分到3D场景岗位",
+    requirements: ["面向2027届海内外应届毕业生，毕业时间为2026年9月至2027年8月", "美术设计类相关专业包括数字媒体艺术、动画、视觉传达等", "当前公开类别包含3D与原画，具体细分岗位和作品集要求以官方系统为准", "招聘流程与关闭时间按具体岗位推进，岗位招满即止"],
+    reasons: ["正式秋招已经启动，可与原有2027实习项目分别投递核验", "大型3D、MMO及多端项目与场景资产、材质和引擎能力相关", "你的数字媒体艺术专业与官方列出的美术设计专业范围直接匹配"],
+    missing: ["官方公开简章只确认3D大类，尚未确认3D场景模型或地编细分岗位", "投递前需登录官方系统核对岗位城市、JD、作品集大小和测试要求", "不要把3D大类自动等同于场景岗位"],
+    accent: "#7258a5",
+  },
+  {
     id: 4,
     company: "叠纸游戏",
     initials: "PG",
@@ -413,9 +440,10 @@ const demoJobs: Job[] = [
     requirements: ["官网说明2026年8月后毕业学生可投递日常实习", "当前校招专题主要仍为2026届", "美术方向以实时职位列表为准"], reasons: ["2027届可优先关注日常实习", "全球化SLG具有环境资产需求", "可积累英文项目协作经验"], missing: ["正式2027校招批次尚未确认", "需筛选明确开放的美术实习岗位"], accent: "#294f86",
   },
   {
-    id: 39, company: "途游游戏", initials: "TY", role: "校园招聘关注｜3D美术 / 灯光场景", city: "北京", deadline: "等待27届批次", daysLeft: 99, match: 78, status: "收藏", opportunityType: "校招关注", scaleTier: "中型企业",
-    tags: ["3D美术", "灯光", "场景", "校园招聘"], business: "游戏研发、发行与平台运营", scale: "中大型游戏公司", project: "棋牌游戏、休闲与多品类项目", source: "途游游戏官方校园招聘页", sourceUrl: "https://www.tuyoo.com/job/campus?site=campus", campaign: "入口关注", verifiedAt: "2026-08-07",
-    requirements: ["官方设有独立校园招聘页面", "历史校招包含3D动作、场景资产与灯光氛围方向", "2027届正式批次需等待更新"], reasons: ["场景灯光与你的UE5能力相关", "北京中厂岗位的重要补充", "可展示从资产到氛围的完整能力"], missing: ["当前公开项目仍以2026届为主", "需要补充灯光分层和PBR说明"], accent: "#2d83bd",
+    id: 39, company: "途游游戏", initials: "TY", role: "2027届校招｜游戏美术（场景模型 / 地编等）", city: "广州", deadline: "2027-08-31", daysLeft: 372, match: 90, status: "准备中", opportunityType: "正式校招", scaleTier: "中型企业",
+    tags: ["27届校招", "场景模型", "地编", "场景原画"], business: "游戏研发、发行与平台运营", scale: "中大型游戏公司", project: "棋牌游戏、休闲与多品类项目", source: "途游游戏在牛客校招平台发布的官方职位", sourceUrl: "https://www.nowcoder.com/jobs/detail/462303", campaign: "正在招聘", verifiedAt: "2026-08-24", publishedAt: "2026-08-19", availabilityNote: "途游游戏2027校招游戏美术岗位已开放｜广州｜方向明确包含场景原画、场景模型、地编及其他美术方向｜平台显示投递至2027-08-31",
+    responsibilities: ["协助完成游戏角色、场景和道具等美术资源的设定与绘制。", "根据项目需求修改和优化美术资源，确保符合整体美术风格。", "学习并适应团队工作流程，配合其他部门完成美术资源整合。"],
+    requirements: ["热爱游戏行业与艺术创作，计划长期深耕游戏美术", "对场景原画、场景模型、地编等方向有深入研究并具备清晰主攻方向", "具备造型、色彩、构图和原创设计基础，能够适配项目美术风格", "自主学习能力强，能够吸收新技术、新风格并适应研发流程"], portfolioRequirements: ["建议作品集首页明确标注主攻方向为3D场景模型或地编。", "展示从建模、UV、贴图、材质到引擎落地的完整场景流程。", "补充一页资源优化、团队协作和根据反馈迭代的案例。"], reasons: ["岗位公开方向直接覆盖场景模型与地编，和你的主修高度匹配", "广州校招岗位可与4399、灵犀互娱等组成集中投递计划", "岗位接受明确主攻方向，适合用完整场景项目证明能力"], missing: ["综合游戏美术岗位未公开具体项目组和风格", "投递前需确认作品集文件限制、测试形式和最终工作团队", "平台截止日期较远，岗位仍可能因招满提前关闭"], accent: "#2d83bd",
   },
   {
     id: 40, company: "帕斯亚科技", initials: "PAT", role: "招聘 / 实习关注｜3D场景与独立游戏", city: "重庆", deadline: "持续关注", daysLeft: 99, match: 85, status: "收藏", opportunityType: "日常实习", scaleTier: "中型企业",
@@ -497,6 +525,7 @@ const deadlineOverrides: Record<number, Partial<DeadlineProfile>> = {
   1: { batch: "2027届秋季校园招聘", opened: "2026年7月已公开启动", closes: "官网未公布统一截止日", rule: "各工作室独立滚动筛选，岗位可能提前关闭；建议发现具体岗位后立即投递。", urgency: "rolling" },
   2: { batch: "2027届游戏美术实习招聘", opened: "2026年春季已启动", closes: "招满即止，无统一日期", rule: "面向毕业时间为2026年9月至2027年12月31日的学生；具体工作室岗位随招随关。", urgency: "rolling" },
   3: { batch: "2027届实习生项目", opened: "2026年春季已启动", closes: "招满即止", rule: "官网未披露所有美术岗位的统一截止日；每人最多投递两个职位。", urgency: "rolling" },
+  52: { batch: "完美世界2027届秋季校园招聘", opened: "2026-08-19", closes: "招满即止", rule: "官方简章确认美术设计类包含3D，但未细分到3D场景；具体岗位会随招聘进度提前关闭。", urgency: "rolling" },
   4: { batch: "叠纸游戏2027届秋季校园招聘", opened: "2026-08-05", closes: "2026-10-31", rule: "正式秋招面向2026年9月至2027年8月毕业生，每人最多同时投递2个岗位；原NOVA训练营已结束。", urgency: "open" },
   5: { batch: "校园招聘常规批次", opened: "官网岗位页持续开放", closes: "以具体职位页为准", rule: "当前入口同时保留多类岗位；投递前必须确认职位仍标注为校园招聘。", urgency: "open" },
   6: { batch: "米哈游2027届秋季校园招聘", opened: "2026年8月起", closes: "2026-10-31", rule: "官网显示应届生职位仅能投递1个；场景模型、关卡美术和技术美术需要择一投递。", urgency: "open" },
@@ -511,6 +540,7 @@ const deadlineOverrides: Record<number, Partial<DeadlineProfile>> = {
   29: { batch: "4399游戏2027届秋季校园招聘", opened: "2026-07-31", closes: "官网未公布统一截止日", rule: "官方校招简章确认3D场景设计师正在本批次招聘；8月起陆续面试，岗位可能滚动关闭，建议尽早投递。", urgency: "rolling" },
   30: { batch: "乐元素2027届秋季校园招聘", opened: "2026年7月起已开放", closes: "官网未公布统一截止日", rule: "2027届毕业生投递正式校招；当前美术类别未列出3D场景模型或地编，岗位可能滚动关闭。", urgency: "rolling" },
   51: { batch: "上海番糖日常实习招聘", opened: "官网当前职位页", closes: "官网未公布截止日", rule: "官方页面明确列出2D场景实习生，但未注明毕业届别；2027届资格、实习时长和关闭时间需通过官方邮箱确认。", urgency: "rolling" },
+  39: { batch: "途游游戏2027届校园招聘", opened: "2026-08-19", closes: "2027-08-31", rule: "牛客校招平台显示这一投递区间；综合美术岗包含场景模型与地编，但仍可能因招满提前关闭。", urgency: "open" },
   44: { batch: "2027届秋招提前批", opened: "职位发布：2026-07-27；网申开放：2026-08-06", closes: "2026-09-14", rule: "官方流程页明确网申期为8月6日至9月14日；2027届秋招最多投递两个职位，建议优先投递3D场景。", urgency: "open" },
   45: { batch: "米哈游2027届秋季校园招聘", opened: "2026年8月起", closes: "2026-10-31", rule: "官网显示应届生职位仅能投递1个；关卡美术与场景模型、技术美术不能同时投递。", urgency: "open" },
   46: { batch: "米哈游2027届秋季校园招聘", opened: "2026年8月起", closes: "2026-10-31", rule: "官网显示应届生职位仅能投递1个；技术美术方向覆盖渲染、工具、性能优化和PCG等分支。", urgency: "open" },
@@ -923,7 +953,7 @@ export default function Home() {
           <div className="mobile-brand"><span>△</span><b>跃迁</b></div>
           <label className="global-search"><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} onFocus={() => setView("jobs")} placeholder="搜索公司、岗位或技能关键词" /><kbd>⌘ K</kbd></label>
           <div className="top-actions"><span className="demo-pill verified-pill">✓ 来源已核验</span><button className="notice-button" onClick={() => setNoticeOpen(!noticeOpen)} aria-label="查看通知">♢<i /></button><button className="add-button" onClick={() => { setView("jobs"); setSearch(""); }}>＋ 发现职位</button></div>
-          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>米哈游2027秋招已开放场景模型、关卡美术和技术美术岗位，应届生截止至2026年10月31日且只能投递1个职位。</p><p>搜狐畅游3D场景岗9月14日截止；点点互动常规应届生校招已开放技术美术、游戏原画和游戏动效，Elite Program+ 仍无美术岗。</p></div>}
+          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>米哈游2027秋招已开放场景模型、关卡美术和技术美术岗位，应届生截止至2026年10月31日且只能投递1个职位。</p><p>搜狐畅游3D场景岗9月14日截止；点点互动常规应届生校招已开放技术美术、游戏原画和游戏动效，Elite Program+ 仍无美术岗。</p><p>新核验：途游广州游戏美术岗包含场景模型与地编；完美世界正式秋招已开放3D美术大类。</p></div>}
         </header>
 
         {view === "overview" && <section className="page overview-page">
