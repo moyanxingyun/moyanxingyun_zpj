@@ -362,9 +362,15 @@ const demoJobs: Job[] = [
     reasons: ["正式批次已确认，不再只是入口关注", "岗位同时覆盖3D场景搭建、氛围营造与引擎地编，和你的主修方向高度一致", "千人规模、多项目研发环境能提供较完整的美术生产流程"], missing: ["官网未公布统一截止日，岗位可能滚动关闭", "投递前需登录校招系统核对具体学历、测试题和作品集文件限制"], accent: "#ef7925",
   },
   {
-    id: 30, company: "乐元素", initials: "HE", role: "校园招聘关注｜游戏美术 / 场景设计", city: "北京/上海", deadline: "关注岗位更新", daysLeft: 99, match: 82, status: "收藏", opportunityType: "校招关注", scaleTier: "中型企业",
-    tags: ["休闲游戏", "二次元", "场景设计", "原创IP"], business: "移动游戏研发运营、原创IP与动画内容", scale: "中大型互动娱乐公司", project: "开心消消乐、偶像梦幻祭等", source: "乐元素校园招聘入口", sourceUrl: "https://app.mokahr.com/campus_apply/leyuansu/2357", campaign: "入口关注", verifiedAt: "2026-08-07",
-    requirements: ["校园招聘入口持续维护", "美术岗位以当期职位列表和作品集要求为准", "休闲和二次元项目重视色彩、构图与风格统一"], reasons: ["适合风格化场景和色彩能力展示", "中型公司岗位职责通常更综合", "可扩展原创IP项目经验"], missing: ["当前27届岗位尚需实时确认", "建议补充休闲游戏场景与UI协同案例"], accent: "#f2a12d",
+    id: 30, company: "乐元素", initials: "HE", role: "2027届秋招｜游戏原画 / 美术设计", city: "北京/上海", deadline: "官网未公布统一截止日", daysLeft: 99, match: 85, status: "准备中", opportunityType: "正式校招", scaleTier: "中型企业",
+    tags: ["27届秋招", "游戏原画", "场景氛围", "休闲游戏"], business: "移动游戏研发运营、原创IP与动画内容", scale: "中大型互动娱乐公司", project: "开心消消乐、海滨消消乐、白银之城等", source: "乐元素官方校招投递入口及高校官方就业公告", sourceUrl: "https://app.mokahr.com/campus_apply/leyuansu/2357", campaign: "正在招聘", verifiedAt: "2026-08-24", availabilityNote: "乐元素2027届秋季招聘已启动｜面向2026年9月至2027年8月毕业生｜美术类包含美术设计师、游戏原画设计、角色原画等｜北京、上海招聘｜官网未公布统一截止日",
+    requirements: ["面向2027届毕业生，中国大陆以毕业证、非中国大陆地区以学位证时间为准", "当前美术类别包括美术设计师、平面设计师、角色原画、游戏原画设计、游戏视频和美宣设计", "官方流程为简历投递、笔试、面试与Offer发放", "具体岗位城市、作品集格式和关闭时间以官方投递系统为准"], reasons: ["正式校招批次已经确认，不再只是入口关注", "游戏原画岗位涉及休闲游戏角色、场景氛围和视觉元素，可展示色彩与构图能力", "数字媒体艺术专业及风格化环境作品与岗位类别具有较强关联"], missing: ["当前公开岗位类别中未明确出现3D场景模型或地编岗位", "建议补充休闲卡通风格场景、构图和UI协同案例", "投递前需在官方职位详情核验作品集文件限制"], accent: "#f2a12d",
+  },
+  {
+    id: 51, company: "上海番糖网络（FunToy Games）", initials: "FTG", role: "日常实习｜2D场景实习生（欧美卡通）", city: "上海", deadline: "官网未公布截止日", daysLeft: 99, match: 73, status: "收藏", opportunityType: "日常实习", scaleTier: "小型/独立团队",
+    tags: ["2D场景", "欧美卡通", "Photoshop", "AI工具"], business: "移动游戏研发、运营与IP内容", scale: "小型游戏研发团队（官网未披露人数）", project: "食之契约及欧美卡通项目", source: "上海番糖网络官方招聘页面", sourceUrl: "https://www.funtoygame.com/recruit.html", campaign: "正在招聘", verifiedAt: "2026-08-24", availabilityNote: "官网当前公开2D场景实习生（欧卡）｜上海｜邮箱直投 sanye@funtoygame.com｜未注明毕业届别、实习时长与截止时间，2027届资格需邮件确认",
+    responsibilities: ["负责游戏场景的设计与绘制。", "根据项目需求创作符合游戏风格的各类美术资源。", "配合策划、程序等部门跟进美术资源落地。", "关注AI工具并将其合理用于工作流程，参与美术风格探索。"],
+    requirements: ["具备扎实的美术功底和审美能力", "能够熟练使用Photoshop等软件进行数字绘画", "了解Midjourney、Stable Diffusion等AI工具并具有实际使用经验", "熟悉游戏场景设计流程，擅长Q版卡通风格者优先", "官网未注明毕业届别，投递前需邮件确认2027届学生是否符合"], portfolioRequirements: ["官网未写明作品集格式，但美术实习建议随简历附可直接访问的作品集链接。", "优先展示欧美卡通或Q版场景、色彩氛围和可复用美术资源。", "明确标注个人完成范围以及AI工具在流程中的实际用途。"], reasons: ["官方招聘页存在明确的2D场景实习岗位", "小型团队有机会接触从场景设计到资源落地的完整流程", "可作为3D场景主投方向之外的2D环境设计补充"], missing: ["该岗位不是3D场景建模或地编方向", "官网未注明2027届、实习时长、薪资和截止日期", "公司人数未在官网披露"], accent: "#d76945",
   },
   {
     id: 31, company: "蛮啾网络", initials: "MJ", role: "校园招聘｜游戏美术 / 二次元场景", city: "上海", deadline: "关注实时岗位", daysLeft: 99, match: 84, status: "收藏", opportunityType: "正式校招", scaleTier: "中型企业",
@@ -503,6 +509,8 @@ const deadlineOverrides: Record<number, Partial<DeadlineProfile>> = {
   28: { batch: "2027 Elite Program+", opened: "12个职位于2026-07-12发布", closes: "未公布统一截止日", rule: "当前12个实际职位仅覆盖策划、程序、市场和数据，未开放美术类；仅保留监控，不建议投递。", urgency: "watch" },
   50: { batch: "点点互动2027届应届生校园招聘", opened: "2026-08-14", closes: "官网未公布统一截止日", rule: "应届生校招与Elite Program+是两个独立项目；美术岗仅在应届生校招中开放，每个项目可投递3次，岗位可能滚动关闭。", urgency: "rolling" },
   29: { batch: "4399游戏2027届秋季校园招聘", opened: "2026-07-31", closes: "官网未公布统一截止日", rule: "官方校招简章确认3D场景设计师正在本批次招聘；8月起陆续面试，岗位可能滚动关闭，建议尽早投递。", urgency: "rolling" },
+  30: { batch: "乐元素2027届秋季校园招聘", opened: "2026年7月起已开放", closes: "官网未公布统一截止日", rule: "2027届毕业生投递正式校招；当前美术类别未列出3D场景模型或地编，岗位可能滚动关闭。", urgency: "rolling" },
+  51: { batch: "上海番糖日常实习招聘", opened: "官网当前职位页", closes: "官网未公布截止日", rule: "官方页面明确列出2D场景实习生，但未注明毕业届别；2027届资格、实习时长和关闭时间需通过官方邮箱确认。", urgency: "rolling" },
   44: { batch: "2027届秋招提前批", opened: "职位发布：2026-07-27；网申开放：2026-08-06", closes: "2026-09-14", rule: "官方流程页明确网申期为8月6日至9月14日；2027届秋招最多投递两个职位，建议优先投递3D场景。", urgency: "open" },
   45: { batch: "米哈游2027届秋季校园招聘", opened: "2026年8月起", closes: "2026-10-31", rule: "官网显示应届生职位仅能投递1个；关卡美术与场景模型、技术美术不能同时投递。", urgency: "open" },
   46: { batch: "米哈游2027届秋季校园招聘", opened: "2026年8月起", closes: "2026-10-31", rule: "官网显示应届生职位仅能投递1个；技术美术方向覆盖渲染、工具、性能优化和PCG等分支。", urgency: "open" },
@@ -943,7 +951,7 @@ export default function Home() {
             <div className="deadline-alert-list">{deadlineAlerts.length ? deadlineAlerts.map(({ job, countdown }) => <button key={job.id} className={`deadline-alert countdown-${countdown.tone}`} onClick={() => setSelectedJob(job)}><span><b>{job.company}</b><small>{job.role}</small></span><em>{countdown.dateLabel}</em><strong>{countdown.label}</strong></button>) : <p>当前筛选结果中暂无公布明确日期的岗位。</p>}</div>
             <aside><b>{rollingJobCount}</b><span>个滚动招聘</span><small>没有统一截止日，建议尽早投递</small></aside>
           </section>
-          <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot mismatch" />当前无美术岗</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-08-23</p></div>
+          <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot mismatch" />当前无美术岗</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-08-24</p></div>
           <div className="filter-row"><label><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="搜索畅游、3D场景、UE5…" /></label><select value={city} onChange={(e) => setCity(e.target.value)} aria-label="城市筛选"><option>全部城市</option><option>上海</option><option>杭州</option><option>深圳</option><option>成都</option><option>广州</option><option>北京</option><option>厦门</option><option>重庆</option><option>苏州</option></select><select value={scaleFilter} onChange={(e) => setScaleFilter(e.target.value)} aria-label="公司规模筛选"><option>全部规模</option><option>大型企业</option><option>中型企业</option><option>小型/独立团队</option></select><select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} aria-label="机会类型筛选"><option>全部类型</option><option>正式校招</option><option>实习生</option><option>日常实习</option><option>校招关注</option></select><select value={campaignFilter} onChange={(e) => setCampaignFilter(e.target.value)} aria-label="招聘状态筛选"><option>全部状态</option><option>正在招聘</option><option>实习可转正</option><option>持续开放</option><option>当前无美术岗</option><option>入口关注</option><option>已结束参考</option></select><button>匹配度优先 ↕</button></div>
           <div className="result-bar"><span>找到 <b>{filteredJobs.length}</b> 个重点机会，来自 {new Set(filteredJobs.map((job) => job.company)).size} 家游戏公司</span><span>信息可能随时变化 · 以官网为准</span></div>
           <div className="job-list">{filteredJobs.map((job) => <JobCard key={job.id} job={job} todayKey={todayKey} saved={savedIds.includes(job.id)} onSave={() => toggleSaved(job.id)} onOpen={() => setSelectedJob(job)} />)}</div>
