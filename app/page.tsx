@@ -69,6 +69,33 @@ const demoJobs: Job[] = [
     accent: "#b83c36",
   },
   {
+    id: 53,
+    company: "网易游戏雷火",
+    initials: "LH",
+    role: "2027届秋招｜游戏艺术/设计类（场景原画 / 场景制作 / 场景编辑）",
+    city: "杭州/成都",
+    deadline: "2026-10-16",
+    daysLeft: 50,
+    match: 97,
+    status: "准备中",
+    opportunityType: "正式校招",
+    scaleTier: "大型企业",
+    tags: ["27届秋招", "场景制作", "场景编辑", "技术美术"],
+    business: "游戏研发、全球发行、游戏AI与数字文化技术",
+    scale: "网易旗下大型游戏事业群",
+    project: "逆水寒、永劫无间、倩女幽魂、无限大、归唐等",
+    source: "网易游戏雷火官方校招投递页及高校就业网企业公告",
+    sourceUrl: "https://leihuo.163.com/campus/#?channel=ERAjcw",
+    campaign: "正在招聘",
+    verifiedAt: "2026-08-27",
+    publishedAt: "2026-08-26",
+    availabilityNote: "雷火2027届秋季校园招聘已于2026-08-26公开｜杭州、成都｜游戏艺术/设计类明确包含场景原画、场景制作与场景编辑，技术类包含技术美术｜网申截止2026-10-16，招满即止",
+    requirements: ["面向2027届海内外高校应届毕业生，毕业时间为2026年9月1日至2027年8月31日", "工作地点为杭州、成都", "游戏艺术/设计类公开方向包含场景原画、场景制作、场景编辑等", "技术类公开方向包含技术美术；具体项目、软件与作品集要求须以官方实时职位详情为准", "网申截止2026年10月16日，岗位可能因招满提前关闭"],
+    reasons: ["场景制作与场景编辑直接对应你的场景建模、模块化资产和地编方向", "雷火同时开放技术美术，可结合UE5材质、蓝图和性能优化能力评估第二志愿", "官方给出了明确截止日期，适合纳入优先投递计划"],
+    missing: ["当前公开公告是岗位方向汇总，投递前需在官方系统选择具体职位并再次核对JD", "建议作品集增加模块化建筑拆分、场景编辑过程和引擎内性能数据", "不要把场景制作、场景编辑和技术美术合并成同一份完全相同的简历"],
+    accent: "#ba332f",
+  },
+  {
     id: 2,
     company: "腾讯游戏",
     initials: "TG",
@@ -524,6 +551,7 @@ type CountdownInfo = {
 
 const deadlineOverrides: Record<number, Partial<DeadlineProfile>> = {
   1: { batch: "2027届秋季校园招聘", opened: "2026年7月已公开启动", closes: "官网未公布统一截止日", rule: "各工作室独立滚动筛选，岗位可能提前关闭；建议发现具体岗位后立即投递。", urgency: "rolling" },
+  53: { batch: "网易游戏雷火2027届秋季校园招聘", opened: "2026-08-26", closes: "2026-10-16", rule: "面向2027届毕业生；公开方向已确认场景原画、场景制作、场景编辑与技术美术，具体职位仍以官方实时列表为准，且可能招满提前关闭。", urgency: "open" },
   2: { batch: "2027届游戏美术实习招聘", opened: "2026年春季已启动", closes: "招满即止，无统一日期", rule: "面向毕业时间为2026年9月至2027年12月31日的学生；具体工作室岗位随招随关。", urgency: "rolling" },
   3: { batch: "2027届实习生项目", opened: "2026年春季已启动", closes: "招满即止", rule: "官网未披露所有美术岗位的统一截止日；每人最多投递两个职位。", urgency: "rolling" },
   52: { batch: "完美世界2027届秋季校园招聘", opened: "2026-08-19", closes: "招满即止", rule: "官方简章确认美术设计类包含3D，但未细分到3D场景；具体岗位会随招聘进度提前关闭。", urgency: "rolling" },
@@ -954,7 +982,7 @@ export default function Home() {
           <div className="mobile-brand"><span>△</span><b>跃迁</b></div>
           <label className="global-search"><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} onFocus={() => setView("jobs")} placeholder="搜索公司、岗位或技能关键词" /><kbd>⌘ K</kbd></label>
           <div className="top-actions"><span className="demo-pill verified-pill">✓ 来源已核验</span><button className="notice-button" onClick={() => setNoticeOpen(!noticeOpen)} aria-label="查看通知">♢<i /></button><button className="add-button" onClick={() => { setView("jobs"); setSearch(""); }}>＋ 发现职位</button></div>
-          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>米哈游2027秋招已开放场景模型、关卡美术和技术美术岗位，应届生截止至2026年10月31日且只能投递1个职位。</p><p>搜狐畅游3D场景岗9月14日截止；点点互动常规应届生校招已开放技术美术、游戏原画和游戏动效，Elite Program+ 仍无美术岗。</p><p>新核验：库洛已开放3D场景模型与场景地编；途游广州游戏美术岗同样包含场景模型和地编。</p></div>}
+          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>新核验：网易游戏雷火2027秋招已开放场景原画、场景制作、场景编辑和技术美术方向，10月16日截止，招满即止。</p><p>搜狐畅游3D场景岗9月14日截止；点点互动常规应届生校招已开放技术美术、游戏原画和游戏动效，Elite Program+ 仍无美术岗。</p><p>库洛已开放3D场景模型与场景地编；途游广州游戏美术岗同样包含场景模型和地编。</p></div>}
         </header>
 
         {view === "overview" && <section className="page overview-page">
@@ -982,7 +1010,7 @@ export default function Home() {
             <div className="deadline-alert-list">{deadlineAlerts.length ? deadlineAlerts.map(({ job, countdown }) => <button key={job.id} className={`deadline-alert countdown-${countdown.tone}`} onClick={() => setSelectedJob(job)}><span><b>{job.company}</b><small>{job.role}</small></span><em>{countdown.dateLabel}</em><strong>{countdown.label}</strong></button>) : <p>当前筛选结果中暂无公布明确日期的岗位。</p>}</div>
             <aside><b>{rollingJobCount}</b><span>个滚动招聘</span><small>没有统一截止日，建议尽早投递</small></aside>
           </section>
-          <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot mismatch" />当前无美术岗</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-08-25</p></div>
+          <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot mismatch" />当前无美术岗</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-08-27</p></div>
           <div className="filter-row"><label><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="搜索畅游、3D场景、UE5…" /></label><select value={city} onChange={(e) => setCity(e.target.value)} aria-label="城市筛选"><option>全部城市</option><option>上海</option><option>杭州</option><option>深圳</option><option>成都</option><option>广州</option><option>北京</option><option>厦门</option><option>重庆</option><option>苏州</option></select><select value={scaleFilter} onChange={(e) => setScaleFilter(e.target.value)} aria-label="公司规模筛选"><option>全部规模</option><option>大型企业</option><option>中型企业</option><option>小型/独立团队</option></select><select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} aria-label="机会类型筛选"><option>全部类型</option><option>正式校招</option><option>实习生</option><option>日常实习</option><option>校招关注</option></select><select value={campaignFilter} onChange={(e) => setCampaignFilter(e.target.value)} aria-label="招聘状态筛选"><option>全部状态</option><option>正在招聘</option><option>实习可转正</option><option>持续开放</option><option>当前无美术岗</option><option>入口关注</option><option>已结束参考</option></select><button>匹配度优先 ↕</button></div>
           <div className="result-bar"><span>找到 <b>{filteredJobs.length}</b> 个重点机会，来自 {new Set(filteredJobs.map((job) => job.company)).size} 家游戏公司</span><span>信息可能随时变化 · 以官网为准</span></div>
           <div className="job-list">{filteredJobs.map((job) => <JobCard key={job.id} job={job} todayKey={todayKey} saved={savedIds.includes(job.id)} onSave={() => toggleSaved(job.id)} onOpen={() => setSelectedJob(job)} />)}</div>
