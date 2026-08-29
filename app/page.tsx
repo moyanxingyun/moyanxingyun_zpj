@@ -124,6 +124,35 @@ const demoJobs: Job[] = [
     accent: "#33458f",
   },
   {
+    id: 55,
+    company: "炎魂网络（Pandada Studio）",
+    initials: "YH",
+    role: "2027届｜场景模型",
+    city: "杭州",
+    deadline: "官网未公布统一截止日",
+    daysLeft: 99,
+    match: 96,
+    status: "准备中",
+    opportunityType: "正式校招",
+    scaleTier: "中型企业",
+    tags: ["27届校招", "场景模型", "PBR/NPR", "Unity"],
+    business: "精品原创游戏研发与全球发行运营",
+    scale: "中型游戏研发公司（高校就业平台披露200–500人）",
+    project: "忍者必须死3及多个原创在研项目",
+    source: "炎魂网络官方校园招聘站及官方Moka职位页",
+    sourceUrl: "https://app.mokahr.com/campus-recruitment/yanhun/24017#/job/993e6f7c-7642-43a6-9e9f-e6a0f922caa5",
+    campaign: "正在招聘",
+    verifiedAt: "2026-08-29",
+    publishedAt: "2026-08-12",
+    availabilityNote: "官方Moka职位接口当前状态为open｜职位于2026-08-12开放｜官网未公布统一截止日｜职位详情未单列地点，结合官方校园站与公司所在地标注杭州，投递前请再次确认",
+    responsibilities: ["依据原画设定制作物件、建筑、载具等场景资源，并跟进游戏内表现", "完成模型、拓扑、UV、贴图与材质的完整制作流程，覆盖PBR或NPR项目需求", "参与场景美术风格探索、模板与质量标准建设，并兼顾资源美术效果和运行性能"],
+    requirements: ["面向2027届及以后本科及以上毕业生，美术相关专业优先；优秀3D场景作品可放宽专业限制", "熟练使用3ds Max、Maya或Blender至少一种，掌握建模、拓扑、UV与贴图流程", "理解PBR或NPR制作思路，具备空间、结构、色彩与材质判断力", "具备良好美术基础、学习能力和团队协作意识"],
+    portfolioRequirements: ["建议展示从模型、拓扑、UV到贴图和材质的完整场景资产流程", "建筑、载具、自然环境或风格化道具作品可作为重点案例", "Unity材质调试、灯光氛围或新工具与流程优化经验为加分项"],
+    reasons: ["具体岗位直接对应场景模型与完整资产生产流程", "PBR/NPR双路线适合同时展示写实材质与风格化场景能力", "Unity、灯光氛围和流程优化加分项可承接你的引擎内场景作品"],
+    missing: ["官方职位详情未单列工作地点，投递前需在申请表再次确认", "官网未公布统一截止日，岗位可能随招聘进度关闭", "建议为作品补充面数、贴图规格、材质拆解与引擎内效果对照"],
+    accent: "#e39a27",
+  },
+  {
     id: 2,
     company: "腾讯游戏",
     initials: "TG",
@@ -582,6 +611,7 @@ const deadlineOverrides: Record<number, Partial<DeadlineProfile>> = {
   1: { batch: "2027届秋季校园招聘", opened: "2026年7月已公开启动", closes: "官网未公布统一截止日", rule: "各工作室独立滚动筛选，岗位可能提前关闭；建议发现具体岗位后立即投递。", urgency: "rolling" },
   53: { batch: "网易游戏雷火2027届秋季校园招聘", opened: "2026-08-26", closes: "2026-10-16", rule: "面向2027届毕业生；公开方向已确认场景原画、场景制作、场景编辑与技术美术，具体职位仍以官方实时列表为准，且可能招满提前关闭。", urgency: "open" },
   54: { batch: "深蓝互动2027届秋季校园招聘", opened: "2026-08-10", closes: "官网未公布统一截止日", rule: "官方已确认秋招、美术设计类、广州与网申入口；具体地编职位仅见第三方企业职位页，须在官方系统复核后再投递。", urgency: "watch" },
+  55: { batch: "炎魂网络2027届校园招聘", opened: "2026-08-12", closes: "官网未公布统一截止日", rule: "官方Moka职位当前状态为open；岗位可能随招聘进度关闭，工作地点请在投递表中再次确认。", urgency: "rolling" },
   2: { batch: "2027届游戏美术实习招聘", opened: "2026年春季已启动", closes: "招满即止，无统一日期", rule: "面向毕业时间为2026年9月至2027年12月31日的学生；具体工作室岗位随招随关。", urgency: "rolling" },
   3: { batch: "2027届实习生项目", opened: "2026年春季已启动", closes: "招满即止", rule: "官网未披露所有美术岗位的统一截止日；每人最多投递两个职位。", urgency: "rolling" },
   52: { batch: "完美世界2027届秋季校园招聘", opened: "2026-08-19", closes: "招满即止", rule: "官方简章确认美术设计类包含3D，但未细分到3D场景；具体岗位会随招聘进度提前关闭。", urgency: "rolling" },
@@ -1012,7 +1042,7 @@ export default function Home() {
           <div className="mobile-brand"><span>△</span><b>跃迁</b></div>
           <label className="global-search"><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} onFocus={() => setView("jobs")} placeholder="搜索公司、岗位或技能关键词" /><kbd>⌘ K</kbd></label>
           <div className="top-actions"><span className="demo-pill verified-pill">✓ 来源已核验</span><button className="notice-button" onClick={() => setNoticeOpen(!noticeOpen)} aria-label="查看通知">♢<i /></button><button className="add-button" onClick={() => { setView("jobs"); setSearch(""); }}>＋ 发现职位</button></div>
-          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>待核验：深蓝互动官方已确认2027秋招、美术设计类与广州岗位；第三方企业职位页出现UE5地编设计师，但官方动态职位页仍需复核。</p><p>网易游戏雷火2027秋招已开放场景原画、场景制作、场景编辑和技术美术方向，10月16日截止，招满即止。</p><p>搜狐畅游3D场景岗9月14日截止；点点互动常规应届生校招已开放技术美术、游戏原画和游戏动效，Elite Program+ 仍无美术岗。</p></div>}
+          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>新核验：炎魂网络2027届场景模型岗官方状态为open，覆盖PBR/NPR、完整场景资产流程、Unity与灯光加分；官网未公布统一截止日。</p><p>待核验：深蓝互动官方已确认2027秋招、美术设计类与广州岗位；第三方企业职位页出现UE5地编设计师，但官方动态职位页仍需复核。</p><p>搜狐畅游3D场景岗9月14日截止；点点互动常规应届生校招已开放技术美术、游戏原画和游戏动效，Elite Program+ 仍无美术岗。</p></div>}
         </header>
 
         {view === "overview" && <section className="page overview-page">
@@ -1040,7 +1070,7 @@ export default function Home() {
             <div className="deadline-alert-list">{deadlineAlerts.length ? deadlineAlerts.map(({ job, countdown }) => <button key={job.id} className={`deadline-alert countdown-${countdown.tone}`} onClick={() => setSelectedJob(job)}><span><b>{job.company}</b><small>{job.role}</small></span><em>{countdown.dateLabel}</em><strong>{countdown.label}</strong></button>) : <p>当前筛选结果中暂无公布明确日期的岗位。</p>}</div>
             <aside><b>{rollingJobCount}</b><span>个滚动招聘</span><small>没有统一截止日，建议尽早投递</small></aside>
           </section>
-          <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot watch" />待核验</span><span><i className="legend-dot mismatch" />当前无美术岗</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-08-28</p></div>
+          <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot watch" />待核验</span><span><i className="legend-dot mismatch" />当前无美术岗</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-08-29</p></div>
           <div className="filter-row"><label><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="搜索畅游、3D场景、UE5…" /></label><select value={city} onChange={(e) => setCity(e.target.value)} aria-label="城市筛选"><option>全部城市</option><option>上海</option><option>杭州</option><option>深圳</option><option>成都</option><option>广州</option><option>北京</option><option>厦门</option><option>重庆</option><option>苏州</option></select><select value={scaleFilter} onChange={(e) => setScaleFilter(e.target.value)} aria-label="公司规模筛选"><option>全部规模</option><option>大型企业</option><option>中型企业</option><option>小型/独立团队</option></select><select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} aria-label="机会类型筛选"><option>全部类型</option><option>正式校招</option><option>实习生</option><option>日常实习</option><option>校招关注</option></select><select value={campaignFilter} onChange={(e) => setCampaignFilter(e.target.value)} aria-label="招聘状态筛选"><option>全部状态</option><option>正在招聘</option><option>实习可转正</option><option>持续开放</option><option>待核验</option><option>当前无美术岗</option><option>入口关注</option><option>已结束参考</option></select><button>匹配度优先 ↕</button></div>
           <div className="result-bar"><span>找到 <b>{filteredJobs.length}</b> 个重点机会，来自 {new Set(filteredJobs.map((job) => job.company)).size} 家游戏公司</span><span>信息可能随时变化 · 以官网为准</span></div>
           <div className="job-list">{filteredJobs.map((job) => <JobCard key={job.id} job={job} todayKey={todayKey} saved={savedIds.includes(job.id)} onSave={() => toggleSaved(job.id)} onOpen={() => setSelectedJob(job)} />)}</div>
