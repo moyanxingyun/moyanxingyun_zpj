@@ -75,6 +75,21 @@ export default function Home() {
     if (video.paused) await video.play();
     else video.pause();
   };
+  const exportPdf = () => {
+    const previousTitle = document.title;
+    const closedDetails = Array.from(document.querySelectorAll<HTMLDetailsElement>(".process-list details:not([open])"));
+
+    closedDetails.forEach((detail) => { detail.open = true; });
+    document.title = "王鑫源_游戏场景美术作品集";
+
+    const restorePage = () => {
+      closedDetails.forEach((detail) => { detail.open = false; });
+      document.title = previousTitle;
+    };
+
+    window.addEventListener("afterprint", restorePage, { once: true });
+    window.requestAnimationFrame(() => window.print());
+  };
   const activeCap = capabilityTabs.find((item) => item.key === activeCapability) ?? capabilityTabs[0];
 
   return (
@@ -99,6 +114,17 @@ export default function Home() {
           <p className="hero-role">3D 场景美术 <em>·</em> PBR 场景建模 <em>·</em> UE5 地编</p>
           <p className="hero-intro">从资产到场景，从材质到光影。用清晰的造型、色彩与生产流程，构建适合全球化风格项目的游戏世界。</p>
           <div className="hero-actions"><a className="fantasy-button primary" href="#work"><span>探索作品</span><GameIcon glyph="›" /></a><button className="fantasy-button ghost" type="button" onClick={() => jumpTo("fit")}><span>查看能力</span><GameIcon glyph="✦" /></button></div>
+          <div className="pdf-actions" aria-label="作品集 PDF 操作">
+            <a className="pdf-action" href={assetUrl("/wang-xinyuan-portfolio.pdf")} download="王鑫源_游戏场景美术作品集.pdf">
+              <GameIcon glyph="↓" compact />
+              <span><b>下载 PDF</b><small>适合官网直接投递</small></span>
+            </a>
+            <button className="pdf-action" type="button" onClick={exportPdf} aria-describedby="pdf-export-note">
+              <GameIcon glyph="▧" compact />
+              <span><b>导出当前网页</b><small>保留完整项目内容</small></span>
+            </button>
+            <small className="pdf-export-note" id="pdf-export-note">在打印窗口中选择“另存为 PDF”</small>
+          </div>
         </div>
         <div className="hero-orbit orbit-one" aria-hidden="true">ENVIRONMENT · UE5 · PBR</div><div className="hero-orbit orbit-two" aria-hidden="true">WANG XINYUAN · 2026</div>
         <div className="scroll-hint"><span>SCROLL</span><i /></div>
@@ -153,6 +179,7 @@ export default function Home() {
               <source src={assetUrl("/ue5-worldbuilding-reel.mp4")} type="video/mp4" />
               您的浏览器暂不支持视频播放。
             </video>
+            <img className="print-video-poster" src={assetUrl("/portfolio-scene-wide.jpg")} alt="UE5 地编作品演示封面" />
             {!isVideoPlaying && <button className="video-start" type="button" onClick={toggleVideo} aria-label="播放 UE5 地编作品演示"><GameIcon glyph="▶" className="play-icon" /><span>点击播放完整地编演示</span><small>UE5 · WORLD BUILDING · REAL-TIME</small></button>}
             <div className="video-corners" aria-hidden="true"><i /><i /><i /><i /></div>
           </div>
