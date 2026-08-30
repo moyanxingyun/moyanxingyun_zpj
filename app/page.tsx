@@ -96,6 +96,93 @@ const demoJobs: Job[] = [
     accent: "#ba332f",
   },
   {
+    id: 56,
+    company: "网易游戏（互娱）",
+    initials: "NE",
+    role: "2027届｜游戏3D场景编辑设计师",
+    city: "杭州/上海/广州",
+    deadline: "官网未公布统一截止日",
+    daysLeft: 99,
+    match: 98,
+    status: "准备中",
+    opportunityType: "正式校招",
+    scaleTier: "大型企业",
+    tags: ["27届正式校招", "3D场景搭建", "关卡场景", "实时渲染"],
+    business: "游戏研发、全球发行与长线运营",
+    scale: "大型上市互联网与游戏公司",
+    project: "网易游戏互娱多品类自研项目",
+    source: "网易游戏互娱2027届校园招聘官方职位页及官方职位接口",
+    sourceUrl: "https://campus.game.163.com/app/detail/index?id=4746&projectId=102",
+    campaign: "正在招聘",
+    verifiedAt: "2026-08-30",
+    publishedAt: "2026-07-20",
+    availabilityNote: "网易互娱2027届校园招聘官方开放职位接口当前列出该岗位｜杭州、上海、广州｜官网未公布统一截止日｜符合条件的同学可获得实习转正或校招直通机会",
+    responsibilities: ["依据概念设计匹配场景设计与布局方向，推进场景美术编辑和品质提升", "协助关卡场景制作、方案优化，并定义场景模型制作与编辑流程", "结合PBR或NPR流程完成关卡光照、氛围与实时渲染表现"],
+    requirements: ["熟悉3ds Max、Maya、Substance Painter等DCC工具以及实时或离线渲染器", "具备扎实美术基础与鲜明风格判断，理解场景搭建、空间布局和光影氛围", "有Unity或Unreal Engine使用经验，并能提交匹配岗位的作品集"],
+    portfolioRequirements: ["可提交图片、3D截图或视频形式的作品", "重点展示场景搭建、关卡编辑、光照氛围与渲染成果", "官方明确无需提交原始工程文件"],
+    reasons: ["岗位直接覆盖3D场景搭建、关卡场景编辑与光影氛围营造", "PBR/NPR和Unity/UE要求可直接承接现有引擎内场景作品", "杭州、上海、广州三地可选，且官方职位当前开放"],
+    missing: ["官网未公布统一截止日，岗位可能滚动关闭", "建议作品集补充灰盒到终稿、场景模型流程和引擎内光照拆解", "投递前再次确认具体工作室与项目风格"],
+    accent: "#b83c36",
+  },
+  {
+    id: 57,
+    company: "网易游戏（互娱）",
+    initials: "NE",
+    role: "2027届｜游戏技术美术工程师",
+    city: "杭州/上海/广州",
+    deadline: "官网未公布统一截止日",
+    daysLeft: 99,
+    match: 96,
+    status: "准备中",
+    opportunityType: "正式校招",
+    scaleTier: "大型企业",
+    tags: ["27届正式校招", "技术美术", "美术管线", "Unity/UE"],
+    business: "游戏研发、全球发行与长线运营",
+    scale: "大型上市互联网与游戏公司",
+    project: "网易游戏互娱多品类自研项目",
+    source: "网易游戏互娱2027届校园招聘官方职位页及官方职位接口",
+    sourceUrl: "https://campus.game.163.com/app/detail/index?id=4733&projectId=102",
+    campaign: "正在招聘",
+    verifiedAt: "2026-08-30",
+    publishedAt: "2026-07-20",
+    availabilityNote: "网易互娱2027届校园招聘官方开放职位接口当前列出该岗位｜杭州、上海、广州｜官网未公布统一截止日｜方向覆盖技术方案、美术管线与工具建设",
+    responsibilities: ["将美术需求转化为可落地的技术方案，协助解决项目中的美术技术问题", "搭建和优化美术工作流、生产管线与工具，提升内容制作效率和品质", "连接美术与程序团队，推动技术方案在项目中稳定落地"],
+    requirements: ["美术、计算机或交叉学科背景，理解游戏美术生产流程", "熟悉常用美术工具，并具备Unity或Unreal Engine实践经验", "具备编程、脚本或工具开发能力，能与美术和程序团队协作"],
+    portfolioRequirements: ["可提交游戏Demo、实时渲染效果或技术美术案例", "脚本、工具、技术文档或个人博客可作为能力证明", "建议展示问题、方案、实现与最终效果的完整闭环"],
+    reasons: ["岗位同时看重引擎、美术表现和工具流程，适合UE5材质与蓝图能力", "可用场景资产优化、渲染或自动化工具案例形成差异化", "三地均有职位，官方当前开放"],
+    missing: ["需要把作品集从纯视觉成果扩展为可验证的技术方案", "建议补充脚本、工具或性能优化数据", "官网未公布统一截止日，岗位可能滚动关闭"],
+    accent: "#a63f38",
+  },
+  {
+    id: 58,
+    company: "网易游戏（互娱）",
+    initials: "NE",
+    role: "2027届｜游戏技术美术工程师（PCG向）",
+    city: "广州",
+    deadline: "官网未公布统一截止日",
+    daysLeft: 99,
+    match: 97,
+    status: "准备中",
+    opportunityType: "正式校招",
+    scaleTier: "大型企业",
+    tags: ["27届正式校招", "技术美术", "PCG", "Houdini/UE"],
+    business: "游戏研发、全球发行与长线运营",
+    scale: "大型上市互联网与游戏公司",
+    project: "网易游戏互娱多品类自研项目",
+    source: "网易游戏互娱2027届校园招聘官方职位页及官方职位接口",
+    sourceUrl: "https://campus.game.163.com/app/detail/index?id=4765&projectId=102",
+    campaign: "正在招聘",
+    verifiedAt: "2026-08-30",
+    publishedAt: "2026-07-20",
+    availabilityNote: "网易互娱2027届校园招聘官方开放职位接口当前列出该岗位｜广州｜官网未公布统一截止日｜岗位聚焦地形、道路、植被、城市等场景PCG",
+    responsibilities: ["制定场景PCG技术方案，推进高品质场景内容的程序化生成", "建设美术管线、性能与工具规范，并形成可复用的场景生产能力", "参与视觉标杆落地，兼顾生成效率、美术品质与运行性能"],
+    requirements: ["理解地形、道路、植被或城市等场景PCG方法与生产流程", "熟悉PBR流程，以及UE蓝图、材质、灯光等模块", "具备编程能力；Houdini、AI结合PCG或完整游戏Demo经验为加分项"],
+    portfolioRequirements: ["建议展示可复现的程序化场景生成流程和最终画面", "补充Houdini节点、UE蓝图、材质或性能分析拆解", "完整游戏Demo、AI+PCG实验或工具成果可作为重点案例"],
+    reasons: ["PCG方向与大规模环境、植被、道路和城市生成高度相关", "UE蓝图、材质与灯光能力可直接映射岗位要求", "比通用技术美术更贴近环境美术和场景生产方向"],
+    missing: ["需要至少一个可运行或可复现的PCG案例", "建议补充Houdini或同类程序化工具实践", "官网未公布统一截止日，岗位可能滚动关闭"],
+    accent: "#8f3b38",
+  },
+  {
     id: 54,
     company: "深蓝互动（Bluepoch）",
     initials: "BP",
@@ -610,6 +697,9 @@ type CountdownInfo = {
 const deadlineOverrides: Record<number, Partial<DeadlineProfile>> = {
   1: { batch: "2027届秋季校园招聘", opened: "2026年7月已公开启动", closes: "官网未公布统一截止日", rule: "各工作室独立滚动筛选，岗位可能提前关闭；建议发现具体岗位后立即投递。", urgency: "rolling" },
   53: { batch: "网易游戏雷火2027届秋季校园招聘", opened: "2026-08-26", closes: "2026-10-16", rule: "面向2027届毕业生；公开方向已确认场景原画、场景制作、场景编辑与技术美术，具体职位仍以官方实时列表为准，且可能招满提前关闭。", urgency: "open" },
+  56: { batch: "网易游戏互娱2027届校园招聘", opened: "2026-07-20", closes: "官网未公布统一截止日", rule: "官方2027届校园招聘开放职位接口当前列出该岗位；岗位可能滚动关闭，建议尽早提交匹配的场景作品集。", urgency: "rolling" },
+  57: { batch: "网易游戏互娱2027届校园招聘", opened: "2026-07-20", closes: "官网未公布统一截止日", rule: "官方2027届校园招聘开放职位接口当前列出该岗位；岗位可能滚动关闭，建议用Demo、工具或技术文档证明能力。", urgency: "rolling" },
+  58: { batch: "网易游戏互娱2027届校园招聘", opened: "2026-07-20", closes: "官网未公布统一截止日", rule: "官方2027届校园招聘开放职位接口当前列出该岗位；广州岗位聚焦场景PCG，可能随招聘进度关闭。", urgency: "rolling" },
   54: { batch: "深蓝互动2027届秋季校园招聘", opened: "2026-08-10", closes: "官网未公布统一截止日", rule: "官方已确认秋招、美术设计类、广州与网申入口；具体地编职位仅见第三方企业职位页，须在官方系统复核后再投递。", urgency: "watch" },
   55: { batch: "炎魂网络2027届校园招聘", opened: "2026-08-12", closes: "官网未公布统一截止日", rule: "官方Moka职位当前状态为open；岗位可能随招聘进度关闭，工作地点请在投递表中再次确认。", urgency: "rolling" },
   2: { batch: "2027届游戏美术实习招聘", opened: "2026年春季已启动", closes: "招满即止，无统一日期", rule: "面向毕业时间为2026年9月至2027年12月31日的学生；具体工作室岗位随招随关。", urgency: "rolling" },
@@ -1042,7 +1132,7 @@ export default function Home() {
           <div className="mobile-brand"><span>△</span><b>跃迁</b></div>
           <label className="global-search"><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} onFocus={() => setView("jobs")} placeholder="搜索公司、岗位或技能关键词" /><kbd>⌘ K</kbd></label>
           <div className="top-actions"><span className="demo-pill verified-pill">✓ 来源已核验</span><button className="notice-button" onClick={() => setNoticeOpen(!noticeOpen)} aria-label="查看通知">♢<i /></button><button className="add-button" onClick={() => { setView("jobs"); setSearch(""); }}>＋ 发现职位</button></div>
-          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>新核验：炎魂网络2027届场景模型岗官方状态为open，覆盖PBR/NPR、完整场景资产流程、Unity与灯光加分；官网未公布统一截止日。</p><p>待核验：深蓝互动官方已确认2027秋招、美术设计类与广州岗位；第三方企业职位页出现UE5地编设计师，但官方动态职位页仍需复核。</p><p>搜狐畅游3D场景岗9月14日截止；点点互动常规应届生校招已开放技术美术、游戏原画和游戏动效，Elite Program+ 仍无美术岗。</p></div>}
+          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>新核验：网易游戏互娱官方职位接口当前列出游戏3D场景编辑、游戏技术美术及PCG向技术美术，均为2027届正式校招；官网未公布统一截止日。</p><p>待核验：深蓝互动官方已确认2027秋招、美术设计类与广州岗位；第三方企业职位页出现UE5地编设计师，但官方动态职位页仍需复核。</p><p>搜狐畅游3D场景岗9月14日截止；点点互动常规应届生校招已开放技术美术、游戏原画和游戏动效，Elite Program+ 仍无美术岗。</p></div>}
         </header>
 
         {view === "overview" && <section className="page overview-page">
@@ -1070,7 +1160,7 @@ export default function Home() {
             <div className="deadline-alert-list">{deadlineAlerts.length ? deadlineAlerts.map(({ job, countdown }) => <button key={job.id} className={`deadline-alert countdown-${countdown.tone}`} onClick={() => setSelectedJob(job)}><span><b>{job.company}</b><small>{job.role}</small></span><em>{countdown.dateLabel}</em><strong>{countdown.label}</strong></button>) : <p>当前筛选结果中暂无公布明确日期的岗位。</p>}</div>
             <aside><b>{rollingJobCount}</b><span>个滚动招聘</span><small>没有统一截止日，建议尽早投递</small></aside>
           </section>
-          <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot watch" />待核验</span><span><i className="legend-dot mismatch" />当前无美术岗</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-08-29</p></div>
+          <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot watch" />待核验</span><span><i className="legend-dot mismatch" />当前无美术岗</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-08-30</p></div>
           <div className="filter-row"><label><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="搜索畅游、3D场景、UE5…" /></label><select value={city} onChange={(e) => setCity(e.target.value)} aria-label="城市筛选"><option>全部城市</option><option>上海</option><option>杭州</option><option>深圳</option><option>成都</option><option>广州</option><option>北京</option><option>厦门</option><option>重庆</option><option>苏州</option></select><select value={scaleFilter} onChange={(e) => setScaleFilter(e.target.value)} aria-label="公司规模筛选"><option>全部规模</option><option>大型企业</option><option>中型企业</option><option>小型/独立团队</option></select><select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} aria-label="机会类型筛选"><option>全部类型</option><option>正式校招</option><option>实习生</option><option>日常实习</option><option>校招关注</option></select><select value={campaignFilter} onChange={(e) => setCampaignFilter(e.target.value)} aria-label="招聘状态筛选"><option>全部状态</option><option>正在招聘</option><option>实习可转正</option><option>持续开放</option><option>待核验</option><option>当前无美术岗</option><option>入口关注</option><option>已结束参考</option></select><button>匹配度优先 ↕</button></div>
           <div className="result-bar"><span>找到 <b>{filteredJobs.length}</b> 个重点机会，来自 {new Set(filteredJobs.map((job) => job.company)).size} 家游戏公司</span><span>信息可能随时变化 · 以官网为准</span></div>
           <div className="job-list">{filteredJobs.map((job) => <JobCard key={job.id} job={job} todayKey={todayKey} saved={savedIds.includes(job.id)} onSave={() => toggleSaved(job.id)} onOpen={() => setSelectedJob(job)} />)}</div>
