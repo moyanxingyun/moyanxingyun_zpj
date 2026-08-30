@@ -508,9 +508,9 @@ const demoJobs: Job[] = [
     requirements: ["部分实习岗位面向2027届及2028届海内外高校毕业生", "官方当前明确列出原画与3D模型等美术实习方向", "工作地点为上海，具体出勤天数、实习周期和作品集要求以实时职位页为准", "校招内推活动为2026-08-03至2026-11-30，但这不是所有实习岗位的统一截止日"], reasons: ["官方批次已明确开放3D模型美术实习，不再只是公司级关注", "老牌MMO和多品类项目需要大量角色、场景与环境资产", "实习表现优秀可进入2027届校招转正通道"], missing: ["官方批次公告未说明当前3D模型岗位具体偏角色还是场景，投递前必须查看实时JD", "若职位详情未写场景制作，不应将其当作3D场景岗", "建议准备高低模、UV、PBR材质和引擎展示的完整流程"], accent: "#b03039",
   },
   {
-    id: 21, company: "多益网络", initials: "DY", role: "校园招聘关注｜技术美术 / 美术设计", city: "广州/成都", deadline: "等待27届批次", daysLeft: 99, match: 81, status: "收藏", opportunityType: "校招关注",
-    tags: ["技术美术", "原画", "特效", "校招"], business: "互联网游戏研发与运营", scale: "大型游戏研发公司", project: "神武、梦想世界等", source: "多益网络校园招聘官网", sourceUrl: "https://xz.duoyi.com/", campaign: "入口关注", verifiedAt: "2026-08-07",
-    requirements: ["往届校招持续开放技术美术、原画、特效等岗位", "2027届批次需等待官网确认", "不同岗位可能包含线上笔试或作品测试"], reasons: ["技术美术方向可作为能力扩展", "广州和成都均是游戏岗位集中城市", "官网招聘体系完整"], missing: ["纯3D场景岗位开放情况待确认", "TA方向需补充脚本或Shader基础"], accent: "#e56b2f",
+    id: 21, company: "多益网络", initials: "DY", role: "2027届秋招提前批｜技术美术 / TA（待官网复核）", city: "广州/武汉/苏州/杭州", deadline: "2026-08-31", daysLeft: 1, match: 88, status: "收藏", opportunityType: "正式校招", scaleTier: "大型企业",
+    tags: ["27届秋招", "技术美术/TA", "三维模型", "明日截止"], business: "互联网游戏研发与运营", scale: "大型游戏研发公司", project: "幻唐志、梦想世界、枪火重生等", source: "多益网络校招官网入口及高校就业平台企业招聘页", sourceUrl: "https://xz.duoyi.com/ANa", campaign: "待核验", verifiedAt: "2026-08-30", publishedAt: "2026-07-01", availabilityNote: "高校就业平台的企业招聘页显示多益网络2027届秋招提前批已开放｜艺术类包含技术美术/TA与三维模型设计师｜招聘期为2026-07-01至2026-08-31｜公司官网可访问但动态职位内容本轮未能完整复核，因此不标记为正在招聘",
+    requirements: ["面向毕业时间为2026年8月至2027年7月的2027届应届毕业生", "批次信息列出的艺术类岗位包含技术美术/TA、三维模型、原画、特效与动作等", "工作地点覆盖广州、武汉、苏州、杭州，具体岗位地点与JD以公司官网实时信息为准", "流程包含在线网申、在线测评、专业笔试与在线面试"], reasons: ["技术美术与三维模型均属于本批次公开艺术方向", "四个城市均有校招岗位，适合扩大投递范围", "公开招聘期显示8月31日截止，需立即在公司官网确认并决定是否投递"], missing: ["公司官网动态职位列表未能完整复核，岗位开放状态与具体城市仍待确认", "批次公告未提供技术美术的详细JD，不应虚构Shader、工具或引擎要求", "纯3D场景岗位尚未得到官方明确信息"], accent: "#e56b2f",
   },
   {
     id: 22, company: "祖龙娱乐", initials: "ZL", role: "校园招聘关注｜3D美术 / 技术美术", city: "北京/苏州", deadline: "关注实时岗位", daysLeft: 99, match: 88, status: "收藏", opportunityType: "校招关注",
@@ -714,6 +714,7 @@ const deadlineOverrides: Record<number, Partial<DeadlineProfile>> = {
   15: { batch: "鹰角网络2027届秋季校园招聘", opened: "2026-08-07", closes: "2026-10-31", rule: "2027届应届生在网申期内最多投递2次；场景模型岗位当前可申请。", urgency: "open" },
   16: { batch: "2027届暑期实习", opened: "2026年春季已启动", closes: "招满即止", rule: "实习提供转正机会；美术细分职位和关闭时间以官网实时列表为准。", urgency: "rolling" },
   20: { batch: "盛趣游戏2027届实习招聘", opened: "2026-08-03", closes: "招满即止", rule: "官方批次列出原画与3D模型等美术实习；内推活动持续至11月30日，但该日期不是所有实习岗位的统一截止日。", urgency: "rolling" },
+  21: { batch: "多益网络2027届秋季校园招聘提前批", opened: "2026-07-01", closes: "2026-08-31", rule: "高校就业平台企业招聘页公布该招聘期，但公司官网动态职位内容本轮未能完整复核；请立即在官方入口确认技术美术/TA是否仍可投递。", urgency: "watch" },
   28: { batch: "2027 Elite Program+", opened: "12个职位于2026-07-12发布", closes: "未公布统一截止日", rule: "当前12个实际职位仅覆盖策划、程序、市场和数据，未开放美术类；仅保留监控，不建议投递。", urgency: "watch" },
   50: { batch: "点点互动2027届应届生校园招聘", opened: "2026-08-14", closes: "官网未公布统一截止日", rule: "应届生校招与Elite Program+是两个独立项目；美术岗仅在应届生校招中开放，每个项目可投递3次，岗位可能滚动关闭。", urgency: "rolling" },
   29: { batch: "4399游戏2027届秋季校园招聘", opened: "2026-07-31", closes: "官网未公布统一截止日", rule: "官方校招简章确认3D场景设计师正在本批次招聘；8月起陆续面试，岗位可能滚动关闭，建议尽早投递。", urgency: "rolling" },
@@ -1132,7 +1133,7 @@ export default function Home() {
           <div className="mobile-brand"><span>△</span><b>跃迁</b></div>
           <label className="global-search"><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} onFocus={() => setView("jobs")} placeholder="搜索公司、岗位或技能关键词" /><kbd>⌘ K</kbd></label>
           <div className="top-actions"><span className="demo-pill verified-pill">✓ 来源已核验</span><button className="notice-button" onClick={() => setNoticeOpen(!noticeOpen)} aria-label="查看通知">♢<i /></button><button className="add-button" onClick={() => { setView("jobs"); setSearch(""); }}>＋ 发现职位</button></div>
-          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>新核验：网易游戏互娱官方职位接口当前列出游戏3D场景编辑、游戏技术美术及PCG向技术美术，均为2027届正式校招；官网未公布统一截止日。</p><p>待核验：深蓝互动官方已确认2027秋招、美术设计类与广州岗位；第三方企业职位页出现UE5地编设计师，但官方动态职位页仍需复核。</p><p>搜狐畅游3D场景岗9月14日截止；点点互动常规应届生校招已开放技术美术、游戏原画和游戏动效，Elite Program+ 仍无美术岗。</p></div>}
+          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>紧急待核验：多益网络2027秋招提前批公开信息包含技术美术/TA与三维模型，招聘期显示8月31日截止；公司官网动态职位内容仍需立即复核。</p><p>网易游戏互娱官方职位接口当前列出游戏3D场景编辑、游戏技术美术及PCG向技术美术，均为2027届正式校招；官网未公布统一截止日。</p><p>搜狐畅游3D场景岗9月14日截止；点点互动常规应届生校招已开放技术美术、游戏原画和游戏动效，Elite Program+ 仍无美术岗。</p></div>}
         </header>
 
         {view === "overview" && <section className="page overview-page">
