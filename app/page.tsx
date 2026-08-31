@@ -493,9 +493,9 @@ const demoJobs: Job[] = [
     requirements: ["官网公开春招补录与转正实习项目", "具体毕业区间和美术岗位以当期列表为准", "全球化项目重视风格适配和协作能力"], reasons: ["SLG项目需要大量场景与环境资产", "全球化方向有利于扩展作品风格", "转正实习可提前进入校招流程"], missing: ["建议增加移动端场景可读性展示", "需要补充英文软件与项目说明"], accent: "#e05a35",
   },
   {
-    id: 18, company: "心动网络", initials: "XD", role: "校园招聘关注｜游戏美术 / 3D方向", city: "上海", deadline: "关注岗位更新", daysLeft: 99, match: 85, status: "收藏", opportunityType: "校招关注",
-    tags: ["TapTap", "自研游戏", "美术", "实习关注"], business: "游戏研发发行与TapTap平台", scale: "上市游戏与平台公司", project: "心动小镇、火炬之光等", source: "心动网络招聘入口", sourceUrl: "https://www.xd.com/join", campaign: "入口关注", verifiedAt: "2026-08-07",
-    requirements: ["校招和实习岗位以官网实时列表为准", "自研项目覆盖多种美术风格", "作品集应突出个人职责与引擎内效果"], reasons: ["项目风格跨度适合场景美术方向", "上海岗位与你的目标城市匹配", "可同步关注TapTap招聘动态"], missing: ["尚未确认当前27届场景岗位余量", "建议设置每周官网检查提醒"], accent: "#3d8bdb",
+    id: 18, company: "心动网络 × TapTap", initials: "XD", role: "2027届校园招聘｜美术类（场景细分待核验）", city: "上海", deadline: "官方未公布统一截止日", daysLeft: 99, match: 91, status: "准备中", opportunityType: "正式校招", scaleTier: "大型企业",
+    tags: ["27届校招", "游戏美术", "场景方向待核验", "实习留用"], business: "游戏研发发行与TapTap平台", scale: "上市游戏与平台公司", project: "心动小镇、出发吧麦芬、火炬之光、铃兰之剑等", source: "心动HR官方公众号2027届校园招聘公告", sourceUrl: "https://mp.weixin.qq.com/s/x5bUqN1YQH-4J-Y6FRy8Tg", campaign: "正在招聘", verifiedAt: "2026-08-31", publishedAt: "2026-08-28", availabilityNote: "心动HR官方公众号已确认心动×TapTap 2027届校园招聘启动｜官方公告覆盖自研游戏、TapTap平台及AI、技术、策划、美术、运营等类别｜第三方汇总提到2D场景原画校招与3D场景实习，但本轮未在官方可读职位页核验，具体场景岗位不标记为官方在招",
+    requirements: ["官方招聘公告已确认2027届校园招聘与美术类机会", "招聘涵盖自研游戏与TapTap平台，具体岗位要求、毕业区间和流程以官方公告内投递入口为准", "场景相关岗位应准备方向明确的作品集，并在投递前核对校招或实习属性"], reasons: ["官方批次已正式启动，不再只是公司级监控", "自研项目覆盖生活模拟、ARPG与多种风格，适合场景美术作品集", "上海岗位与目标城市匹配，且实习方向可能提供留用路径"], missing: ["2D场景原画校招与3D场景实习仅见第三方汇总，仍需在官方投递页逐项确认", "官方公告未披露统一截止日，不采用第三方9月25日等日期", "需要确认具体项目、JD、作品集格式与实习周期"], accent: "#3d8bdb",
   },
   {
     id: 19, company: "游族网络", initials: "YZ", role: "校园招聘关注｜3D场景 / 游戏美术", city: "上海", deadline: "关注岗位更新", daysLeft: 99, match: 82, status: "收藏", opportunityType: "校招关注",
@@ -713,6 +713,7 @@ const deadlineOverrides: Record<number, Partial<DeadlineProfile>> = {
   13: { batch: "阿里巴巴2027届应届生｜灵犀互娱", opened: "职位于2026-08-06更新", closes: "官网未公布统一截止日", rule: "官方当前显示在招；毕业时间要求为2026-11-01至2027-10-31，岗位可能滚动关闭，建议尽早投递。", urgency: "rolling" },
   15: { batch: "鹰角网络2027届秋季校园招聘", opened: "2026-08-07", closes: "2026-10-31", rule: "2027届应届生在网申期内最多投递2次；场景模型岗位当前可申请。", urgency: "open" },
   16: { batch: "2027届暑期实习", opened: "2026年春季已启动", closes: "招满即止", rule: "实习提供转正机会；美术细分职位和关闭时间以官网实时列表为准。", urgency: "rolling" },
+  18: { batch: "心动×TapTap 2027届校园招聘", opened: "2026-08-28", closes: "官方未公布统一截止日", rule: "官方公众号已确认美术类招聘；2D场景原画校招、3D场景实习等细分岗位仍需在官方投递页确认，第三方日期不作为官方截止时间。", urgency: "rolling" },
   20: { batch: "盛趣游戏2027届实习招聘", opened: "2026-08-03", closes: "招满即止", rule: "官方批次列出原画与3D模型等美术实习；内推活动持续至11月30日，但该日期不是所有实习岗位的统一截止日。", urgency: "rolling" },
   21: { batch: "多益网络2027届秋季校园招聘提前批", opened: "2026-07-01", closes: "2026-08-31", rule: "高校就业平台企业招聘页公布该招聘期，但公司官网动态职位内容本轮未能完整复核；请立即在官方入口确认技术美术/TA是否仍可投递。", urgency: "watch" },
   28: { batch: "2027 Elite Program+", opened: "12个职位于2026-07-12发布", closes: "未公布统一截止日", rule: "当前12个实际职位仅覆盖策划、程序、市场和数据，未开放美术类；仅保留监控，不建议投递。", urgency: "watch" },
@@ -1133,7 +1134,7 @@ export default function Home() {
           <div className="mobile-brand"><span>△</span><b>跃迁</b></div>
           <label className="global-search"><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} onFocus={() => setView("jobs")} placeholder="搜索公司、岗位或技能关键词" /><kbd>⌘ K</kbd></label>
           <div className="top-actions"><span className="demo-pill verified-pill">✓ 来源已核验</span><button className="notice-button" onClick={() => setNoticeOpen(!noticeOpen)} aria-label="查看通知">♢<i /></button><button className="add-button" onClick={() => { setView("jobs"); setSearch(""); }}>＋ 发现职位</button></div>
-          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>紧急待核验：多益网络2027秋招提前批公开信息包含技术美术/TA与三维模型，招聘期显示8月31日截止；公司官网动态职位内容仍需立即复核。</p><p>网易游戏互娱官方职位接口当前列出游戏3D场景编辑、游戏技术美术及PCG向技术美术，均为2027届正式校招；官网未公布统一截止日。</p><p>搜狐畅游3D场景岗9月14日截止；点点互动常规应届生校招已开放技术美术、游戏原画和游戏动效，Elite Program+ 仍无美术岗。</p></div>}
+          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>新核验：心动HR官方公众号已确认心动×TapTap 2027届校园招聘启动并覆盖美术类；具体场景细分岗位仍需在官方投递页复核。</p><p>今日截止待核验：多益网络2027秋招提前批公开信息包含技术美术/TA与三维模型，但公司官网动态职位内容仍未完整核验。</p><p>搜狐畅游3D场景岗9月14日截止；点点互动常规应届生校招已开放技术美术、游戏原画和游戏动效，Elite Program+ 仍无美术岗。</p></div>}
         </header>
 
         {view === "overview" && <section className="page overview-page">
@@ -1161,7 +1162,7 @@ export default function Home() {
             <div className="deadline-alert-list">{deadlineAlerts.length ? deadlineAlerts.map(({ job, countdown }) => <button key={job.id} className={`deadline-alert countdown-${countdown.tone}`} onClick={() => setSelectedJob(job)}><span><b>{job.company}</b><small>{job.role}</small></span><em>{countdown.dateLabel}</em><strong>{countdown.label}</strong></button>) : <p>当前筛选结果中暂无公布明确日期的岗位。</p>}</div>
             <aside><b>{rollingJobCount}</b><span>个滚动招聘</span><small>没有统一截止日，建议尽早投递</small></aside>
           </section>
-          <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot watch" />待核验</span><span><i className="legend-dot mismatch" />当前无美术岗</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-08-30</p></div>
+          <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot watch" />待核验</span><span><i className="legend-dot mismatch" />当前无美术岗</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-08-31</p></div>
           <div className="filter-row"><label><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="搜索畅游、3D场景、UE5…" /></label><select value={city} onChange={(e) => setCity(e.target.value)} aria-label="城市筛选"><option>全部城市</option><option>上海</option><option>杭州</option><option>深圳</option><option>成都</option><option>广州</option><option>北京</option><option>厦门</option><option>重庆</option><option>苏州</option></select><select value={scaleFilter} onChange={(e) => setScaleFilter(e.target.value)} aria-label="公司规模筛选"><option>全部规模</option><option>大型企业</option><option>中型企业</option><option>小型/独立团队</option></select><select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} aria-label="机会类型筛选"><option>全部类型</option><option>正式校招</option><option>实习生</option><option>日常实习</option><option>校招关注</option></select><select value={campaignFilter} onChange={(e) => setCampaignFilter(e.target.value)} aria-label="招聘状态筛选"><option>全部状态</option><option>正在招聘</option><option>实习可转正</option><option>持续开放</option><option>待核验</option><option>当前无美术岗</option><option>入口关注</option><option>已结束参考</option></select><button>匹配度优先 ↕</button></div>
           <div className="result-bar"><span>找到 <b>{filteredJobs.length}</b> 个重点机会，来自 {new Set(filteredJobs.map((job) => job.company)).size} 家游戏公司</span><span>信息可能随时变化 · 以官网为准</span></div>
           <div className="job-list">{filteredJobs.map((job) => <JobCard key={job.id} job={job} todayKey={todayKey} saved={savedIds.includes(job.id)} onSave={() => toggleSaved(job.id)} onOpen={() => setSelectedJob(job)} />)}</div>
