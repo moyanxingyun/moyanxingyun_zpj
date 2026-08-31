@@ -442,9 +442,9 @@ const demoJobs: Job[] = [
     requirements: ["美术类相关专业优先，具备造型、色彩等扎实美术基础", "对科幻硬表面或风格化场景模型具有制作经验与理解", "熟悉UE4、UE5或Unity，以及Substance Painter、3ds Max或Maya等工具", "能够合理规划模型面数和UV空间，还原原画造型、材质与色彩", "具备主动学习、创作、协作能力并热爱游戏开发"], portfolioRequirements: ["作品集应完整展示模型、UV、贴图、材质与引擎最终效果。", "建议加入科幻硬表面或风格化场景案例，直接对应官方偏好。", "标注模型面数、UV利用率、材质规格和性能优化前后对比。"], reasons: ["岗位与游戏场景建模主修方向直接匹配，且明确接受2027届", "UE5、Substance Painter和Maya能力覆盖官方核心工具链", "同批次另有场景地编与环境灯光，可根据作品集强项组合选择"], missing: ["官网未公布统一截止日期，岗位可能随时招满关闭", "3D场景地编（发行）是独立职位，投递前应分别核对JD和志愿限制", "建议补充大型开放世界场景的LOD、植被和性能优化数据"], accent: "#242b34",
   },
   {
-    id: 12, company: "游卡", initials: "YK", role: "2027届实习｜场景设计 / 3D建模", city: "杭州/上海/广州/成都", deadline: "招满即止", daysLeft: 99, match: 85, status: "收藏",
-    tags: ["27届实习", "场景设计", "3D建模", "多城市"], business: "桌游、线上游戏、音视频与电竞内容", scale: "公开招聘信息称近2500人", project: "三国杀IP及多场景文化娱乐产品", source: "高校就业网公开招聘简章", sourceUrl: "https://www.yokaverse.com/", campaign: "正在招聘", verifiedAt: "2026-08-07",
-    requirements: ["面向2027届毕业生", "美术表现类包含场景设计与3D建模", "工作地点覆盖杭州、上海、广州和成都"], reasons: ["岗位明确包含场景设计和3D建模", "城市选择较多", "适合用完整场景作品直接投递"], missing: ["需要到官方渠道二次确认具体职位余量", "建议准备偏国风或卡牌叙事的作品排序"], accent: "#956344",
+    id: 12, company: "游卡", initials: "YK", role: "2027届秋招｜美术表现类（当前未列3D场景）", city: "杭州/上海/广州/成都", deadline: "官网未公布统一截止日", daysLeft: 99, match: 62, status: "收藏", opportunityType: "正式校招", scaleTier: "大型企业",
+    tags: ["27届秋招", "美术表现类", "当前无3D场景", "多城市"], business: "桌游、线上游戏、音视频与电竞内容", scale: "超过2000人（2027届招聘信息披露）", project: "三国杀IP、自在西游、指间山海、七塔等", source: "游卡官方Moka校园招聘页及高校就业平台企业招聘信息", sourceUrl: "https://app.mokahr.com/campus-recruitment/yokagames/41940", campaign: "待核验", verifiedAt: "2026-08-31", publishedAt: "2026-08-25", availabilityNote: "游卡2027届秋季校园招聘已启动｜最新企业招聘信息的美术表现类仅列视觉设计、GUI、原画/插画、分镜与音效，未列场景设计或3D建模｜与本站原记录矛盾，已撤销“场景设计/3D建模正在招聘”标记，等待官方动态职位页复核",
+    requirements: ["面向毕业时间为2026年9月至2027年8月的2027届应届毕业生", "工作地点覆盖杭州、上海、广州和成都", "最新公开美术表现类岗位为视觉设计、GUI、原画/插画、分镜与音效", "游戏策划类包含关卡方向，但这不等同于关卡美术或场景美术"], reasons: ["正式秋招批次与多城市信息已经公开", "原画/插画仍可作为场景概念方向的邻近机会", "若官方动态职位页后续新增3D或场景岗位，可再恢复为目标岗位"], missing: ["当前批次未确认3D场景、场景设计、地编或技术美术岗位", "不得沿用旧简章把场景设计/3D建模标为正在招聘", "需要继续检查官方Moka实时职位列表"], accent: "#956344",
   },
   {
     id: 13, company: "灵犀互娱", initials: "LX", role: "2027届秋招｜游戏3D场景", city: "广州", deadline: "官网未公布统一截止日", daysLeft: 99, match: 94, status: "准备中", opportunityType: "正式校招", scaleTier: "大型企业",
@@ -710,6 +710,7 @@ const deadlineOverrides: Record<number, Partial<DeadlineProfile>> = {
   6: { batch: "米哈游2027届秋季校园招聘", opened: "2026年8月起", closes: "2026-10-31", rule: "官网显示应届生职位仅能投递1个；场景模型、关卡美术和技术美术需要择一投递。", urgency: "open" },
   10: { batch: "三七互娱2027届秋季校园招聘", opened: "2026-08-14", closes: "招满即止", rule: "每位同学可投递2个志愿；当前公开场景相关岗位为场景原画与2D场景编辑，岗位可能在招满后提前关闭。", urgency: "rolling" },
   11: { batch: "库洛游戏2027届秋季校园招聘", opened: "2026-08-18", closes: "招满即止", rule: "3D场景模型与3D场景地编（发行）均已开放；岗位会随招聘进度提前关闭，建议优先核对志愿限制后投递。", urgency: "rolling" },
+  12: { batch: "游卡2027届秋季校园招聘", opened: "2026-08-25前已启动", closes: "官网未公布统一截止日", rule: "最新企业招聘信息未列3D场景或场景设计；原记录与当前岗位清单矛盾，须在官方Moka动态职位页确认后才能恢复为目标岗位。", urgency: "watch" },
   13: { batch: "阿里巴巴2027届应届生｜灵犀互娱", opened: "职位于2026-08-06更新", closes: "官网未公布统一截止日", rule: "官方当前显示在招；毕业时间要求为2026-11-01至2027-10-31，岗位可能滚动关闭，建议尽早投递。", urgency: "rolling" },
   15: { batch: "鹰角网络2027届秋季校园招聘", opened: "2026-08-07", closes: "2026-10-31", rule: "2027届应届生在网申期内最多投递2次；场景模型岗位当前可申请。", urgency: "open" },
   16: { batch: "2027届暑期实习", opened: "2026年春季已启动", closes: "招满即止", rule: "实习提供转正机会；美术细分职位和关闭时间以官网实时列表为准。", urgency: "rolling" },
@@ -1134,7 +1135,7 @@ export default function Home() {
           <div className="mobile-brand"><span>△</span><b>跃迁</b></div>
           <label className="global-search"><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} onFocus={() => setView("jobs")} placeholder="搜索公司、岗位或技能关键词" /><kbd>⌘ K</kbd></label>
           <div className="top-actions"><span className="demo-pill verified-pill">✓ 来源已核验</span><button className="notice-button" onClick={() => setNoticeOpen(!noticeOpen)} aria-label="查看通知">♢<i /></button><button className="add-button" onClick={() => { setView("jobs"); setSearch(""); }}>＋ 发现职位</button></div>
-          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>新核验：心动HR官方公众号已确认心动×TapTap 2027届校园招聘启动并覆盖美术类；具体场景细分岗位仍需在官方投递页复核。</p><p>今日截止待核验：多益网络2027秋招提前批公开信息包含技术美术/TA与三维模型，但公司官网动态职位内容仍未完整核验。</p><p>搜狐畅游3D场景岗9月14日截止；点点互动常规应届生校招已开放技术美术、游戏原画和游戏动效，Elite Program+ 仍无美术岗。</p></div>}
+          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>重要纠正：游卡2027秋招最新美术岗位清单未列3D场景或场景设计，原“场景设计/3D建模正在招聘”已撤销并改为待核验。</p><p>心动HR官方公众号已确认心动×TapTap 2027届校招覆盖美术类；具体场景细分岗位仍需在官方投递页复核。</p><p>今日截止待核验：多益网络提前批公开信息包含技术美术/TA与三维模型，但公司官网动态职位内容仍未完整核验。</p></div>}
         </header>
 
         {view === "overview" && <section className="page overview-page">
