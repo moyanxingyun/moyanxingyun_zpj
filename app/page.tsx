@@ -508,9 +508,9 @@ const demoJobs: Job[] = [
     requirements: ["部分实习岗位面向2027届及2028届海内外高校毕业生", "官方当前明确列出原画与3D模型等美术实习方向", "工作地点为上海，具体出勤天数、实习周期和作品集要求以实时职位页为准", "校招内推活动为2026-08-03至2026-11-30，但这不是所有实习岗位的统一截止日"], reasons: ["官方批次已明确开放3D模型美术实习，不再只是公司级关注", "老牌MMO和多品类项目需要大量角色、场景与环境资产", "实习表现优秀可进入2027届校招转正通道"], missing: ["官方批次公告未说明当前3D模型岗位具体偏角色还是场景，投递前必须查看实时JD", "若职位详情未写场景制作，不应将其当作3D场景岗", "建议准备高低模、UV、PBR材质和引擎展示的完整流程"], accent: "#b03039",
   },
   {
-    id: 21, company: "多益网络", initials: "DY", role: "2027届秋招提前批｜技术美术 / TA（待官网复核）", city: "广州/武汉/苏州/杭州", deadline: "2026-08-31", daysLeft: 1, match: 88, status: "收藏", opportunityType: "正式校招", scaleTier: "大型企业",
-    tags: ["27届秋招", "技术美术/TA", "三维模型", "明日截止"], business: "互联网游戏研发与运营", scale: "大型游戏研发公司", project: "幻唐志、梦想世界、枪火重生等", source: "多益网络校招官网入口及高校就业平台企业招聘页", sourceUrl: "https://xz.duoyi.com/ANa", campaign: "待核验", verifiedAt: "2026-08-30", publishedAt: "2026-07-01", availabilityNote: "高校就业平台的企业招聘页显示多益网络2027届秋招提前批已开放｜艺术类包含技术美术/TA与三维模型设计师｜招聘期为2026-07-01至2026-08-31｜公司官网可访问但动态职位内容本轮未能完整复核，因此不标记为正在招聘",
-    requirements: ["面向毕业时间为2026年8月至2027年7月的2027届应届毕业生", "批次信息列出的艺术类岗位包含技术美术/TA、三维模型、原画、特效与动作等", "工作地点覆盖广州、武汉、苏州、杭州，具体岗位地点与JD以公司官网实时信息为准", "流程包含在线网申、在线测评、专业笔试与在线面试"], reasons: ["技术美术与三维模型均属于本批次公开艺术方向", "四个城市均有校招岗位，适合扩大投递范围", "公开招聘期显示8月31日截止，需立即在公司官网确认并决定是否投递"], missing: ["公司官网动态职位列表未能完整复核，岗位开放状态与具体城市仍待确认", "批次公告未提供技术美术的详细JD，不应虚构Shader、工具或引擎要求", "纯3D场景岗位尚未得到官方明确信息"], accent: "#e56b2f",
+    id: 21, company: "多益网络", initials: "DY", role: "2027届秋招提前批｜技术美术 / TA（已截止）", city: "广州/武汉/苏州/杭州", deadline: "2026-08-31", daysLeft: -1, match: 88, status: "收藏", opportunityType: "正式校招", scaleTier: "大型企业",
+    tags: ["27届秋招", "技术美术/TA", "三维模型", "已截止"], business: "互联网游戏研发与运营", scale: "大型游戏研发公司", project: "幻唐志、梦想世界、枪火重生等", source: "多益网络校招官网入口及高校就业平台企业招聘页", sourceUrl: "https://xz.duoyi.com/ANa", campaign: "已结束参考", verifiedAt: "2026-09-01", publishedAt: "2026-07-01", availabilityNote: "高校就业平台的企业招聘页显示多益网络2027届秋招提前批招聘期为2026-07-01至2026-08-31，艺术类曾包含技术美术/TA与三维模型设计师｜截至2026-09-01已过公开截止日，官网未确认延期或转入正式批，故下线为已结束参考",
+    requirements: ["该提前批面向毕业时间为2026年8月至2027年7月的2027届应届毕业生", "批次信息曾列出技术美术/TA、三维模型、原画、特效与动作等艺术类岗位", "工作地点覆盖广州、武汉、苏州、杭州", "公开招聘流程为在线网申、在线测评、专业笔试与在线面试；本批次已结束"], reasons: ["可作为多益后续正式批岗位与作品集要求的历史参照", "技术美术与三维模型曾属于本批次公开艺术方向", "若官方后续开启正式批，可据此快速复核目标岗位"], missing: ["截至2026-09-01未确认延期或新的正式批，当前不可继续投递", "批次公告未提供技术美术的详细JD，不应虚构Shader、工具或引擎要求", "纯3D场景岗位从未得到官方明确确认"], accent: "#e56b2f",
   },
   {
     id: 22, company: "祖龙娱乐", initials: "ZL", role: "校园招聘关注｜3D美术 / 技术美术", city: "北京/苏州", deadline: "关注实时岗位", daysLeft: 99, match: 88, status: "收藏", opportunityType: "校招关注",
@@ -577,9 +577,9 @@ const demoJobs: Job[] = [
     requirements: ["官方招聘官网设有独立校园招聘入口", "美术岗位需以实时列表和作品集要求为准", "二次元项目强调风格还原与精细度"], reasons: ["精品项目便于积累高完成度作品经验", "场景方向可展示风格化和叙事能力", "上海岗位便于集中投递"], missing: ["需补充二次元场景专项作品", "具体27届岗位余量待官网确认"], accent: "#4588b8",
   },
   {
-    id: 32, company: "波克城市", initials: "BOKE", role: "校招 / 实习入口｜游戏美术方向", city: "上海", deadline: "持续关注", daysLeft: 99, match: 78, status: "收藏", opportunityType: "日常实习", scaleTier: "中型企业",
-    tags: ["校招", "实习", "休闲游戏", "UI设计"], business: "游戏研发运营与游戏化应用", scale: "中大型游戏科技公司", project: "捕鱼达人、爆炒江湖等多品类项目", source: "波克城市官方招聘页", sourceUrl: "https://www.boke.com/join.html", campaign: "持续开放", verifiedAt: "2026-08-07",
-    requirements: ["官网同时提供社会招聘、校园招聘和实习生入口", "职位需进入官方招聘系统实时筛选", "美术岗位通常需要作品集"], reasons: ["中厂岗位可补充完整生产流程经验", "上海地点与多家公司可组合投递", "休闲项目适合展示风格化资产"], missing: ["当前27届岗位名称需进一步核验", "建议准备轻量化移动端场景案例"], accent: "#3f6c4f",
+    id: 32, company: "波克科技（波克城市）", initials: "BOKE", role: "2027届秋招｜3D模型设计师（场景细分待核验）", city: "上海", deadline: "官网未公布统一截止日", daysLeft: 99, match: 86, status: "准备中", opportunityType: "正式校招", scaleTier: "中型企业",
+    tags: ["27届秋招", "3D模型", "上海", "场景细分待核验"], business: "游戏研发运营、全球发行与游戏化应用", scale: "中大型游戏科技公司（招聘信息未披露人数）", project: "捕鱼达人、爆炒江湖等多品类项目", source: "波克官方飞书校招入口及高校就业平台企业招聘信息", sourceUrl: "https://boke.jobs.feishu.cn/581609", campaign: "正在招聘", verifiedAt: "2026-09-01", publishedAt: "2026-08-19", availabilityNote: "波克2027届秋季校园招聘已于2026-08-18启动｜上海｜美术类明确包含3D模型设计师，同时开放原画、3D动效、3D特效、动作与动画等岗位｜当前公开清单未把3D模型细分为角色或场景，不能直接标记为3D场景岗位",
+    requirements: ["面向毕业时间为2026年9月1日至2027年8月31日的2027届毕业生", "工作地点为上海市普陀区", "公开美术岗位包含3D模型设计师，但具体项目、角色/场景细分及软件要求须在官方职位详情复核", "网申自2026年8月18日起开放，面试自8月下旬陆续开启，Offer于8月至12月陆续发放", "官方未公布统一网申截止日"], portfolioRequirements: ["建议准备完整的高低模、拓扑、UV、贴图、材质与引擎最终效果。", "若主投场景方向，应优先展示模块化建筑、道具套件、植被和性能优化数据。", "投递前根据官方职位详情确认是角色模型、场景模型还是综合3D模型。"], reasons: ["正式2027届秋招和3D模型岗位均已确认，不再只是入口关注", "上海岗位可与其他游戏美术校招组合投递", "休闲与多品类项目适合展示风格化、轻量化资产生产能力"], missing: ["当前公开职位清单未确认场景模型细分，不能虚构为3D场景岗", "官网未公布统一截止日期和完整JD", "需要在官方飞书职位页核对作品集格式、测试题与具体项目"], accent: "#3f6c4f",
   },
   {
     id: 33, company: "诗悦网络", initials: "SY", role: "校园招聘｜游戏美术 / 3D方向", city: "广州", deadline: "关注实时岗位", daysLeft: 99, match: 80, status: "收藏", opportunityType: "正式校招", scaleTier: "中型企业",
@@ -716,12 +716,13 @@ const deadlineOverrides: Record<number, Partial<DeadlineProfile>> = {
   16: { batch: "2027届暑期实习", opened: "2026年春季已启动", closes: "招满即止", rule: "实习提供转正机会；美术细分职位和关闭时间以官网实时列表为准。", urgency: "rolling" },
   18: { batch: "心动×TapTap 2027届校园招聘", opened: "2026-08-28", closes: "官方未公布统一截止日", rule: "官方公众号已确认美术类招聘；2D场景原画校招、3D场景实习等细分岗位仍需在官方投递页确认，第三方日期不作为官方截止时间。", urgency: "rolling" },
   20: { batch: "盛趣游戏2027届实习招聘", opened: "2026-08-03", closes: "招满即止", rule: "官方批次列出原画与3D模型等美术实习；内推活动持续至11月30日，但该日期不是所有实习岗位的统一截止日。", urgency: "rolling" },
-  21: { batch: "多益网络2027届秋季校园招聘提前批", opened: "2026-07-01", closes: "2026-08-31", rule: "高校就业平台企业招聘页公布该招聘期，但公司官网动态职位内容本轮未能完整复核；请立即在官方入口确认技术美术/TA是否仍可投递。", urgency: "watch" },
+  21: { batch: "多益网络2027届秋季校园招聘提前批", opened: "2026-07-01", closes: "2026-08-31", rule: "公开招聘期已结束；截至2026-09-01，官网未确认延期或正式批承接，技术美术/TA与三维模型仅保留为历史参考。", urgency: "watch" },
   28: { batch: "2027 Elite Program+", opened: "12个职位于2026-07-12发布", closes: "未公布统一截止日", rule: "当前12个实际职位仅覆盖策划、程序、市场和数据，未开放美术类；仅保留监控，不建议投递。", urgency: "watch" },
   50: { batch: "点点互动2027届应届生校园招聘", opened: "2026-08-14", closes: "官网未公布统一截止日", rule: "应届生校招与Elite Program+是两个独立项目；美术岗仅在应届生校招中开放，每个项目可投递3次，岗位可能滚动关闭。", urgency: "rolling" },
   29: { batch: "4399游戏2027届秋季校园招聘", opened: "2026-07-31", closes: "官网未公布统一截止日", rule: "官方校招简章确认3D场景设计师正在本批次招聘；8月起陆续面试，岗位可能滚动关闭，建议尽早投递。", urgency: "rolling" },
   30: { batch: "乐元素2027届秋季校园招聘", opened: "2026年7月起已开放", closes: "官网未公布统一截止日", rule: "2027届毕业生投递正式校招；当前美术类别未列出3D场景模型或地编，岗位可能滚动关闭。", urgency: "rolling" },
   51: { batch: "上海番糖日常实习招聘", opened: "官网当前职位页", closes: "官网未公布截止日", rule: "官方页面明确列出2D场景实习生，但未注明毕业届别；2027届资格、实习时长和关闭时间需通过官方邮箱确认。", urgency: "rolling" },
+  32: { batch: "波克2027届秋季校园招聘", opened: "2026-08-18", closes: "官网未公布统一截止日", rule: "官方投递入口与企业招聘信息确认3D模型设计师正在招聘；角色/场景细分及完整JD仍须进入职位详情核对。", urgency: "rolling" },
   39: { batch: "途游游戏2027届校园招聘", opened: "2026-08-19", closes: "2027-08-31", rule: "牛客校招平台显示这一投递区间；综合美术岗包含场景模型与地编，但仍可能因招满提前关闭。", urgency: "open" },
   44: { batch: "2027届秋招提前批", opened: "职位发布：2026-07-27；网申开放：2026-08-06", closes: "2026-09-14", rule: "官方流程页明确网申期为8月6日至9月14日；2027届秋招最多投递两个职位，建议优先投递3D场景。", urgency: "open" },
   45: { batch: "米哈游2027届秋季校园招聘", opened: "2026年8月起", closes: "2026-10-31", rule: "官网显示应届生职位仅能投递1个；关卡美术与场景模型、技术美术不能同时投递。", urgency: "open" },
@@ -1135,7 +1136,7 @@ export default function Home() {
           <div className="mobile-brand"><span>△</span><b>跃迁</b></div>
           <label className="global-search"><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} onFocus={() => setView("jobs")} placeholder="搜索公司、岗位或技能关键词" /><kbd>⌘ K</kbd></label>
           <div className="top-actions"><span className="demo-pill verified-pill">✓ 来源已核验</span><button className="notice-button" onClick={() => setNoticeOpen(!noticeOpen)} aria-label="查看通知">♢<i /></button><button className="add-button" onClick={() => { setView("jobs"); setSearch(""); }}>＋ 发现职位</button></div>
-          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>重要纠正：游卡2027秋招最新美术岗位清单未列3D场景或场景设计，原“场景设计/3D建模正在招聘”已撤销并改为待核验。</p><p>心动HR官方公众号已确认心动×TapTap 2027届校招覆盖美术类；具体场景细分岗位仍需在官方投递页复核。</p><p>今日截止待核验：多益网络提前批公开信息包含技术美术/TA与三维模型，但公司官网动态职位内容仍未完整核验。</p></div>}
+          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>新增：波克2027届秋招已开放3D模型设计师，上海；当前公开清单未区分角色或场景，投递前需在官方职位详情复核。</p><p>已截止：多益网络提前批公开招聘期已于8月31日结束，暂未发现延期或正式批承接，技术美术/TA与三维模型条目已下线为历史参考。</p><p>专项复核：搜狐畅游官方校招入口仍可访问，点点互动两类招聘项目的状态划分保持不变。</p></div>}
         </header>
 
         {view === "overview" && <section className="page overview-page">
@@ -1163,7 +1164,7 @@ export default function Home() {
             <div className="deadline-alert-list">{deadlineAlerts.length ? deadlineAlerts.map(({ job, countdown }) => <button key={job.id} className={`deadline-alert countdown-${countdown.tone}`} onClick={() => setSelectedJob(job)}><span><b>{job.company}</b><small>{job.role}</small></span><em>{countdown.dateLabel}</em><strong>{countdown.label}</strong></button>) : <p>当前筛选结果中暂无公布明确日期的岗位。</p>}</div>
             <aside><b>{rollingJobCount}</b><span>个滚动招聘</span><small>没有统一截止日，建议尽早投递</small></aside>
           </section>
-          <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot watch" />待核验</span><span><i className="legend-dot mismatch" />当前无美术岗</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-08-31</p></div>
+          <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot watch" />待核验</span><span><i className="legend-dot mismatch" />当前无美术岗</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-09-01</p></div>
           <div className="filter-row"><label><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="搜索畅游、3D场景、UE5…" /></label><select value={city} onChange={(e) => setCity(e.target.value)} aria-label="城市筛选"><option>全部城市</option><option>上海</option><option>杭州</option><option>深圳</option><option>成都</option><option>广州</option><option>北京</option><option>厦门</option><option>重庆</option><option>苏州</option></select><select value={scaleFilter} onChange={(e) => setScaleFilter(e.target.value)} aria-label="公司规模筛选"><option>全部规模</option><option>大型企业</option><option>中型企业</option><option>小型/独立团队</option></select><select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} aria-label="机会类型筛选"><option>全部类型</option><option>正式校招</option><option>实习生</option><option>日常实习</option><option>校招关注</option></select><select value={campaignFilter} onChange={(e) => setCampaignFilter(e.target.value)} aria-label="招聘状态筛选"><option>全部状态</option><option>正在招聘</option><option>实习可转正</option><option>持续开放</option><option>待核验</option><option>当前无美术岗</option><option>入口关注</option><option>已结束参考</option></select><button>匹配度优先 ↕</button></div>
           <div className="result-bar"><span>找到 <b>{filteredJobs.length}</b> 个重点机会，来自 {new Set(filteredJobs.map((job) => job.company)).size} 家游戏公司</span><span>信息可能随时变化 · 以官网为准</span></div>
           <div className="job-list">{filteredJobs.map((job) => <JobCard key={job.id} job={job} todayKey={todayKey} saved={savedIds.includes(job.id)} onSave={() => toggleSaved(job.id)} onOpen={() => setSelectedJob(job)} />)}</div>
