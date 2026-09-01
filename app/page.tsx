@@ -16,7 +16,7 @@ const gallery = [
   { image: assetUrl("/portfolio-scene-wide.jpg"), label: "最终镜头 02", code: "FINAL 02" },
   { image: assetUrl("/portfolio-scene-angles.jpg"), label: "场景多角度", code: "ANGLES" },
   { image: assetUrl("/portfolio-modular.jpg"), label: "模块化拆分", code: "MODULAR" },
-  { image: assetUrl("/portfolio-materials.jpg"), label: "自制材质", code: "MATERIAL" },
+  { image: assetUrl("/portfolio-materials.jpg"), label: "植被与草地材质", code: "FOLIAGE" },
 ];
 
 const assets = [
@@ -29,6 +29,28 @@ const capabilityTabs = [
   { key: "shape", label: "造型与色彩", title: "让造型在小屏幕上依然可读", body: "强化轮廓、体块节奏、色彩分区和视觉焦点，适配全球化风格项目与移动端观看距离。", stat: "FORM / COLOR / READABILITY" },
   { key: "engine", label: "UE5 落地", title: "从单个资产推进到完整场景", body: "展示资产拼接、材质配置、地编、灯光、后处理与最终画面的完整链路，而不是只呈现离线渲染。", stat: "ASSET / MATERIAL / IN-ENGINE" },
   { key: "pipeline", label: "生产流程", title: "让过程能够被团队复用", body: "通过命名、规格、模块化、贴图预算和清晰拆解证明协作意识，并用 AIGC 辅助参考探索与效率提升。", stat: "PIPELINE / TEAMWORK / AIGC" },
+];
+
+const grassStudyStats = [
+  { label: "MASTER MATERIALS", value: "02", note: "单面 / 双面母材分流" },
+  { label: "MATERIAL INSTANCES", value: "07", note: "草地与阔叶材质变体" },
+  { label: "MASTER MASK CLIP", value: "0.3333", note: "两套母材默认裁切阈值" },
+  { label: "LEVEL USAGE", value: "3 MESH / 2 MI", note: "演示关卡实际引用" },
+];
+
+const grassPipeline = [
+  ["01", "母材分流", "默认单面覆盖密集草簇；薄片需要背面可见时切换双面母材。"],
+  ["02", "透明链路", "UseBaseTexture 在纹理与常量分支间切换，再由 OpacityPower 控制后接入 Opacity Mask。"],
+  ["03", "实例派生", "从两套母材派生 7 个实例，按草型和叶片需求覆盖纹理与静态开关。"],
+  ["04", "关卡核验", "只读扫描演示关卡中的真实材质引用，确认 3 种草模型使用 2 个实例，而非只看资源库。"],
+  ["05", "成本复查", "固定镜头、分辨率与密度，对比裁切、双面、风动和 LOD 策略后再记录 GPU 数据。"],
+];
+
+const grassCapturePlan = [
+  { no: "01", code: "NODE GRAPH", title: "母材透明链路", body: "局部截取 UseBaseTexture、OpacityPower 到 Opacity Mask 的完整连接；裁掉内容浏览器与内部资源路径。" },
+  { no: "02", code: "INSTANCE MATRIX", title: "实例参数对照", body: "同框展示单面 / 双面实例，标注 0.3333 裁切、纹理分支和风动开关差异。" },
+  { no: "03", code: "VIEW DISTANCE", title: "近中远景可读性", body: "用同一机位三联图检查叶尖保留、背面缺失与 LOD 跳变，避免只放近景美术截图。" },
+  { no: "04", code: "COST VIEW", title: "复杂度与帧时", body: "并列记录 Lit、Shader Complexity / Quad Overdraw；保持同分辨率与密度，并补充 GPU ms 和 FPS。" },
 ];
 
 function GameIcon({ glyph, compact = false, className = "" }: { glyph: string; compact?: boolean; className?: string }) {
@@ -192,24 +214,59 @@ export default function Home() {
         </div>
 
         <div className="case-overview ornament-panel">
-          <div><span className="mini-title">PROJECT OVERVIEW</span><h3>从单个资产到完整世界</h3><p>正式版在这里写 100—150 字项目目标，说明视觉风格、你的职责、资产来源和最重要的技术挑战。</p></div>
-          <dl><div><dt>职责</dt><dd>建模 / 材质 / 地编 / 灯光</dd></div><div><dt>工具</dt><dd>Maya / Substance 3D / UE5</dd></div><div><dt>类型</dt><dd>个人实时场景</dd></div><div><dt>周期</dt><dd>待补充</dd></div></dl>
+          <div><span className="mini-title">PROJECT OVERVIEW</span><h3>从资产规则到实时画面</h3><p>以风格化森林小屋为核心，完成模块资产、地形植被、材质实例、灯光与后处理的引擎整合。技术复盘进一步检查草地母材、实例参数和关卡实际引用，重点平衡薄片可读性、透明裁切、风动与远景稳定性。</p></div>
+          <dl><div><dt>职责</dt><dd>建模 / 材质 / 地编 / 灯光</dd></div><div><dt>工具</dt><dd>Maya / Substance 3D / UE5</dd></div><div><dt>类型</dt><dd>个人实时场景</dd></div><div><dt>验证</dt><dd>材质审计 / 关卡引用核验</dd></div></dl>
         </div>
 
         <div className="feature-pair">
           <article className="image-feature"><div className="feature-frame"><img src={assetUrl("/portfolio-modular.jpg")} alt="房屋模块化资产拆分" /><span>ASSET KIT</span></div><div><small>01 / MODULAR KIT</small><h3>模块化资产系统</h3><p>补充模块尺寸、网格吸附、复用次数和命名规则，让拆分图能够证明生产意识。</p><button type="button" onClick={() => setGalleryIndex(3)}>在画廊中查看 <GameIcon glyph="›" compact /></button></div></article>
-          <article className="image-feature reverse"><div className="feature-frame"><img src={assetUrl("/portfolio-materials.jpg")} alt="自制场景材质" /><span>MATERIAL STUDY</span></div><div><small>02 / MATERIAL</small><h3>材质与表面语言</h3><p>后续加入材质节点、可调参数、贴图通道和同一材质在不同光照下的效果。</p><button type="button" onClick={() => setGalleryIndex(4)}>在画廊中查看 <GameIcon glyph="›" compact /></button></div></article>
+          <article className="image-feature reverse"><div className="feature-frame"><img src={assetUrl("/portfolio-materials.jpg")} alt="UE5 植被与草地材质研究展示" /><span>FOLIAGE STUDY</span></div><div><small>02 / MATERIAL</small><h3>草地材质系统</h3><p>以单面 / 双面两套 Masked 母材承接不同草片轮廓，再用实例控制纹理分支与透明强度。母材默认裁切阈值为 0.3333，当前风动保持静态，优先保证远景稳定和可控的着色成本。</p><button type="button" onClick={() => setGalleryIndex(4)}>在画廊中查看 <GameIcon glyph="›" compact /></button></div></article>
         </div>
 
+        <section className="grass-study" aria-labelledby="grass-study-title">
+          <header className="grass-study-heading">
+            <div><span className="chapter-tag">TECHNICAL STUDY · VERIFIED</span><h3 id="grass-study-title">UE5 植被与<br />草地材质研究</h3></div>
+            <div className="grass-study-intro"><p>通过只读脚本核对母材属性、实例覆盖和演示关卡引用，将“看起来有效”的草地拆成可复查的技术决策。下列数字来自当前项目快照；建议项与实测项分开呈现，不以估算值替代性能数据。</p><span><i /> READ-ONLY MATERIAL AUDIT</span></div>
+          </header>
+
+          <div className="grass-stat-grid" aria-label="草地材质核心参数">
+            {grassStudyStats.map((stat) => <article key={stat.label}><small>{stat.label}</small><strong>{stat.value}</strong><p>{stat.note}</p></article>)}
+          </div>
+
+          <div className="grass-study-grid">
+            <article className="grass-panel pipeline-panel">
+              <header><span>01 / PRODUCTION LOGIC</span><h4>从母材到关卡引用</h4></header>
+              <ol>{grassPipeline.map((step) => <li key={step[0]}><span>{step[0]}</span><div><b>{step[1]}</b><p>{step[2]}</p></div></li>)}</ol>
+            </article>
+
+            <article className="grass-panel tradeoff-panel">
+              <header><span>02 / PERFORMANCE</span><h4>性能取舍与落地边界</h4></header>
+              <div className="tradeoff-table" role="table" aria-label="草地材质性能取舍">
+                <div className="tradeoff-row tradeoff-head" role="row"><span role="columnheader">决策</span><span role="columnheader">当前配置</span><span role="columnheader">取舍</span></div>
+                <div className="tradeoff-row" role="row"><b role="cell">面向模式</b><span role="cell">单面 + 双面分流</span><p role="cell">单面用于密集草簇以控制成本；仅在薄片背面会进入镜头时使用双面。</p></div>
+                <div className="tradeoff-row" role="row"><b role="cell">透明裁切</b><span role="cell">母材默认 · 0.3333</span><p role="cell">较低阈值保留叶尖但增加透明区域；提高阈值可减轻边缘负担，也会损失轮廓。</p></div>
+                <div className="tradeoff-row" role="row"><b role="cell">风动 / WPO</b><span role="cell">静态 · 参数 0</span><p role="cell">当前母材没有 WPO 输入，避免顶点动画与远景闪烁；需要动态时只为近景英雄草接入轻量风动。</p></div>
+                <div className="tradeoff-row" role="row"><b role="cell">LOD 过渡</b><span role="cell">Dither 关闭</span><p role="cell">省去抖动过渡并保持画面干净，但距离切换可能更明显；应结合 Cull Distance 做同机位复测。</p></div>
+              </div>
+              <aside><b>验证边界</b><p>现有日志没有记录 GPU ms、FPS、三角面或 Cull Distance，因此本案例不虚构性能数字；最终以相同镜头、分辨率和植被密度补录。</p></aside>
+            </article>
+          </div>
+
+          <section className="capture-plan" aria-labelledby="capture-plan-title">
+            <header><span>03 / CAPTURE PLAN</span><h4 id="capture-plan-title">建议截图位</h4><p>每张图只证明一个结论，并在发布前隐藏工程路径、用户名与无关资源名。</p></header>
+            <div>{grassCapturePlan.map((shot) => <figure key={shot.no} className="capture-card"><div className="capture-slot" role="img" aria-label={`${shot.title}建议截图占位`}><span>{shot.no}</span><b>＋</b><small>CAPTURE IN UE5</small></div><figcaption><small>{shot.code}</small><b>{shot.title}</b><p>{shot.body}</p></figcaption></figure>)}</div>
+          </section>
+        </section>
+
         <div className="process-board">
-          <header><span className="chapter-tag dark-tag">PROCESS LOG</span><h3>制作日志</h3><p>点击展开各阶段；同步制作素材时按其中清单截图即可。</p></header>
+          <header><span className="chapter-tag dark-tag">PROCESS LOG</span><h3>制作日志</h3><p>点击展开各阶段；截图清单已改为可直接执行的机位与信息要求。</p></header>
           <div className="process-list">
             {[
-              ["01","灰盒与构图","BLOCKOUT / COMPOSITION","俯视图、初始灰盒、主镜头迭代与视觉焦点说明。"],
-              ["02","高低模与 UV","HIGH / LOW / UV","高模细节、低模线框、UV 排布、三角面数与 Texel Density。"],
-              ["03","烘焙与贴图","BAKE / TEXTURE","Normal、AO、Base Color、Roughness 以及烘焙问题修复。"],
-              ["04","地编与优化","UE5 / PROFILING","地形材质、Foliage、灯光参数、Shader Complexity 与帧率。"],
-            ].map((item) => <details key={item[0]}><summary><span>{item[0]}</span><div><small>{item[2]}</small><b>{item[1]}</b></div><i>＋</i></summary><div className="detail-content"><div className="drop-zone"><span>DROP PROCESS IMAGE HERE</span><b>✦</b></div><p>{item[3]}</p></div></details>)}
+              ["01","灰盒与构图","BLOCKOUT / COMPOSITION","建议截图：俯视灰盒 / 主镜头迭代","用俯视图和前后对比说明动线、视觉焦点与建筑体块如何收敛。"],
+              ["02","高低模与 UV","HIGH / LOW / UV","建议截图：线框 / UV / 密度","并列展示高低模、UV 排布、三角面数与 Texel Density，确保数值可读。"],
+              ["03","烘焙与贴图","BAKE / TEXTURE","建议截图：贴图通道 / 修复前后","展示 Normal、AO、Base Color、Roughness 以及一处典型烘焙问题的修复。"],
+              ["04","植被材质与优化","UE5 / PROFILING","建议截图：Lit / Complexity 同机位","记录母材 Masked 0.3333、单/双面分配、静态风动与 LOD 过渡设置；在相同镜头下补充 Shader Complexity、Quad Overdraw、GPU ms 与 FPS。"],
+            ].map((item) => <details key={item[0]}><summary><span>{item[0]}</span><div><small>{item[2]}</small><b>{item[1]}</b></div><i>＋</i></summary><div className="detail-content"><div className="drop-zone"><span>{item[3]}</span><b>✦</b></div><p>{item[4]}</p></div></details>)}
           </div>
         </div>
       </section>
