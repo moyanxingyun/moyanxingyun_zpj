@@ -618,6 +618,12 @@ const demoJobs: Job[] = [
     requirements: ["热爱游戏行业与艺术创作，计划长期深耕游戏美术", "对场景原画、场景模型、地编等方向有深入研究并具备清晰主攻方向", "具备造型、色彩、构图和原创设计基础，能够适配项目美术风格", "自主学习能力强，能够吸收新技术、新风格并适应研发流程"], portfolioRequirements: ["建议作品集首页明确标注主攻方向为3D场景模型或地编。", "展示从建模、UV、贴图、材质到引擎落地的完整场景流程。", "补充一页资源优化、团队协作和根据反馈迭代的案例。"], reasons: ["岗位公开方向直接覆盖场景模型与地编，和你的主修高度匹配", "广州校招岗位可与4399、灵犀互娱等组成集中投递计划", "岗位接受明确主攻方向，适合用完整场景项目证明能力"], missing: ["综合游戏美术岗位未公开具体项目组和风格", "投递前需确认作品集文件限制、测试形式和最终工作团队", "平台截止日期较远，岗位仍可能因招满提前关闭"], accent: "#2d83bd",
   },
   {
+    id: 59, company: "姚记集团", initials: "YJ", role: "2027届秋招｜游戏美术设计师（3D方向，场景细分待核验）", city: "上海", deadline: "截止时间待核验", daysLeft: 99, match: 84, status: "收藏", opportunityType: "正式校招", scaleTier: "大型企业",
+    tags: ["27届秋招", "3D美术", "建模", "场景细分待核验"], business: "移动游戏、泛娱乐与游戏+AI业务", scale: "A股上市泛娱乐企业（招聘信息未披露人数）", project: "姚记旗下移动游戏与游戏+AI相关业务", source: "姚记集团牛客雇主账号职位页及公开校招信息", sourceUrl: "https://www.nowcoder.com/jobs/detail/459264", campaign: "待核验", verifiedAt: "2026-09-03", publishedAt: "2026-07-01", availabilityNote: "牛客职位页当前显示姚记集团雇主账号发布的2027届游戏美术设计师｜上海｜职责覆盖原画或3D美术，3D方向包含建模、UV拆分和材质贴图｜职位页投递日期与公开校招批次截止日不一致，且未细分到3D场景，暂标记待核验",
+    responsibilities: ["根据个人专长与项目需要，参与游戏原画或3D美术方向的日常制作。", "遵循项目风格与技术规范，整理、优化并归档美术资产。", "参与项目风格研讨和设计评审，根据反馈完成方案迭代。"],
+    requirements: ["面向2027届、本科及以上学历，美术或数字媒体等相关专业", "3D方向需掌握Maya、Blender或3ds Max中的至少一种建模软件", "会使用Substance Painter制作贴图，并具备UV拆分与布线基础", "具体作品集要求、项目归属和截止时间须向雇主账号再次确认"], portfolioRequirements: ["准备高低模、UV、布线、PBR材质和最终渲染的完整过程。", "若主投场景方向，应单独突出模块化资产、环境材质和引擎落地。", "作品集链接需可直接访问，并标注个人职责与迭代过程。"], reasons: ["岗位明确接受3D美术方向，基础制作流程与场景资产能力相通", "上海岗位可加入同城游戏美术校招投递组合", "上市集团的多业务环境可提供不同项目风格的制作需求"], missing: ["JD未说明3D方向偏角色、场景还是综合资产，不能直接视为场景岗", "职位页与校招批次的截止日期存在冲突", "缺少统一官方校招官网中的同名职位详情和作品集附件限制"], accent: "#b53243",
+  },
+  {
     id: 40, company: "帕斯亚科技", initials: "PAT", role: "招聘 / 实习关注｜3D场景与独立游戏", city: "重庆", deadline: "持续关注", daysLeft: 99, match: 85, status: "收藏", opportunityType: "日常实习", scaleTier: "中型企业",
     tags: ["主机游戏", "3D场景", "独立游戏", "重庆"], business: "PC、主机与跨平台原创游戏研发", scale: "中型原创游戏团队（官网披露超过260人）", project: "波西亚时光、沙石镇时光等", source: "帕斯亚科技官方网站", sourceUrl: "https://patheagames.com/", campaign: "持续开放", verifiedAt: "2026-08-07",
     requirements: ["官网设有加入我们入口", "具体应届和实习岗位以实时招聘页为准", "跨平台项目重视完整3D场景生产能力"], reasons: ["你的场景建模和地编方向高度匹配", "项目覆盖PC与主机平台", "中型原创团队更适合展示综合能力"], missing: ["需要准备更完整的开放区域场景", "需确认岗位是否接受2027届"], accent: "#b45b34",
@@ -724,6 +730,7 @@ const deadlineOverrides: Record<number, Partial<DeadlineProfile>> = {
   51: { batch: "上海番糖日常实习招聘", opened: "官网当前职位页", closes: "官网未公布截止日", rule: "官方页面明确列出2D场景实习生，但未注明毕业届别；2027届资格、实习时长和关闭时间需通过官方邮箱确认。", urgency: "rolling" },
   32: { batch: "波克2027届秋季校园招聘", opened: "2026-08-18", closes: "官网未公布统一截止日", rule: "官方投递入口与企业招聘信息确认3D模型设计师正在招聘；角色/场景细分及完整JD仍须进入职位详情核对。", urgency: "rolling" },
   39: { batch: "途游游戏2027届校园招聘", opened: "2026-08-19", closes: "2027-08-31", rule: "牛客校招平台显示这一投递区间；综合美术岗包含场景模型与地编，但仍可能因招满提前关闭。", urgency: "open" },
+  59: { batch: "姚记集团2027届校园招聘", opened: "2026-07-01", closes: "截止时间待核验", rule: "牛客雇主职位页与公开校招批次的截止日期不一致；3D方向也未细分角色或场景，确认前不得视为明确场景岗位。", urgency: "watch" },
   44: { batch: "2027届秋招提前批", opened: "职位发布：2026-07-27；网申开放：2026-08-06", closes: "2026-09-14", rule: "官方流程页明确网申期为8月6日至9月14日；2027届秋招最多投递两个职位，建议优先投递3D场景。", urgency: "open" },
   45: { batch: "米哈游2027届秋季校园招聘", opened: "2026年8月起", closes: "2026-10-31", rule: "官网显示应届生职位仅能投递1个；关卡美术与场景模型、技术美术不能同时投递。", urgency: "open" },
   46: { batch: "米哈游2027届秋季校园招聘", opened: "2026年8月起", closes: "2026-10-31", rule: "官网显示应届生职位仅能投递1个；技术美术方向覆盖渲染、工具、性能优化和PCG等分支。", urgency: "open" },
@@ -1136,7 +1143,7 @@ export default function Home() {
           <div className="mobile-brand"><span>△</span><b>跃迁</b></div>
           <label className="global-search"><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} onFocus={() => setView("jobs")} placeholder="搜索公司、岗位或技能关键词" /><kbd>⌘ K</kbd></label>
           <div className="top-actions"><span className="demo-pill verified-pill">✓ 来源已核验</span><button className="notice-button" onClick={() => setNoticeOpen(!noticeOpen)} aria-label="查看通知">♢<i /></button><button className="add-button" onClick={() => { setView("jobs"); setSearch(""); }}>＋ 发现职位</button></div>
-          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>来源更新：完美世界2027届秋招已核验新的官方Moka投递页；美术设计类确认包含3D，但公开简章仍未细分到3D场景。</p><p>本轮未发现新增或下线的目标岗位；未经官方职位详情确认的场景细分继续标记为待核验。</p><p>专项复核：搜狐畅游官方校招入口仍可访问，点点互动两类招聘项目的状态划分保持不变。</p></div>}
+          {noticeOpen && <div className="notice-popover"><b>今日提醒</b><p>新增待核验：姚记集团2027届游戏美术设计师，上海；雇主职位页确认3D制作方向，但未细分场景，且截止日期信息冲突。</p><p>观察项：华娱游戏公开信息列出场景模型、场景地编与技术美术，但尚未找到可独立核验的官方投递页，暂不入库。</p><p>专项复核：搜狐畅游官方校招入口仍可访问，点点互动两类招聘项目的状态划分保持不变。</p></div>}
         </header>
 
         {view === "overview" && <section className="page overview-page">
@@ -1164,7 +1171,7 @@ export default function Home() {
             <div className="deadline-alert-list">{deadlineAlerts.length ? deadlineAlerts.map(({ job, countdown }) => <button key={job.id} className={`deadline-alert countdown-${countdown.tone}`} onClick={() => setSelectedJob(job)}><span><b>{job.company}</b><small>{job.role}</small></span><em>{countdown.dateLabel}</em><strong>{countdown.label}</strong></button>) : <p>当前筛选结果中暂无公布明确日期的岗位。</p>}</div>
             <aside><b>{rollingJobCount}</b><span>个滚动招聘</span><small>没有统一截止日，建议尽早投递</small></aside>
           </section>
-          <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot watch" />待核验</span><span><i className="legend-dot mismatch" />当前无美术岗</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-09-02</p></div>
+          <div className="source-legend"><span><i className="legend-dot live" />正在招聘</span><span><i className="legend-dot intern" />实习可转正</span><span><i className="legend-dot watch" />待核验</span><span><i className="legend-dot mismatch" />当前无美术岗</span><span><i className="legend-dot watch" />入口关注</span><p>数据最后集中核验：2026-09-03</p></div>
           <div className="filter-row"><label><span>⌕</span><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="搜索畅游、3D场景、UE5…" /></label><select value={city} onChange={(e) => setCity(e.target.value)} aria-label="城市筛选"><option>全部城市</option><option>上海</option><option>杭州</option><option>深圳</option><option>成都</option><option>广州</option><option>北京</option><option>厦门</option><option>重庆</option><option>苏州</option></select><select value={scaleFilter} onChange={(e) => setScaleFilter(e.target.value)} aria-label="公司规模筛选"><option>全部规模</option><option>大型企业</option><option>中型企业</option><option>小型/独立团队</option></select><select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} aria-label="机会类型筛选"><option>全部类型</option><option>正式校招</option><option>实习生</option><option>日常实习</option><option>校招关注</option></select><select value={campaignFilter} onChange={(e) => setCampaignFilter(e.target.value)} aria-label="招聘状态筛选"><option>全部状态</option><option>正在招聘</option><option>实习可转正</option><option>持续开放</option><option>待核验</option><option>当前无美术岗</option><option>入口关注</option><option>已结束参考</option></select><button>匹配度优先 ↕</button></div>
           <div className="result-bar"><span>找到 <b>{filteredJobs.length}</b> 个重点机会，来自 {new Set(filteredJobs.map((job) => job.company)).size} 家游戏公司</span><span>信息可能随时变化 · 以官网为准</span></div>
           <div className="job-list">{filteredJobs.map((job) => <JobCard key={job.id} job={job} todayKey={todayKey} saved={savedIds.includes(job.id)} onSave={() => toggleSaved(job.id)} onOpen={() => setSelectedJob(job)} />)}</div>
